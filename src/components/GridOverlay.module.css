@@ -1,0 +1,18 @@
+.overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(
+            var(--grid-line-color, rgba(255, 255, 255, 0.07)) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            var(--grid-line-color, rgba(255, 255, 255, 0.07)) 1px,
+            transparent 1px
+        );
+    background-size: 140px 140px;
+    opacity: 0.35;
+    mix-blend-mode: soft-light;
+}
