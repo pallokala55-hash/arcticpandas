@@ -18,9 +18,8 @@ const CTA = () => {
           <p className={styles.kicker}>Engage</p>
           <h2 className={styles.title}>Want to talk partnerships?</h2>
           <p className={styles.copy}>
-            Deploy frost-blue capital into a facility-grade brand. We run clean
-            white-black visuals, disciplined broadcast ops, and sponsor packages
-            tailored to engineered calm.
+            We offer stable, camera-ready players, consistent on-brand
+            production and clear deliverables for partners.
           </p>
         </div>
         <div className={styles.actions}>
