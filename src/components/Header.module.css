@@ -1,9 +1,6 @@
 .header {
-    position: fixed;
+    position: sticky;
     top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
     z-index: 30;
     backdrop-filter: blur(8px);
 }
@@ -69,10 +66,26 @@
     border-color: var(--accent-color);
 }
 
+.topRow {
+    display: contents;
+}
+
+.ctaMobile {
+    display: none;
+}
+
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
         align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .topRow {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
     }
 
     .nav {
@@ -80,7 +93,24 @@
     }
 
     .cta {
-        width: 100%;
+        display: none;
+    }
+
+    .ctaMobile {
+        display: inline-block;
+        font-size: 0.72rem;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        background-color: var(--color-foreground);
+        color: var(--color-background);
+        padding: 0.4rem 0.8rem;
+        border-radius: 4px;
         text-align: center;
+        flex-shrink: 1;
+        transition: background-color 200ms ease;
+    }
+
+    .ctaMobile:hover {
+        background-color: var(--accent-color);
     }
 }

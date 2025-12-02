@@ -25,16 +25,25 @@ const Header = ({ navLinks = mainNavLinks, cta = headerCta }: HeaderProps) => {
   return (
     <header className={styles.header} style={headerStyle}>
       <div className={styles.container}>
-        <Link className={styles.brand} href="/" aria-label="Arctic Pandas logo">
-          <Image
-            className={styles.logoStandalone}
-            src={assets.logo}
-            alt="Arctic Pandas emblem"
-            width={40}
-            height={40}
-          />
-          <span>Arctic Pandas</span>
-        </Link>
+        <div className={styles.topRow}>
+          <Link
+            className={styles.brand}
+            href="/"
+            aria-label="Arctic Pandas logo"
+          >
+            <Image
+              className={styles.logoStandalone}
+              src={assets.logo}
+              alt="Arctic Pandas emblem"
+              width={40}
+              height={40}
+            />
+            <span>Arctic Pandas</span>
+          </Link>
+          <a className={styles.ctaMobile} href={cta.href}>
+            {cta.label}
+          </a>
+        </div>
         <nav className={styles.nav} aria-label="Primary navigation">
           {navLinks.map((link) => (
             <a key={link.id} className={styles.navLink} href={link.href}>
