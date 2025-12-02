@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { siteConfig, assets } from "../lib/config";
 import { colors, layout } from "../theme";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import SmoothScroll from "../components/SmoothScroll";
 import "./globals.css";
 import styles from "./layout.module.css";
 
@@ -68,7 +71,10 @@ export default function RootLayout({
           }}
         >
           <div className={styles.starfield} aria-hidden="true" />
-          {children}
+          <SmoothScroll />
+          <Header />
+          <main className={styles.main}>{children}</main>
+          <Footer />
         </div>
       </body>
     </html>

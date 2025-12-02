@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Footer from "../../components/Footer";
 import PlayerProfile from "../../components/sections/PlayerProfile";
 import { players, playersBySlug } from "../../data/players";
 import { siteConfig } from "../../lib/config";
@@ -53,10 +52,5 @@ export default async function PlayerPage({ params }: Props) {
     notFound();
   }
 
-  return (
-    <>
-      <PlayerProfile player={player} />
-      <Footer />
-    </>
-  );
+  return <PlayerProfile player={player} />;
 }
