@@ -1,3 +1,5 @@
+import { footerLinks } from "../data/navigation";
+import { contactConfig } from "../lib/config";
 import styles from "./Footer.module.css";
 import { colors, withAlpha } from "../theme";
 import type { CSSVarStyles } from "../theme";
@@ -15,10 +17,12 @@ const Footer = () => {
       <div className={styles.inner}>
         <span>© {new Date().getFullYear()} Arctic Pandas.</span>
         <div className={styles.links}>
-          <a href="/#hero">Facility</a>
-          <a href="/#about">Protocol</a>
-          <a href="/#team">Roster</a>
-          <a href="mailto:contact@arcticpandas.gg">Contact</a>
+          {footerLinks.map((link) => (
+            <a key={link.id} href={link.href}>
+              {link.label}
+            </a>
+          ))}
+          <a href={contactConfig.emailHref}>Contact</a>
         </div>
       </div>
     </footer>
