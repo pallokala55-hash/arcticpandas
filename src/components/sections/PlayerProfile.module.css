@@ -243,16 +243,6 @@
     justify-content: center;
 }
 
-@media (max-width: 640px) {
-    .peakCard {
-        grid-column: auto;
-    }
-
-    .peakContent {
-        align-items: center;
-    }
-}
-
 .highlights {
     padding: 1.1rem 1.25rem;
     border-radius: 12px;
@@ -378,10 +368,5 @@
 
     .portraitWrap {
         order: -1;
-    }
-
-    .badge {
-        position: static;
-        margin: 0.25rem 0 0.5rem;
     }
 }
