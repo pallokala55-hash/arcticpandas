@@ -1,8 +1,11 @@
 export type Milestone = {
   id: string;
   label: string;
+  labelMobile: [string, string];
   x: number;
   y: number;
+  textOffset?: number;
+  textOffsetMobile?: number;
 };
 
 export type TimelineStar = {
@@ -13,10 +16,29 @@ export type TimelineStar = {
 };
 
 export const timelineNodes: Milestone[] = [
-  { id: "fpl", label: "WINNING FPL", x: 3, y: 14 },
-  { id: "nlc", label: "WINNING NLC", x: 34, y: 17 },
-  { id: "emea", label: "WINNING EMEA MASTERS", x: 65, y: 8.5 },
-  { id: "next", label: "NEXT STAR AWAITS", x: 94, y: 13.5 },
+  {
+    id: "nlc",
+    label: "WINNING NLC",
+    labelMobile: ["WINNING", "NLC"],
+    x: 10,
+    y: 20,
+  },
+  {
+    id: "emea",
+    label: "WINNING EMEA MASTERS",
+    labelMobile: ["WINNING", "EMEA MASTERS"],
+    x: 50,
+    y: 16,
+    textOffset: -4.5,
+    textOffsetMobile: -8.5,
+  },
+  {
+    id: "next",
+    label: "NEXT STAR AWAITS",
+    labelMobile: ["NEXT STAR", "AWAITS"],
+    x: 90,
+    y: 8,
+  },
 ];
 
 export const timelineStars: TimelineStar[] = [
