@@ -2,6 +2,37 @@
     padding: 2.5rem 0;
     border-top: 1px solid var(--divider-color);
     background-color: var(--footer-bg, transparent);
+    background-image:
+        radial-gradient(
+            1.5px 1.5px at 15% 30%,
+            rgba(255, 255, 255, 0.4),
+            transparent
+        ),
+        radial-gradient(
+            1.5px 1.5px at 35% 60%,
+            rgba(255, 255, 255, 0.38),
+            transparent
+        ),
+        radial-gradient(
+            1.5px 1.5px at 55% 25%,
+            rgba(255, 255, 255, 0.42),
+            transparent
+        ),
+        radial-gradient(
+            1.5px 1.5px at 75% 70%,
+            rgba(255, 255, 255, 0.4),
+            transparent
+        ),
+        radial-gradient(
+            1px 1px at 25% 80%,
+            rgba(255, 255, 255, 0.36),
+            transparent
+        ),
+        radial-gradient(
+            1px 1px at 85% 40%,
+            rgba(255, 255, 255, 0.38),
+            transparent
+        );
 }
 
 .inner {

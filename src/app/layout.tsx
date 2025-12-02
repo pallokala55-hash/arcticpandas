@@ -70,7 +70,6 @@ export default function RootLayout({
             color: colors.foreground,
           }}
         >
-          <div className={styles.starfield} aria-hidden="true" />
           <SmoothScroll />
           <Header />
           <main className={styles.main}>{children}</main>

@@ -2,6 +2,52 @@
     position: relative;
     padding: var(--layout-sectionPadding, 96px 24px);
     background-color: var(--about-bg);
+    background-image:
+        radial-gradient(
+            1.5px 1.5px at 12% 18%,
+            rgba(255, 255, 255, 0.4),
+            transparent
+        ),
+        radial-gradient(
+            1.5px 1.5px at 28% 42%,
+            rgba(255, 255, 255, 0.42),
+            transparent
+        ),
+        radial-gradient(
+            1.5px 1.5px at 44% 20%,
+            rgba(255, 255, 255, 0.4),
+            transparent
+        ),
+        radial-gradient(
+            1.5px 1.5px at 60% 65%,
+            rgba(255, 255, 255, 0.42),
+            transparent
+        ),
+        radial-gradient(
+            1.5px 1.5px at 76% 38%,
+            rgba(255, 255, 255, 0.38),
+            transparent
+        ),
+        radial-gradient(
+            1.5px 1.5px at 90% 74%,
+            rgba(255, 255, 255, 0.4),
+            transparent
+        ),
+        radial-gradient(
+            1px 1px at 20% 80%,
+            rgba(255, 255, 255, 0.36),
+            transparent
+        ),
+        radial-gradient(
+            1px 1px at 50% 50%,
+            rgba(255, 255, 255, 0.4),
+            transparent
+        ),
+        radial-gradient(
+            1px 1px at 80% 25%,
+            rgba(255, 255, 255, 0.38),
+            transparent
+        );
     color: var(--color-foreground);
     border-bottom: 1px solid var(--divider-color);
 }
