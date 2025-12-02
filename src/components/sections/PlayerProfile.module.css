@@ -371,6 +371,15 @@
         align-items: flex-start;
     }
 
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .portraitWrap {
+        order: -1;
+    }
+
     .badge {
         position: static;
         margin: 0.25rem 0 0.5rem;

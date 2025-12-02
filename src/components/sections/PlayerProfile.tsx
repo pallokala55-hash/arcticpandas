@@ -32,7 +32,7 @@ const PlayerProfile = ({ player }: PlayerProfileProps) => {
   };
 
   const handleBack = () => {
-    router.push("/");
+    router.push("/#team");
   };
 
   const stats = [
