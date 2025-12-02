@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import styles from "./App.module.css";
 import Footer from "./components/Footer";
-import Header, { type HeaderNavLink } from "./components/Header";
+import Header from "./components/Header";
 import { playersBySlug } from "./data/players";
 import About from "./sections/About";
 import CTA from "./sections/CTA";
 import Hero from "./sections/Hero";
 import PlayerProfile from "./sections/PlayerProfile";
-import Shop from "./sections/Shop";
 import SponsorMarquee from "./sections/SponsorMarquee";
 import Team from "./sections/Team";
 import TwitchHighlight from "./sections/TwitchHighlight";
@@ -70,39 +69,6 @@ function App() {
       >
         <div className={styles.starfield} aria-hidden="true" />
         <PlayerProfile player={player} onBack={goHome} />
-        <Footer />
-      </div>
-    );
-  }
-
-  const isShop = path === "/shop";
-  const shopNavLinks: HeaderNavLink[] = [
-    { label: "Collections", href: "#shop-collections" },
-    { label: "Care", href: "#shop-care" },
-    { label: "FAQ", href: "#shop-faq" },
-    { label: "Home", href: "/", type: "route" },
-  ];
-  const shopCta: HeaderNavLink = {
-    label: "Back to HQ",
-    href: "/",
-    type: "route",
-  };
-
-  if (isShop) {
-    return (
-      <div
-        className={styles.app}
-        style={{ backgroundColor: colors.background, color: colors.foreground }}
-      >
-        <div className={styles.starfield} aria-hidden="true" />
-        <Header
-          onNavigate={navigateTo}
-          navLinks={shopNavLinks}
-          cta={shopCta}
-        />
-        <main className={styles.main}>
-          <Shop />
-        </main>
         <Footer />
       </div>
     );

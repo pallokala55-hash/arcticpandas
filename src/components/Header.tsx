@@ -20,7 +20,6 @@ const defaultNavLinks: HeaderNavLink[] = [
   { label: "Explore", href: "#about" },
   { label: "Team", href: "#team" },
   { label: "Contact", href: "#cta" },
-  { label: "Shop", href: "/shop", type: "route" },
 ];
 
 const defaultCta: HeaderNavLink = {

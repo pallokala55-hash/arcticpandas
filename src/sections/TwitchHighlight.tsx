@@ -36,7 +36,7 @@ const TwitchHighlight = () => {
         >
           <div className={styles.cardMedia} aria-hidden="true">
             <img
-              src="/twitchbannerkuva.png"
+              src="/maxresdefault.jpg"
               alt="Twitch broadcast highlight"
               loading="lazy"
             />
