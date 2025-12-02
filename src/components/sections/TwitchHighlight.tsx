@@ -67,6 +67,7 @@ const TwitchHighlight = () => {
                 "--btn-bg": colors.frostBlue,
                 "--btn-text": colors.background,
                 "--btn-border": colors.frostBlue,
+                "--btn-hover": colors.foreground,
               } as CSSProperties
             }
           >
