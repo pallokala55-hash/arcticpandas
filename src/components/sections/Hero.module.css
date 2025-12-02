@@ -198,7 +198,7 @@
     position: relative;
     z-index: 1;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: 1fr auto;
     gap: 2.5rem;
     align-items: center;
 }
@@ -307,12 +307,72 @@
 }
 
 @media (max-width: 900px) {
-    .frameWrap {
-        min-height: 260px;
-        min-width: 260px;
+    .hero {
+        padding: 64px 16px 48px;
+        min-height: auto;
+    }
+
+    .container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .left {
+        text-align: center;
+        justify-items: center;
+    }
+
+    .title {
+        font-size: clamp(2.2rem, 10vw, 3.5rem);
+    }
+
+    .label {
+        font-size: 0.7rem;
+        letter-spacing: 0.3em;
+    }
+
+    .meta {
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
     }
 
     .actions {
         flex-direction: column;
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .frameWrap {
+        min-height: 220px;
+        min-width: 100%;
+        max-width: 320px;
+        justify-self: center;
+    }
+
+    .scrollHint {
+        bottom: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 48px 12px 40px;
+    }
+
+    .title {
+        font-size: clamp(1.8rem, 12vw, 2.5rem);
+    }
+
+    .label {
+        font-size: 0.65rem;
+    }
+
+    .meta {
+        font-size: 0.7rem;
+    }
+
+    .frameWrap {
+        min-height: 180px;
+        max-width: 260px;
     }
 }

@@ -54,9 +54,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <div className={styles.scrollHint}>
-        <span>Scroll</span>
-      </div>
     </section>
   );
 };
