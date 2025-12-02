@@ -29,6 +29,7 @@ const Header = ({ navLinks = mainNavLinks, cta = headerCta }: HeaderProps) => {
           <Link
             className={styles.brand}
             href="/"
+            scroll={false}
             aria-label="Arctic Pandas logo"
           >
             <Image

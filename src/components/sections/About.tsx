@@ -24,6 +24,7 @@ const About = () => {
               key={player.slug}
               className={`${styles.compItem} ${styles.clickable}`}
               href={`/${player.slug}`}
+              scroll={false}
               aria-label={`Open ${player.name}'s player profile`}
             >
               <div className={styles.compAvatar}>
