@@ -30,7 +30,7 @@ export const externalLinks = {
 } as const;
 
 export const assets = {
-  logo: "/MaskedPanda_IconWhite.jpg",
+  logo: "/logo.svg",
   ogImage: "/MaskedPanda_IconWhite.jpg",
   heroVideo: "/Hiivapromo.mp4",
 } as const;
