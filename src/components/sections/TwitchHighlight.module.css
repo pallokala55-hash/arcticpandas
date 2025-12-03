@@ -119,14 +119,36 @@
     gap: 0.55rem;
     padding: 0.45rem 1.25rem 0.45rem 0.75rem;
     border-radius: 999px;
-    background: var(--badge-bg);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    letter-spacing: 0.32em;
-    font-size: 0.72rem;
+    background: var(--onair-bg, var(--badge-bg));
+    border: 1px solid var(--onair-border, rgba(255, 255, 255, 0.18));
+    box-shadow:
+        0 12px 32px rgba(0, 0, 0, 0.42),
+        0 0 0 1px rgba(255, 255, 255, 0.06),
+        0 0 36px var(--onair-glow, transparent);
+    letter-spacing: 0.28em;
+    font-size: 0.74rem;
     text-transform: uppercase;
     font-weight: 600;
-    color: #fff;
+    color: var(--onair-text, #fff);
     align-self: flex-start;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.onAir::after {
+    content: "";
+    position: absolute;
+    inset: -30% 10% 10% -30%;
+    background: radial-gradient(
+        circle at 24% 32%,
+        rgba(255, 255, 255, 0.08),
+        transparent 55%
+    );
+    opacity: 0.7;
+    z-index: -1;
 }
 
 .onAirText {
@@ -138,7 +160,9 @@
     height: 10px;
     border-radius: 50%;
     background: #ff4e4e;
-    box-shadow: 0 0 12px rgba(255, 78, 78, 0.45);
+    box-shadow:
+        0 0 0 6px rgba(78, 208, 255, 0.16),
+        0 0 12px rgba(255, 78, 78, 0.55);
     animation: pulse 2.2s ease-in-out infinite;
 }
 

@@ -19,6 +19,10 @@ const TwitchHighlight = () => {
     "--badge-bg": "rgba(6, 10, 18, 0.75)",
     "--card-border": withAlpha(colors.frostGrey, 0.22),
     "--card-glow": withAlpha(colors.frostBlue, 0.08),
+    "--onair-bg": `linear-gradient(120deg, ${withAlpha(colors.frostBlue, 0.22)}, ${withAlpha(colors.foreground, 0.04)})`,
+    "--onair-border": withAlpha(colors.frostBlue, 0.7),
+    "--onair-glow": withAlpha(colors.frostBlue, 0.32),
+    "--onair-text": colors.foreground,
   };
 
   return (

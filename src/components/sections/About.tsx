@@ -37,6 +37,7 @@ const About = () => {
             <MemberCard
               key={member.id}
               name={member.name}
+              image={member.image}
               role={member.role}
               maxWidth={280}
             />

@@ -10,11 +10,25 @@ type MemberCardProps = {
 };
 
 const MemberCard = ({ name, image, role, href, maxWidth }: MemberCardProps) => {
+  const isVideo = Boolean(image && image.match(/\.(mp4|mov|webm)$/i));
+
   const content = (
     <>
       <div className={styles.compAvatar}>
         {image ? (
-          <Image src={image} alt={name} width={80} height={80} />
+          isVideo ? (
+            <video
+              src={image}
+              muted
+              loop
+              autoPlay
+              playsInline
+              preload="metadata"
+              aria-label={`${name} video`}
+            />
+          ) : (
+            <Image src={image} alt={name} width={80} height={80} />
+          )
         ) : (
           <div className={styles.placeholder} />
         )}
