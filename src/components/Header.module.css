@@ -26,10 +26,11 @@
 }
 
 .logoStandalone {
-    height: 32px;
+    height: 28px;
     width: auto;
     display: block;
     object-fit: contain;
+    margin: 2px;
 }
 
 .nav {
