@@ -27,7 +27,14 @@ const MemberCard = ({ name, image, role, href, maxWidth }: MemberCardProps) => {
               aria-label={`${name} video`}
             />
           ) : (
-            <Image src={image} alt={name} width={80} height={80} />
+            <Image
+              src={image}
+              alt={name}
+              fill
+              sizes="(max-width: 640px) 50vw, (max-width: 900px) 33vw, 20vw"
+              quality={90}
+              style={{ objectFit: "cover" }}
+            />
           )
         ) : (
           <div className={styles.placeholder} />

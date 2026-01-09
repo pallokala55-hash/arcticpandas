@@ -27,7 +27,7 @@ export const players: PlayerProfileData[] = [
     origin: "Finland",
     style: "Control + calculated trades",
     shotcalling: "Primary mid/late",
-    image: "/Nille.png",
+    image: "/nille.jpg",
     headline: "Juho Janhunen",
     subtitle: "Precision laner, calm comms, tilts pressure into map control.",
     bio: "Nille closes space with patient wave control and favors high-percentage skirmishes. He keeps parity on weakside, then transfers gold to decisive Baron setups. In critical fights he mirrors flank threats, anchoring Arctic Pandas' mid-late game structure.",
@@ -51,7 +51,7 @@ export const players: PlayerProfileData[] = [
     origin: "Finland",
     style: "Control waves",
     shotcalling: "Early objective pacing",
-    image: "/Simpli.png",
+    image: "/simpli.jpg",
     headline: "Anselmi Rintanen",
     subtitle:
       "Tracks tempo, pressures lanes with smart timers, never forces coin-flips.",
@@ -76,7 +76,7 @@ export const players: PlayerProfileData[] = [
     origin: "Finland",
     style: "Tempo",
     shotcalling: "Mid-game skirmish setups",
-    image: "/Dibu.png",
+    image: "/dipu.jpg",
     headline: "Janne Heikkonen",
     subtitle:
       "Crashes waves on command, roams on vision, anchors mid-map prio.",
@@ -101,7 +101,7 @@ export const players: PlayerProfileData[] = [
     origin: "Finland",
     style: "Aleksi Merta",
     shotcalling: "Fight focus",
-    image: "/Kehvo.png",
+    image: "/Kehvo.jpg",
     headline: "Aleksi Merta",
     subtitle:
       "Plays for plate leads, protects tempo, spikes hard on two items.",
@@ -126,7 +126,7 @@ export const players: PlayerProfileData[] = [
     origin: "Estonia",
     style: "Vision control",
     shotcalling: "Lane calls and vision layouts",
-    image: "/Boltox.png",
+    image: "/boltox.jpg",
     headline: "Ariet Semre",
     subtitle:
       "Sets trap lines, pulls triggers with confidence, peels when needed.",

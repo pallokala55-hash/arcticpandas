@@ -160,8 +160,7 @@
     overflow: hidden;
     border: 1px solid var(--divider-color);
     background-color: rgba(255, 255, 255, 0.04);
-    display: grid;
-    place-items: center;
+    position: relative;
 }
 
 .compAvatar img,
