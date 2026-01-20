@@ -50,6 +50,9 @@ export const metadata: Metadata = {
     icon: "/MaskedPanda_IconWhite.jpg",
     apple: "/apple-touch-icon.png",
   },
+  alternates: {
+    canonical: siteConfig.url,
+  },
 };
 
 export default function RootLayout({
