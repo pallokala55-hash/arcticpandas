@@ -29,10 +29,7 @@ const Hero = () => {
             FINLAND · LEAGUE OF LEGENDS · Esports Command
           </p>
           <div className={styles.actions}>
-            <Button variant="primary" href="#about">
-              Explore the facility
-            </Button>
-            <Button variant="secondary" href="#team">
+            <Button variant="primary" href="#team">
               Meet the roster
             </Button>
           </div>

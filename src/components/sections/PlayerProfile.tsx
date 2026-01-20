@@ -126,9 +126,6 @@ const PlayerProfile = ({ player }: PlayerProfileProps) => {
             <Button variant="primary" href={contactConfig.emailHref}>
               Book a review with Staff
             </Button>
-            <Button variant="secondary" onClick={handleBack}>
-              Return to facility
-            </Button>
           </div>
         </div>
         <div className={styles.portraitWrap} aria-hidden="true">

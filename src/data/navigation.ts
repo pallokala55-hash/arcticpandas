@@ -18,7 +18,6 @@ export const headerCta: NavLink = {
 };
 
 export const footerLinks: NavLink[] = [
-  { id: "facility", label: "Facility", href: "/#hero" },
   { id: "protocol", label: "Protocol", href: "/#about" },
   { id: "roster", label: "Roster", href: "/#team" },
 ];
