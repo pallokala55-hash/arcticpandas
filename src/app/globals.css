@@ -56,3 +56,11 @@ img {
 #root {
     min-height: 100vh;
 }
+
+/* Shared container pattern */
+.container {
+  position: relative;
+  z-index: 1;
+  width: min(var(--layout-maxWidth, 1200px), 92vw);
+  margin: 0 auto;
+}
