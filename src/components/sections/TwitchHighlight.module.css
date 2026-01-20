@@ -1,104 +1,53 @@
+/* =============================================================================
+   NLC 2026 WINTER - Arctic Esports Aesthetic
+   Frosted glass, crystalline edges, ice-blue energy
+   ============================================================================= */
+
 .broadcast {
     position: relative;
     padding: var(--layout-sectionPadding, 96px 24px);
     background-color: var(--color-background);
     color: var(--color-foreground);
-    border-bottom: 1px solid var(--divider-color);
     overflow: hidden;
 }
 
+/* Atmospheric backdrop with deeper frost tones */
 .backdrop {
     position: absolute;
     inset: 0;
     background:
-        radial-gradient(
-            circle at 12% 18%,
-            rgba(27, 62, 110, 0.8),
-            transparent 45%
-        ),
-        radial-gradient(
-            circle at 80% 22%,
-            rgba(120, 42, 18, 0.65),
-            transparent 42%
-        ),
-        radial-gradient(
-            circle at 85% 78%,
-            rgba(23, 52, 94, 0.7),
-            transparent 40%
-        ),
-        linear-gradient(120deg, rgba(4, 6, 10, 0.98), rgba(12, 18, 32, 0.94));
-    filter: saturate(0.9);
+        radial-gradient(ellipse 60% 50% at 15% 20%, rgba(78, 208, 255, 0.15), transparent 50%),
+        radial-gradient(ellipse 50% 40% at 85% 75%, rgba(78, 208, 255, 0.12), transparent 45%),
+        radial-gradient(circle at 12% 18%, rgba(20, 50, 90, 0.85), transparent 45%),
+        radial-gradient(circle at 80% 22%, rgba(100, 35, 12, 0.55), transparent 42%),
+        radial-gradient(circle at 85% 78%, rgba(18, 45, 85, 0.75), transparent 40%),
+        linear-gradient(165deg, rgba(4, 8, 18, 0.98) 0%, rgba(8, 16, 32, 0.96) 100%);
     z-index: 0;
 }
 
+/* Animated star field */
 .stars {
     position: absolute;
     inset: 0;
     pointer-events: none;
     background-image:
-        radial-gradient(
-            1px 1px at 18% 30%,
-            rgba(255, 255, 255, 0.4),
-            transparent
-        ),
-        radial-gradient(
-            1px 1px at 42% 18%,
-            rgba(255, 255, 255, 0.45),
-            transparent
-        ),
-        radial-gradient(
-            1px 1px at 66% 22%,
-            rgba(255, 255, 255, 0.38),
-            transparent
-        ),
-        radial-gradient(
-            1px 1px at 78% 14%,
-            rgba(255, 255, 255, 0.35),
-            transparent
-        ),
-        radial-gradient(
-            1.5px 1.5px at 24% 58%,
-            rgba(255, 255, 255, 0.42),
-            transparent
-        ),
-        radial-gradient(
-            1.5px 1.5px at 52% 64%,
-            rgba(255, 255, 255, 0.4),
-            transparent
-        ),
-        radial-gradient(
-            1.5px 1.5px at 76% 54%,
-            rgba(255, 255, 255, 0.36),
-            transparent
-        ),
-        radial-gradient(
-            2px 2px at 32% 76%,
-            rgba(255, 255, 255, 0.5),
-            transparent
-        ),
-        radial-gradient(
-            2px 2px at 64% 74%,
-            rgba(255, 255, 255, 0.46),
-            transparent
-        ),
-        radial-gradient(
-            2px 2px at 86% 66%,
-            rgba(255, 255, 255, 0.43),
-            transparent
-        ),
-        radial-gradient(
-            1px 1px at 14% 70%,
-            rgba(255, 255, 255, 0.34),
-            transparent
-        ),
-        radial-gradient(
-            1px 1px at 90% 34%,
-            rgba(255, 255, 255, 0.32),
-            transparent
-        );
+        radial-gradient(1px 1px at 18% 30%, rgba(255, 255, 255, 0.5), transparent),
+        radial-gradient(1px 1px at 42% 18%, rgba(255, 255, 255, 0.55), transparent),
+        radial-gradient(1px 1px at 66% 22%, rgba(255, 255, 255, 0.45), transparent),
+        radial-gradient(1.5px 1.5px at 24% 58%, rgba(78, 208, 255, 0.6), transparent),
+        radial-gradient(1.5px 1.5px at 52% 64%, rgba(255, 255, 255, 0.5), transparent),
+        radial-gradient(2px 2px at 32% 76%, rgba(78, 208, 255, 0.55), transparent),
+        radial-gradient(2px 2px at 78% 44%, rgba(255, 255, 255, 0.5), transparent),
+        radial-gradient(1px 1px at 88% 62%, rgba(78, 208, 255, 0.5), transparent);
     mix-blend-mode: screen;
-    opacity: 0.85;
+    opacity: 0.9;
     z-index: 0;
+    animation: starTwinkle 8s ease-in-out infinite;
+}
+
+@keyframes starTwinkle {
+    0%, 100% { opacity: 0.9; }
+    50% { opacity: 0.7; }
 }
 
 .container {
@@ -108,229 +57,432 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 1.75rem;
+    gap: 2rem;
     align-items: center;
-    text-align: center;
 }
 
-.onAir {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.55rem;
-    padding: 0.45rem 1.25rem 0.45rem 0.75rem;
-    border-radius: 999px;
-    background: var(--onair-bg, var(--badge-bg));
-    border: 1px solid var(--onair-border, rgba(255, 255, 255, 0.18));
-    box-shadow:
-        0 12px 32px rgba(0, 0, 0, 0.42),
-        0 0 0 1px rgba(255, 255, 255, 0.06),
-        0 0 36px var(--onair-glow, transparent);
-    letter-spacing: 0.28em;
-    font-size: 0.74rem;
-    text-transform: uppercase;
-    font-weight: 600;
-    color: var(--onair-text, #fff);
-    align-self: flex-start;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+/* =============================================================================
+   HEADING - Bold tournament branding
+   ============================================================================= */
+
+.heading {
     position: relative;
-    overflow: hidden;
-    isolation: isolate;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-align: center;
+    background: linear-gradient(
+        180deg,
+        #ffffff 0%,
+        #ffffff 40%,
+        rgba(78, 208, 255, 0.9) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.onAir::after {
+.heading::after {
     content: "";
     position: absolute;
-    inset: -30% 10% 10% -30%;
-    background: radial-gradient(
-        circle at 24% 32%,
-        rgba(255, 255, 255, 0.08),
-        transparent 55%
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        var(--frost-blue, #4ED0FF) 50%,
+        transparent 100%
     );
-    opacity: 0.7;
-    z-index: -1;
 }
 
-.onAirText {
-    white-space: nowrap;
-}
+/* =============================================================================
+   CARD GRID - Asymmetric crystalline layout
+   ============================================================================= */
 
-.liveDot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #ff4e4e;
-    box-shadow:
-        0 0 0 6px rgba(78, 208, 255, 0.16),
-        0 0 12px rgba(255, 78, 78, 0.55);
-    animation: pulse 2.2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0%,
-    100% {
-        opacity: 0.7;
-        transform: scale(0.95);
-    }
-    50% {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-.streamCard {
-    position: relative;
+.scheduleGrid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 1.25rem;
     width: 100%;
-    min-height: 320px;
-    border-radius: 32px;
-    padding: 2.75rem 3.5rem;
-    text-decoration: none;
-    color: inherit;
-    background:
-        linear-gradient(150deg, rgba(12, 18, 36, 0.94), rgba(18, 10, 26, 0.86)),
-        radial-gradient(
-            circle at 12% 24%,
-            rgba(78, 208, 255, 0.12),
-            transparent 55%
-        ),
-        radial-gradient(
-            circle at 82% 32%,
-            rgba(255, 120, 40, 0.16),
-            transparent 60%
-        );
-    border: 1px solid var(--card-border);
-    box-shadow:
-        0 30px 90px rgba(0, 0, 0, 0.65),
-        0 0 100px var(--card-glow);
-    overflow: hidden;
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-start;
-    transition:
-        transform 0.4s ease,
-        box-shadow 0.4s ease;
-    isolation: isolate;
+    max-width: 820px;
+    align-items: start;
 }
 
-.streamCard::after {
+/* =============================================================================
+   RESULT CARD - Latest match showcase
+   ============================================================================= */
+
+.resultCard {
+    position: relative;
+    background: linear-gradient(
+        135deg,
+        rgba(12, 24, 48, 0.85) 0%,
+        rgba(8, 16, 36, 0.9) 100%
+    );
+    background-size: cover;
+    background-position: center;
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    min-height: 260px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.resultCard::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(
-        circle at 78% 22%,
-        rgba(255, 255, 255, 0.12),
-        transparent 45%
+    border-radius: 12px;
+    padding: 1px;
+    background: linear-gradient(
+        135deg,
+        rgba(78, 208, 255, 0.3) 0%,
+        transparent 30%,
+        transparent 70%,
+        rgba(78, 208, 255, 0.15) 100%
     );
-    opacity: 0.3;
-    z-index: 0;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
     pointer-events: none;
 }
 
-.streamCard:hover {
-    transform: translateY(-6px);
+.resultCard:hover {
+    border-color: rgba(78, 208, 255, 0.35);
     box-shadow:
-        0 38px 120px rgba(0, 0, 0, 0.7),
-        0 0 120px rgba(78, 208, 255, 0.12);
+        0 0 30px rgba(78, 208, 255, 0.1),
+        inset 0 0 30px rgba(78, 208, 255, 0.03);
 }
 
-.cardMedia {
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    overflow: hidden;
-    z-index: 0;
-}
-
-.cardMedia img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    filter: saturate(0.85);
-}
-
-.mediaOverlay {
+.resultOverlay {
     position: absolute;
     inset: 0;
     background: linear-gradient(
-        120deg,
-        rgba(0, 5, 12, 0.9),
-        rgba(2, 6, 18, 0.7),
-        rgba(10, 12, 18, 0.9)
+        to top,
+        rgba(4, 8, 18, 0.97) 0%,
+        rgba(4, 8, 18, 0.8) 35%,
+        rgba(4, 8, 18, 0.5) 60%,
+        rgba(4, 8, 18, 0.3) 100%
+    );
+    z-index: 1;
+}
+
+.resultContent {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    margin-top: auto;
+}
+
+/* =============================================================================
+   UPCOMING CARD - Match schedule
+   ============================================================================= */
+
+.upcomingCard {
+    position: relative;
+    background: linear-gradient(
+        145deg,
+        rgba(12, 24, 48, 0.75) 0%,
+        rgba(8, 16, 36, 0.85) 100%
+    );
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 1.125rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.upcomingCard::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    padding: 1px;
+    background: linear-gradient(
+        145deg,
+        rgba(78, 208, 255, 0.2) 0%,
+        transparent 40%,
+        transparent 60%,
+        rgba(78, 208, 255, 0.1) 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+.upcomingCard:hover {
+    border-color: rgba(78, 208, 255, 0.3);
+    box-shadow:
+        0 0 25px rgba(78, 208, 255, 0.08),
+        inset 0 0 20px rgba(78, 208, 255, 0.02);
+}
+
+/* =============================================================================
+   LABELS & TYPOGRAPHY
+   ============================================================================= */
+
+.cardLabel {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--frost-blue, #4ED0FF);
+    opacity: 0.9;
+}
+
+.matchup {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1.1;
+}
+
+/* =============================================================================
+   RESULT BADGES - Victory/Defeat with glow
+   ============================================================================= */
+
+.resultBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.3rem 0.875rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    width: fit-content;
+    position: relative;
+    overflow: hidden;
+}
+
+.resultBadge::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.resultBadge[data-result="win"] {
+    background: linear-gradient(
+        135deg,
+        rgba(34, 197, 94, 0.25) 0%,
+        rgba(34, 197, 94, 0.15) 100%
+    );
+    color: #4ade80;
+    border: 1px solid rgba(34, 197, 94, 0.4);
+    box-shadow:
+        0 0 20px rgba(34, 197, 94, 0.15),
+        inset 0 0 15px rgba(34, 197, 94, 0.1);
+}
+
+.resultBadge[data-result="win"]::before {
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(34, 197, 94, 0.2) 50%,
+        transparent 100%
+    );
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+.resultBadge[data-result="loss"] {
+    background: linear-gradient(
+        135deg,
+        rgba(239, 68, 68, 0.25) 0%,
+        rgba(239, 68, 68, 0.15) 100%
+    );
+    color: #f87171;
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    box-shadow:
+        0 0 20px rgba(239, 68, 68, 0.15),
+        inset 0 0 15px rgba(239, 68, 68, 0.1);
+}
+
+@keyframes shimmer {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+.noResult {
+    color: var(--muted);
+    font-style: italic;
+}
+
+.matchMeta {
+    font-size: 0.8rem;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+}
+
+/* =============================================================================
+   MATCH LIST - Upcoming schedule with enhanced rows
+   ============================================================================= */
+
+.matchList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.matchItem {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.625rem 0.5rem;
+    margin: 0 -0.5rem;
+    border-radius: 6px;
+    position: relative;
+    transition: background 0.2s ease;
+}
+
+.matchItem:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0.5rem;
+    right: 0.5rem;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        var(--divider-color) 15%,
+        var(--divider-color) 85%,
+        transparent 100%
     );
 }
 
-.cardContent {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    text-align: left;
+.matchItem:hover {
+    background: rgba(78, 208, 255, 0.05);
 }
 
-.cardEyebrow {
-    font-size: 1rem;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.78);
+.matchDate {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-foreground);
+    min-width: 80px;
 }
 
-.cardTitle {
-    font-size: clamp(1.8rem, 2.4vw, 2.8rem);
-    font-weight: 600;
-}
-
-.copy {
-    max-width: 760px;
-    margin: 0 auto;
-    font-size: 1.1rem;
-    line-height: 1.7;
+.matchTime {
+    font-size: 0.7rem;
     color: var(--muted);
+    text-align: center;
 }
+
+.matchOpponent {
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-align: right;
+    color: var(--color-foreground);
+}
+
+/* =============================================================================
+   ACTION BUTTONS - CTA row
+   ============================================================================= */
 
 .actions {
-    width: 100%;
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    gap: 1.25rem;
     flex-wrap: wrap;
+    padding-top: 0.5rem;
 }
 
-.actions :global(a),
-.actions :global(button) {
-    min-width: 220px;
-}
-
-@media (max-width: 900px) {
-    .broadcast {
-        padding: 72px 18px;
-    }
-
-    .streamCard {
-        padding: 2rem;
-        border-radius: 24px;
-        min-height: 240px;
-    }
-
-    .cardEyebrow {
-        letter-spacing: 0.18em;
-        font-size: 0.95rem;
-    }
-}
+/* =============================================================================
+   RESPONSIVE - Mobile adaptations
+   ============================================================================= */
 
 @media (max-width: 640px) {
-    .container {
-        gap: 1.25rem;
+    .broadcast {
+        padding: 64px 18px;
     }
 
-    .onAir {
-        letter-spacing: 0.24em;
-        font-size: 0.68rem;
+    .heading {
+        font-size: 1.35rem;
+    }
+
+    .scheduleGrid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .resultCard {
+        min-height: 240px;
+        padding: 1rem;
+    }
+
+    .matchup {
+        font-size: 1.25rem;
+    }
+
+    .upcomingCard {
+        padding: 1rem;
+    }
+
+    .matchItem {
+        grid-template-columns: 1fr auto;
+        gap: 0.375rem;
+        padding: 0.5rem 0.375rem;
+        margin: 0 -0.375rem;
+    }
+
+    .matchTime {
+        grid-column: 1;
+        grid-row: 2;
+        text-align: left;
+        font-size: 0.65rem;
+    }
+
+    .matchDate {
+        font-size: 0.75rem;
+    }
+
+    .matchOpponent {
+        grid-column: 2;
+        grid-row: 1 / 3;
+        align-self: center;
+        font-size: 0.8rem;
+    }
+
+    .matchItem:not(:last-child)::after {
+        left: 0.375rem;
+        right: 0.375rem;
     }
 
     .actions {
         flex-direction: column;
         align-items: stretch;
+        gap: 0.875rem;
     }
 }
