@@ -20,6 +20,15 @@ export const colors = {
   info: "#60A5FA",
 } as const;
 
+// Glow effects (used in Hero, CTA, etc.)
+export const glows = {
+  heroBlue: "rgba(12, 42, 88, 0.72)",
+  heroOrange: "rgba(255, 120, 40, 0.28)",
+  ctaBlue: "rgba(10, 28, 64, 0.65)",
+  ctaOrange: "rgba(210, 120, 46, 0.24)",
+  dark: "rgba(6, 10, 18, 0.9)",
+} as const;
+
 // =============================================================================
 // LAYOUT
 // =============================================================================
