@@ -15,7 +15,7 @@ export const merchItems: MerchItem[] = [
     name: "Arctic Rig // Frost",
     price: "€3,199",
     subtitle: "AMD 7 7800X3D · 5080",
-    image: "/koneen kotelo.png",
+    image: "/koneen-kotelo.webp",
     tag: "Ready to ship",
     description:
       "Studiovalmis kokoonpano jäähdytyksellä, joka on rakennettu pitkille scrim-illoille.",
@@ -30,7 +30,7 @@ export const merchItems: MerchItem[] = [
     name: "AP Control Mat",
     price: "€49",
     subtitle: "XL desk surface · stitched edges",
-    image: "/hiirimatto.png",
+    image: "/hiirimatto.webp",
     tag: "Ready to ship",
     description:
       "Laaja hiirimatto, jossa on frost-siniset reunat ja pehmeä liikepinta – suunniteltu pitkille analyysisessioille.",
@@ -45,7 +45,7 @@ export const merchItems: MerchItem[] = [
     name: "Facility Jersey",
     price: "€95",
     subtitle: "Support drop · fan edition",
-    image: "/paitapanda.png",
+    image: "/paitapanda.webp",
     tag: "Core fanwear",
     description: "Lempeä fanipaita analyytikkopöydästä katsomoon.",
     bullets: [
@@ -59,7 +59,7 @@ export const merchItems: MerchItem[] = [
     name: "Nordic Green Jersey",
     price: "€92",
     subtitle: "Limited alt · fan edition",
-    image: "/vihreepaita.png",
+    image: "/vihreepaita.webp",
     tag: "Limited",
     description: "Vihreä alt-paita kylmälle studiolle ja kisakatsomoihin.",
     bullets: [
