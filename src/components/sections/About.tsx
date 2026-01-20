@@ -16,7 +16,7 @@ const About = () => {
     <section id="team" className={styles.about} style={sectionStyle}>
       <div className={styles.container}>
         <div className={styles.lede}>
-          <p className={styles.kicker}>Team composition</p>
+          <h2 className={styles.kicker}>Team composition</h2>
         </div>
         <div className={styles.composition}>
           {players.map((player) => (
@@ -30,7 +30,7 @@ const About = () => {
         </div>
 
         <div className={styles.lede}>
-          <p className={styles.kicker}>Management</p>
+          <h2 className={styles.kicker}>Management</h2>
         </div>
         <div className={styles.management}>
           {management.map((member) => (
