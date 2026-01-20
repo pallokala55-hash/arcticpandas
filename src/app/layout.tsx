@@ -7,6 +7,16 @@ import SmoothScroll from "../components/SmoothScroll";
 import "./globals.css";
 import styles from "./layout.module.css";
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Arctic Pandas",
+  url: "https://arcticpandas.gg",
+  logo: "https://arcticpandas.gg/logo.svg",
+  description: "Finnish League of Legends esports organization",
+  sameAs: ["https://twitch.tv/arcticpandas"],
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
@@ -64,6 +74,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body style={cssVariables}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <div
           className={styles.app}
           style={{
