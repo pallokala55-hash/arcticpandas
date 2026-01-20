@@ -41,12 +41,6 @@ const TwitchHighlight = () => {
           rel="noreferrer"
         >
           <div className={styles.cardMedia} aria-hidden="true">
-            <Image
-              src="/maxresdefault.jpg"
-              alt="Twitch broadcast highlight"
-              width={640}
-              height={360}
-            />
             <div className={styles.mediaOverlay} />
           </div>
           <div className={styles.cardContent}>
