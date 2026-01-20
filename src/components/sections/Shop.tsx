@@ -60,7 +60,6 @@ const Shop = () => {
           <Button
             variant="primary"
             href={contactConfig.emailHref}
-            block
             className={styles.cta}
           >
             Add to Cart

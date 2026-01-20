@@ -6,7 +6,6 @@ export type NavLink = {
 };
 
 export const mainNavLinks: NavLink[] = [
-  { id: "explore", label: "Explore", href: "/#about" },
   { id: "team", label: "Team", href: "/#team" },
   { id: "contact", label: "Contact", href: "/#cta" },
 ];
@@ -18,6 +17,5 @@ export const headerCta: NavLink = {
 };
 
 export const footerLinks: NavLink[] = [
-  { id: "protocol", label: "Protocol", href: "/#about" },
   { id: "roster", label: "Roster", href: "/#team" },
 ];

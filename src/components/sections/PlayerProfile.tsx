@@ -1,6 +1,5 @@
 "use client";
 
-import type { CSSProperties } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Button from "../Button";
@@ -44,12 +43,6 @@ const PlayerProfile = ({ player }: PlayerProfileProps) => {
 
   const peakBadgeSrc = peakBadgeByTier[player.peak.tier];
   const opggUrl = player.peak.opggUrl;
-  const peakButtonStyle = {
-    "--btn-border": withAlpha(colors.frostGrey, 0.4),
-    "--btn-bg": "rgba(255, 255, 255, 0.02)",
-    "--btn-text": colors.foreground,
-    "--btn-hover": colors.frostBlue,
-  } as CSSProperties;
 
   return (
     <section className={styles.profile} style={sectionStyle}>
@@ -106,7 +99,6 @@ const PlayerProfile = ({ player }: PlayerProfileProps) => {
                     target="_blank"
                     rel="noreferrer"
                     className={styles.peakButton}
-                    style={peakButtonStyle}
                   >
                     View on OP.GG
                   </Button>
