@@ -7,7 +7,7 @@ export type Sponsor = {
   // tier?: "premier" | "partner" | "supporter";
 };
 
-export const sponsors: Sponsor[] = [
+const sponsors: Sponsor[] = [
   { id: "sponsor-logo", label: "Sponsor logo" },
   { id: "premier-partner", label: "Premier partner" },
   { id: "broadcast-lane", label: "Broadcast lane" },
