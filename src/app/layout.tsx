@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { siteConfig, assets } from "../lib/config";
+import { siteConfig, socialConfig, assets } from "../lib/config";
 import { colors, layout } from "../theme";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -10,11 +10,17 @@ import styles from "./layout.module.css";
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "Arctic Pandas",
-  url: "https://arcticpandas.gg",
-  logo: "https://arcticpandas.gg/logo.svg",
-  description: "Finnish League of Legends esports organization",
-  sameAs: ["https://twitch.tv/arcticpandas"],
+  name: siteConfig.name,
+  url: siteConfig.url,
+  logo: `${siteConfig.url}/logo.svg`,
+  description: siteConfig.description,
+  sameAs: [
+    socialConfig.twitch.url,
+    socialConfig.twitter.url,
+    socialConfig.discord.url,
+    socialConfig.youtube.url,
+    socialConfig.instagram.url,
+  ],
 };
 
 export const metadata: Metadata = {

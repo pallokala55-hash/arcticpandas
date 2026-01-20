@@ -6,23 +6,36 @@
 export const siteConfig = {
   name: "Arctic Pandas",
   description: "Finnish League of Legends esports organization",
-  url: "https://arcticpandas.gg",
+  url: "https://pandas.gg",
   locale: "en",
 } as const;
 
 export const contactConfig = {
-  email: "contact@arcticpandas.gg",
-  emailHref: "mailto:contact@arcticpandas.gg",
+  email: "tapio@pandas.gg",
+  emailHref: "mailto:tapio@pandas.gg",
 } as const;
 
 export const socialConfig = {
   twitch: {
-    url: "https://twitch.tv/arcticpandas",
-    handle: "arcticpandas",
+    url: "https://www.twitch.tv/arcticpandass",
+    handle: "arcticpandass",
   },
-  // Add more social links as needed
-  // twitter: { url: "https://twitter.com/arcticpandas", handle: "arcticpandas" },
-  // discord: { url: "https://discord.gg/arcticpandas", handle: "Arctic Pandas" },
+  twitter: {
+    url: "https://x.com/arcticpandasgg",
+    handle: "ArcticPandasGG",
+  },
+  discord: {
+    url: "https://discord.gg/mDqbUaqegV",
+    handle: "Arctic Pandas",
+  },
+  youtube: {
+    url: "https://www.youtube.com/@pandasgg",
+    handle: "pandasgg",
+  },
+  instagram: {
+    url: "https://www.instagram.com/arcticpandasgg/",
+    handle: "arcticpandasgg",
+  },
 } as const;
 
 export const externalLinks = {
