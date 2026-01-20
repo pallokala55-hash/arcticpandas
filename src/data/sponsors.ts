@@ -8,12 +8,18 @@ export type Sponsor = {
 };
 
 const sponsors: Sponsor[] = [
-  { id: "sponsor-logo", label: "Sponsor logo" },
-  { id: "premier-partner", label: "Premier partner" },
-  { id: "broadcast-lane", label: "Broadcast lane" },
-  { id: "tech-stack", label: "Tech stack slot" },
-  { id: "analyst-desk", label: "Analyst desk partner" },
-  { id: "scrim-facility", label: "Scrim facility" },
+  { id: "finland", label: "Finnish Esports" },
+  { id: "hiiva", label: "Hiiva" },
+  { id: "lol", label: "League of Legends" },
+  { id: "nille", label: "Nille" },
+  { id: "nordic", label: "Nordic Excellence" },
+  { id: "simpli", label: "Simpli" },
+  { id: "north", label: "From the North" },
+  { id: "dipu", label: "Dipu" },
+  { id: "xpetu", label: "xPetu" },
+  { id: "kehvo", label: "Kehvo" },
+  { id: "rising", label: "Rising Through the Ranks" },
+  { id: "boltox", label: "Boltox" },
 ];
 
 // Helper to get labels for marquee display
