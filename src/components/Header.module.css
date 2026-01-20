@@ -22,6 +22,7 @@
     text-transform: uppercase;
     letter-spacing: 0.32em;
     font-size: 0.75rem;
+    line-height: 1;
     color: var(--color-foreground);
 }
 
