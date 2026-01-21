@@ -481,7 +481,7 @@ export default function DeckPage() {
               ))}
             </div>
             <p className={styles.rosterRecord}>
-              <span className={styles.accent}>1-0</span> · {t.rosterRecord}
+              <span className={styles.accent}>2-0</span> · {t.rosterRecord}
             </p>
           </div>
         </div>
