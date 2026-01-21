@@ -504,9 +504,9 @@
 
 .facilityGrid {
   display: grid;
-  grid-template-columns: 1.4fr 0.8fr 1fr;
+  grid-template-columns: 1.5fr 0.85fr 1fr;
   gap: 1rem;
-  align-items: start;
+  align-items: stretch;
 }
 
 .facilityImage {
@@ -514,11 +514,13 @@
   border-radius: 12px;
   overflow: hidden;
   background: var(--bg-dark);
+  height: 400px;
 }
 
 .facilityImg {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   display: block;
   transition: transform 0.3s ease;
 }
@@ -547,8 +549,12 @@
     gap: 1rem;
   }
 
+  .facilityImage {
+    height: 250px;
+  }
+
   .facilityImage:nth-child(2) {
-    max-width: 300px;
+    height: 300px;
   }
 }
 
