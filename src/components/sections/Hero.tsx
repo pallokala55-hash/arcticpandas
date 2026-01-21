@@ -1,32 +1,20 @@
-import GridOverlay from "../GridOverlay";
+import Image from "next/image";
 import Button from "../Button";
-import { assets } from "../../lib/config";
 import styles from "./Hero.module.css";
-import { colors, withAlpha } from "../../theme";
-import type { CSSVarStyles } from "../../theme";
 
 const Hero = () => {
-  const sectionStyle: CSSVarStyles = {
-    "--divider-color": withAlpha(colors.frostGrey, 0.18),
-    "--muted": colors.frostGrey,
-    "--accent": colors.frostBlue,
-    "--hero-glow-1": "rgba(12, 42, 88, 0.72)",
-    "--hero-glow-2": "rgba(255, 120, 40, 0.28)",
-    "--hero-glow-3": "rgba(6, 10, 18, 0.9)",
-    "--hero-glow-base": withAlpha(colors.background, 0.95),
-  };
-
   return (
-    <section id="hero" className={styles.hero} style={sectionStyle}>
+    <section id="hero" className={styles.hero}>
       <div className={styles.backdrop} />
-      <div className={styles.heroStars} aria-hidden="true" />
-      <GridOverlay color="rgba(90, 140, 255, 0.18)" />
       <div className={styles.container}>
         <div className={styles.left}>
-          <p className={styles.label}>ALEKSI "HIIVA" KAIKKONEN LEAD</p>
-          <h1 className={styles.title}>ARCTIC PANDAS</h1>
-          <p className={styles.meta}>
-            FINLAND · LEAGUE OF LEGENDS · Esports Command
+          <p className={styles.eyebrow}>NLC 2026 Winter</p>
+          <h1 className={styles.title}>
+            ARCTIC<br />
+            <span className={styles.titleAccent}>PANDAS</span>
+          </h1>
+          <p className={styles.tagline}>
+            Finland's next esports story. Professional League of Legends.
           </p>
           <div className={styles.actions}>
             <Button variant="primary" href="#team">
@@ -34,20 +22,17 @@ const Hero = () => {
             </Button>
           </div>
         </div>
-        <div className={styles.frameWrap} aria-hidden="true">
-          <div className={styles.frame}>
-            <div className={styles.frameInner}>
-              <video
-                className={styles.frameVideo}
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="auto"
-              >
-                <source src={assets.heroVideo} type="video/mp4" />
-              </video>
-            </div>
+        <div className={styles.frameWrap}>
+          <div className={styles.imageContainer}>
+            <Image
+              src="/portraits/roster-transparent.webp"
+              alt="Arctic Pandas roster"
+              width={1200}
+              height={675}
+              className={styles.frameImage}
+              priority
+              unoptimized
+            />
           </div>
         </div>
       </div>
