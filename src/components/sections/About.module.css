@@ -188,10 +188,31 @@
 
 .management {
     grid-column: 1 / -1;
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.25rem;
     margin: 1rem 0 2rem;
+    width: 100%;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.management > * {
+    width: 100% !important;
+    min-width: 0;
+}
+
+@media (max-width: 900px) {
+    .management {
+        max-width: 70%;
+    }
+}
+
+@media (max-width: 640px) {
+    .management {
+        max-width: 100%;
+    }
 }
 
 .placeholder {

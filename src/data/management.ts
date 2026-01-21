@@ -10,12 +10,12 @@ export const management: ManagementMember[] = [
     id: "tapio",
     name: "Tapio Salomaa",
     role: "CEO",
-    image: "/Tapsa%20promo.mov",
+    image: "/portraits/tapio-cropped.webp",
   },
   {
     id: "aleksi",
     name: "Aleksi Kaikkonen",
     role: "Head Coach",
-    image: "/Hiivapromo.mp4",
+    image: "/portraits/aleksi-cropped.webp",
   },
 ];

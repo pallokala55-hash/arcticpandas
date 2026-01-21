@@ -1,6 +1,6 @@
 import MemberCard from "../MemberCard";
 import styles from "./About.module.css";
-import { players } from "../../data/players";
+import { roster } from "../../data/roster";
 import { management } from "../../data/management";
 import { colors, withAlpha } from "../../theme";
 import type { CSSVarStyles } from "../../theme";
@@ -19,11 +19,14 @@ const About = () => {
           <h2 className={styles.kicker}>Team composition</h2>
         </div>
         <div className={styles.composition}>
-          {players.map((player) => (
+          {roster.map((player) => (
             <MemberCard
               key={player.slug}
+              variant="compact"
               name={player.name}
+              role={player.role}
               image={player.image}
+              note={player.note}
               href={`/${player.slug}`}
             />
           ))}
@@ -36,10 +39,10 @@ const About = () => {
           {management.map((member) => (
             <MemberCard
               key={member.id}
+              variant="compact"
               name={member.name}
               image={member.image}
               role={member.role}
-              maxWidth={280}
             />
           ))}
         </div>
