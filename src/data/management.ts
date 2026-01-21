@@ -3,6 +3,7 @@ export type ManagementMember = {
   name: string;
   role: string;
   image?: string;
+  note?: string;
 };
 
 export const management: ManagementMember[] = [
@@ -14,7 +15,7 @@ export const management: ManagementMember[] = [
   },
   {
     id: "aleksi",
-    name: "Aleksi Kaikkonen",
+    name: "Aleksi ‘Hiiva’ Kaikkonen",
     role: "Head Coach",
     image: "/portraits/aleksi-cropped.webp",
   },

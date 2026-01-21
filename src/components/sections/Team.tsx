@@ -39,6 +39,7 @@ const Team = () => {
                 name={member.name}
                 image={member.image}
                 role={member.role}
+                note={member.note}
               />
             ))}
           </div>

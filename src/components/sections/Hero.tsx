@@ -17,7 +17,7 @@ const Hero = () => {
             Finland's next esports story. Professional League of Legends.
           </p>
           <div className={styles.actions}>
-            <Button variant="primary" href="#team">
+            <Button variant="primary" href="/#team">
               Meet the roster
             </Button>
           </div>
