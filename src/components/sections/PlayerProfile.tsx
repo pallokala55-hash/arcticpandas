@@ -1,13 +1,6 @@
-"use client";
-
-import { useRouter } from "next/navigation";
 import Image from "next/image";
-import Button from "../Button";
 import type { PlayerProfileData } from "../../data/players";
-import { contactConfig } from "../../lib/config";
 import styles from "./PlayerProfile.module.css";
-import { colors, withAlpha } from "../../theme";
-import type { CSSVarStyles } from "../../theme";
 
 type PlayerProfileProps = {
   player: PlayerProfileData;
@@ -18,124 +11,118 @@ const peakBadgeByTier: Record<PlayerProfileData["peak"]["tier"], string> = {
   challenger: "/CHALLENGER_SMALL.webp",
 };
 
+// Players who were on ENCE 2020 together
+const enceReunionSlugs = ["nille", "simpli", "kehvo"];
+
 const PlayerProfile = ({ player }: PlayerProfileProps) => {
-  const router = useRouter();
-
-  const sectionStyle: CSSVarStyles = {
-    "--divider-color": withAlpha(colors.frostGrey, 0.16),
-    "--muted": withAlpha(colors.frostGrey, 0.82),
-    "--accent": colors.frostBlue,
-    "--glow-1": "rgba(22, 42, 96, 0.8)",
-    "--glow-2": "rgba(255, 128, 64, 0.28)",
-    "--glow-3": "rgba(16, 18, 28, 0.92)",
-  };
-
-  const handleBack = () => {
-    router.push("/#team");
-  };
-
-  const stats = [
-    { label: "Role", value: player.role },
-    { label: "Origin", value: player.origin },
-    { label: "Style", value: player.style },
-    { label: "Shotcalling", value: player.shotcalling },
-  ];
-
+  const isEnceReunion = enceReunionSlugs.includes(player.slug);
   const peakBadgeSrc = peakBadgeByTier[player.peak.tier];
   const opggUrl = player.peak.opggUrl;
 
   return (
-    <section className={styles.profile} style={sectionStyle}>
-      <div className={styles.backdrop} />
-      <div className={styles.stars} aria-hidden="true" />
-      <div className={styles.chrome}>
-        <span className={styles.brand}>
-          Arctic Pandas · Player dossier · {player.name}
-        </span>
-        <Button variant="secondary" onClick={handleBack}>
-          Back to roster
-        </Button>
-      </div>
+    <section className={styles.profile}>
+      {/* Background layers */}
+      <div className={styles.gridOverlay} aria-hidden="true" />
+      <div className={styles.noiseOverlay} aria-hidden="true" />
+      <div className={styles.glowOrb} aria-hidden="true" />
+
       <div className={styles.container}>
-        <div className={styles.copy}>
-          <p className={styles.kicker}>{player.name}</p>
-          <h1 className={styles.title}>{player.headline}</h1>
-          <p className={styles.subtitle}>{player.subtitle}</p>
-          <div className={styles.tags}>
-            {player.tags.map((tag) => (
-              <span key={tag}>{tag}</span>
-            ))}
-          </div>
-          <p className={styles.bio}>{player.bio}</p>
-          <div className={styles.statsGrid}>
-            {stats.map((stat) => (
-              <div key={stat.label} className={styles.statCard}>
-                <span className={styles.statLabel}>{stat.label}</span>
-                <strong className={styles.statValue}>{stat.value}</strong>
-              </div>
-            ))}
-            <div className={styles.peakCard}>
-              <div className={styles.peakHeading}>
-                <p className={styles.sectionLabel}>PEAK</p>
-                <span className={styles.peakSeason}>Season 2025</span>
-              </div>
-              <div className={styles.peakContent}>
-                <div className={styles.peakMeta}>
-                  {peakBadgeSrc ? (
-                    <Image
-                      src={peakBadgeSrc}
-                      alt={`${player.peak.text} crest`}
-                      className={styles.peakBadge}
-                      width={48}
-                      height={48}
-                    />
-                  ) : null}
-                  <span className={styles.peakValue}>{player.peak.text}</span>
-                </div>
-                {opggUrl ? (
-                  <Button
-                    variant="secondary"
-                    href={opggUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className={styles.peakButton}
-                  >
-                    View on OP.GG
-                  </Button>
-                ) : null}
-              </div>
-            </div>
-          </div>
-          <div className={styles.highlights}>
-            <p className={styles.sectionLabel}>Highlights</p>
-            <ul>
-              {player.highlights.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
-          <div className={styles.actions}>
-            <Button variant="primary" href={contactConfig.emailHref}>
-              Book a review with Staff
-            </Button>
-          </div>
-        </div>
-        <div className={styles.portraitWrap} aria-hidden="true">
+        {/* Left column - Portrait */}
+        <div className={styles.portraitColumn}>
           <div className={styles.portraitFrame}>
-            <div className={styles.portraitGlow} />
             <Image
               className={styles.portrait}
               src={player.image}
               alt={player.name}
-              width={400}
-              height={500}
+              width={480}
+              height={600}
               priority
             />
-            <div className={styles.badge}>{player.role}</div>
+            <div className={styles.portraitOverlay} aria-hidden="true" />
+            <div className={styles.roleBadge}>{player.role}</div>
           </div>
-          <div className={styles.note}>
-            <span>Playbook</span>
-            <p>{player.playbook}</p>
+
+          {/* Peak rank card */}
+          <div className={styles.peakCard}>
+            <div className={styles.peakHeader}>
+              <span className={styles.peakLabel}>PEAK RANK</span>
+              <span className={styles.peakSeason}>S2025</span>
+            </div>
+            <div className={styles.peakBody}>
+              {peakBadgeSrc && (
+                <Image
+                  src={peakBadgeSrc}
+                  alt={player.peak.tier}
+                  className={styles.peakBadge}
+                  width={56}
+                  height={56}
+                />
+              )}
+              <div className={styles.peakInfo}>
+                <span className={styles.peakTier}>{player.peak.tier.toUpperCase()}</span>
+                <span className={styles.peakText}>{player.peak.text}</span>
+              </div>
+            </div>
+            {opggUrl && (
+              <a
+                href={opggUrl}
+                target="_blank"
+                rel="noreferrer"
+                className={styles.peakLink}
+              >
+                View on OP.GG
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path d="M4 10L10 4M10 4H5M10 4V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </a>
+            )}
+          </div>
+
+          {/* Champion pool card */}
+          <div className={styles.playbookCard}>
+            <span className={styles.playbookLabel}>CHAMPION POOL</span>
+            <p className={styles.playbookValue}>{player.playbook}</p>
+          </div>
+        </div>
+
+        {/* Right column - Content */}
+        <div className={styles.contentColumn}>
+          {/* Header section */}
+          <div className={styles.header}>
+            <div className={styles.meta}>
+              <span className={styles.ign}>{player.name}</span>
+              <span className={styles.metaDivider}>·</span>
+              <span className={styles.origin}>{player.origin}</span>
+            </div>
+            <h1 className={styles.realName}>{player.headline}</h1>
+            <p className={styles.tagline}>{player.subtitle}</p>
+
+            {/* Tags */}
+            <div className={styles.tags}>
+              {player.tags.map((tag) => (
+                <span key={tag} className={styles.tag}>{tag}</span>
+              ))}
+              {isEnceReunion && (
+                <span className={styles.tagHighlight}>ENCE Reunion</span>
+              )}
+            </div>
+          </div>
+
+          {/* Bio section */}
+          <div className={styles.bioSection}>
+            <p className={styles.bio}>{player.bio}</p>
+          </div>
+
+          {/* Highlights section */}
+          <div className={styles.highlightsSection}>
+            <h2 className={styles.sectionTitle}>Career Highlights</h2>
+            <ul className={styles.highlightsList}>
+              {player.highlights.map((item, index) => (
+                <li key={item} className={styles.highlightItem} style={{ animationDelay: `${0.1 + index * 0.05}s` }}>
+                  <span className={styles.highlightText}>{item}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
