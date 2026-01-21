@@ -69,21 +69,25 @@ const TwitchHighlight = () => {
           )}
           <div className={styles.upcomingCard}>
             <p className={styles.cardLabel}>Upcoming</p>
-            <ul className={styles.matchList}>
-              {upcomingMatches.slice(0, 4).map((match) => (
-                <li key={match.datetime} className={styles.matchItem}>
-                  <span className={styles.matchDate}>
-                    {formatMatchDate(match.datetime)}
-                  </span>
-                  <span className={styles.matchTime}>
-                    {formatMatchTime(match.datetime)}
-                  </span>
-                  <span className={styles.matchOpponent}>
-                    vs {match.opponentShort}
-                  </span>
-                </li>
-              ))}
-            </ul>
+            {upcomingMatches.length > 0 ? (
+              <ul className={styles.matchList}>
+                {upcomingMatches.slice(0, 4).map((match) => (
+                  <li key={match.datetime} className={styles.matchItem}>
+                    <span className={styles.matchDate}>
+                      {formatMatchDate(match.datetime)}
+                    </span>
+                    <span className={styles.matchTime}>
+                      {formatMatchTime(match.datetime)}
+                    </span>
+                    <span className={styles.matchOpponent}>
+                      vs {match.opponentShort}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className={styles.noResult}>No upcoming matches</p>
+            )}
           </div>
         </div>
         <div className={styles.actions}>
