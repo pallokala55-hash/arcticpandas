@@ -1,6 +1,6 @@
 .footer {
     padding: 2.5rem 0;
-    border-top: 1px solid var(--divider-color);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
     background-color: var(--footer-bg, transparent);
     background-image:
         radial-gradient(
@@ -40,6 +40,7 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 1rem;
     text-transform: uppercase;
     letter-spacing: 0.28em;
