@@ -37,7 +37,9 @@ const TwitchHighlight = () => {
         {latestMatch ? (
           <div className={styles.hero}>
             <h2 className={styles.matchup}>
-              Arctic Pandas vs {latestMatch.opponent}
+              <span className={styles.teamName}>Arctic Pandas</span>
+              <span className={styles.vs}>vs</span>
+              <span className={styles.teamName}>{latestMatch.opponent}</span>
             </h2>
             <div className={styles.resultRow}>
               <span className={styles.resultBadge} data-result={latestMatch.result}>
