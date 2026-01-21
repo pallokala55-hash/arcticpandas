@@ -46,7 +46,6 @@ const PlayerProfile = ({ player }: PlayerProfileProps) => {
           <div className={styles.peakCard}>
             <div className={styles.peakHeader}>
               <span className={styles.peakLabel}>PEAK RANK</span>
-              <span className={styles.peakSeason}>S2025</span>
             </div>
             <div className={styles.peakBody}>
               {peakBadgeSrc && (
