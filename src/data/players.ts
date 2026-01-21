@@ -37,7 +37,7 @@ export const players: PlayerProfileData[] = [
     peak: {
       tier: "challenger",
       text: "CHALLENGER · 1394 LP",
-      opggUrl: "https://op.gg/lol/summoners/euw/NilleNalley-EUW",
+      opggUrl: "https://op.gg/lol/summoners/euw/Frank%20Lundy-AGENT",
     },
   },
   {
@@ -48,18 +48,18 @@ export const players: PlayerProfileData[] = [
     image: "/simpli.webp",
     headline: "Anselmi Rintanen",
     subtitle:
-      "The 'Finnish Faker' — Prime League highlight reel, EMEA Masters veteran.",
-    bio: "Simpli earned the 'Finnish Faker' nickname for his mechanical plays at FC Schalke 04 Esports. Starting at NYYRIKKI Academy in 2019, he joined ENCE's all-Finnish roster in 2020 alongside Nille and Kehvo. He reached the Prime League 2024 Summer final with Schalke, then placed 3rd at EMEA Masters 2025 Summer with UoL Sexy Edition.",
-    tags: ["Finnish Faker", "EMEA Masters 3rd", "ENCE 2020"],
+      "The 'Finnish Faker' — Prime League finalist, EMEA Masters veteran.",
+    bio: "Simpli earned the 'Finnish Faker' nickname for his mechanical plays at FC Schalke 04 Esports. Starting at NYYRIKKI Academy in 2019, he joined ENCE's all-Finnish roster in 2020 alongside Nille and Kehvo. He reached the Prime League 2024 Summer final with Schalke, then competed at EMEA Masters 2025 Summer with UoL Sexy Edition.",
+    tags: ["Finnish Faker", "Prime League finalist", "ENCE 2020"],
     highlights: [
       "2nd place Prime League Summer 2024 (FC Schalke 04 Esports)",
-      "3rd place EMEA Masters 2025 Summer (UoL Sexy Edition)",
+      "EMEA Masters 2025 Summer (UoL Sexy Edition)",
       "First Aurelion Sol pentakill in competitive play (March 2023)",
     ],
     playbook: "Orianna · Azir · Ahri · Aurelion Sol",
     peak: {
       tier: "challenger",
-      text: "CHALLENGER",
+      text: "CHALLENGER · 1215 LP",
       opggUrl: "https://op.gg/lol/summoners/euw/Simpli-000",
     },
   },
@@ -71,9 +71,9 @@ export const players: PlayerProfileData[] = [
     image: "/dipu.webp",
     headline: "Janne Heikkonen",
     subtitle:
-      "Belgian League triple crown winner, ERL veteran since 2015.",
-    bio: "Dibu has competed professionally since 2015, with his peak coming in 2020 when he led Sector One to an undefeated Belgian League season — winning Spring, Summer, and Country Finals. He earned MVP honors in both splits and has since played for LowLandLions, mYinsanity, and All For One Gaming across the Dutch League and Prime League.",
-    tags: ["Belgian League MVP", "Triple crown 2020", "Decade veteran"],
+      "Belgian League triple crown winner, ERL veteran since 2019.",
+    bio: "Dibu has competed professionally since 2019, with his peak coming in 2020 when he led Sector One to a dominant Belgian League season — winning Spring, Summer, and Country Finals. He earned MVP honors in Spring playoffs and has since played for LowLandLions, mYinsanity, and All For One Gaming across the Dutch League and Prime League.",
+    tags: ["Belgian League MVP", "Triple crown 2020", "ERL veteran"],
     highlights: [
       "1st place Belgian League Spring, Summer & Country Finals 2020 (Sector One)",
       "MVP Belgian League Spring 2020 Playoffs Final",
@@ -82,8 +82,8 @@ export const players: PlayerProfileData[] = [
     playbook: "Viego · Lee Sin · Rek'Sai · Sejuani",
     peak: {
       tier: "grandmaster",
-      text: "GRANDMASTER · 870 LP",
-      opggUrl: "https://op.gg/lol/summoners/euw/dibu-EUW11",
+      text: "GRANDMASTER · 465 LP",
+      opggUrl: "https://op.gg/lol/summoners/euw/Jan%20Olejko-1234",
     },
   },
   {
@@ -94,7 +94,7 @@ export const players: PlayerProfileData[] = [
     image: "/Kehvo.webp",
     headline: "Aleksi Merta",
     subtitle:
-      "Benelux Masters champion, $7,600+ career earnings across 19 tournaments.",
+      "Benelux Masters champion, international career across 5 regions.",
     bio: "Kehvo has built a reputation for consistency across the UK, Netherlands, Belgium, and MENA regions since 2018. He won the Elite Series Benelux Masters 2023 with Myth Esports and reached 2nd at the Arabian League 2025 Winter with Anubis Gaming. In 2020, he was part of ENCE's all-Finnish roster alongside Nille and Simpli — a reunion now happening at Arctic Pandas.",
     tags: ["Benelux champion", "ENCE 2020", "International career"],
     highlights: [
@@ -105,7 +105,7 @@ export const players: PlayerProfileData[] = [
     playbook: "Ezreal · Kai'Sa · Smolder · Senna",
     peak: {
       tier: "grandmaster",
-      text: "GRANDMASTER · 835 LP",
+      text: "GRANDMASTER · 876 LP",
       opggUrl: "https://op.gg/lol/summoners/euw/Kehvo-EUW",
     },
   },
@@ -123,7 +123,7 @@ export const players: PlayerProfileData[] = [
     highlights: [
       "Challenger peak at 1099 LP on EUW",
       "NLC 2nd Division experience with BlueWhites",
-      "Baltic Masters competitor with Estonian Vipers",
+      "Ultraliga 2nd Division with Estonian Vipers",
     ],
     playbook: "Nautilus · Rell · Karma · Bard",
     peak: {
