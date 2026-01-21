@@ -1,35 +1,30 @@
+import Image from "next/image";
 import Button from "../Button";
 import { contactConfig } from "../../lib/config";
 import styles from "./CTA.module.css";
-import { colors, withAlpha } from "../../theme";
-import type { CSSVarStyles } from "../../theme";
 
 const CTA = () => {
-  const sectionStyle: CSSVarStyles = {
-    "--cta-bg": "transparent",
-    "--cta-text": colors.foreground,
-    "--muted": withAlpha(colors.frostGrey, 0.82),
-    "--divider-color": withAlpha(colors.frostGrey, 0.18),
-  };
-
   return (
-    <section id="cta" className={styles.cta} style={sectionStyle}>
+    <section id="contact" className={styles.section}>
       <div className={styles.container}>
-        <div>
-          <p className={styles.kicker}>Engage</p>
-          <h2 className={styles.title}>Want to talk partnerships?</h2>
-          <p className={styles.copy}>
-            We offer stable, camera-ready players, consistent on-brand
-            production and clear deliverables for partners.
-          </p>
-        </div>
+        <Image
+          src="/logo.svg"
+          alt="Arctic Pandas"
+          width={72}
+          height={72}
+          className={styles.logo}
+        />
+        <h2 className={styles.title}>Partner with us.</h2>
+        <p className={styles.copy}>
+          Camera-ready players, consistent production, clear deliverables.
+        </p>
         <div className={styles.actions}>
-          <Button variant="primary" href={contactConfig.emailHref}>
-            Contact Ops
+          <Button variant="primary" href="/for-partners">
+            View Partner Deck
           </Button>
-          <Button variant="secondary" href="#hero">
-            Back to Top
-          </Button>
+          <a href={contactConfig.emailHref} className={styles.email}>
+            {contactConfig.email}
+          </a>
         </div>
       </div>
     </section>

@@ -36,6 +36,5 @@ export function formatMatchTime(datetime: string): string {
   return date.toLocaleTimeString(undefined, {
     hour: "2-digit",
     minute: "2-digit",
-    timeZoneName: "shortGeneric",
   });
 }
