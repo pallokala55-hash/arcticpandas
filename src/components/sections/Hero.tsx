@@ -14,7 +14,8 @@ const Hero = () => {
             <span className={styles.titleAccent}>PANDAS</span>
           </h1>
           <p className={styles.tagline}>
-            Finland's next esports story. Professional League of Legends.
+            Finland's next esports story.<br />
+            Professional League of Legends.
           </p>
           <div className={styles.actions}>
             <Button variant="primary" href="/#team">

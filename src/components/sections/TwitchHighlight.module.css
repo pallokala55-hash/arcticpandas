@@ -47,7 +47,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 1.5rem;
+    margin-top: -1.5rem;
 }
 
 .matchup {
@@ -56,6 +57,7 @@
     align-items: center;
     gap: 0.25rem;
     margin: 0;
+    margin-bottom: 0.25rem;
 }
 
 .teamName {
@@ -65,11 +67,19 @@
     line-height: 1.2;
 }
 
+.opponentName {
+    font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
 .vs {
     font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.2em;
-    text-transform: uppercase;
+    margin-left: 0.2em;
+    margin-top: 0.15em;
     color: rgba(255, 255, 255, 0.4);
 }
 
@@ -222,6 +232,10 @@
         font-size: 1.5rem;
     }
 
+    .opponentName {
+        font-size: 1.3rem;
+    }
+
     .resultRow {
         flex-direction: column;
         gap: 0.5rem;
@@ -233,6 +247,6 @@
 
     .actions {
         flex-direction: column;
-        width: 100%;
+        align-items: center;
     }
 }

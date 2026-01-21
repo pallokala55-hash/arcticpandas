@@ -38,8 +38,8 @@ const TwitchHighlight = () => {
           <div className={styles.hero}>
             <h2 className={styles.matchup}>
               <span className={styles.teamName}>Arctic Pandas</span>
-              <span className={styles.vs}>vs</span>
-              <span className={styles.teamName}>{latestMatch.opponent}</span>
+              <span className={styles.vs}>VS</span>
+              <span className={styles.opponentName}>{latestMatch.opponent}</span>
             </h2>
             <div className={styles.resultRow}>
               <span className={styles.resultBadge} data-result={latestMatch.result}>
