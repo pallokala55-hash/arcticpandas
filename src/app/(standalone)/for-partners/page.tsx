@@ -3,15 +3,8 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { contactConfig } from "../../../lib/config";
-
-// Verified roster data from online research (esportsearnings, liquipedia)
-const rosterData = [
-  { name: "Nille", role: "Top", image: "/nille.webp", note: "200+ pro matches · Nordic Champion" },
-  { name: "Dibu", role: "Jungle", image: "/dipu.webp", note: "ERL veteran · LowLandLions, Sector One" },
-  { name: "Simpli", role: "Mid", image: "/simpli.webp", note: "Prime League 2nd · UoL Sexy Edition" },
-  { name: "Kehvo", role: "ADC", image: "/Kehvo.webp", note: "ENCE, Verdant, Riddle alumni" },
-  { name: "Boltox", role: "Support", image: "/boltox.webp", note: "Estonia · BlueWhites, NLC 2nd Div" },
-];
+import MemberCard from "../../../components/MemberCard";
+import { roster } from "../../../data/roster";
 
 type Lang = "en" | "fi";
 
@@ -437,72 +430,54 @@ export default function DeckPage() {
           </h2>
 
           {/* Hiiva */}
-          <div className={styles.leaderCard}>
-            <div className={styles.leaderImage}>
-              <video
-                src="/Hiivapromo.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-                className={styles.leaderVideo}
-              />
-            </div>
-            <div className={styles.leaderInfo}>
-              <p className={styles.leaderRole}>{t.headCoach}</p>
-              <h3 className={styles.leaderName}>Hiiva</h3>
-              <p className={styles.leaderRealName}>Aleksi Kaikkonen</p>
-              <ul className={styles.leaderCredits}>
-                <li><span className={styles.creditOrg}>Fnatic</span> {t.credit1}</li>
-                <li>{t.credit2}</li>
-                <li><span className={styles.creditOrg}>Misfits</span> {t.credit3}</li>
-                <li>{t.credit4}</li>
-              </ul>
-            </div>
-          </div>
+          <MemberCard
+            variant="leader"
+            name="Hiiva"
+            role={t.headCoach}
+            subtitle="Aleksi Kaikkonen"
+            image="/portraits/aleksi-cropped.webp"
+            credits={[
+              { org: "Fnatic", text: t.credit1 },
+              { text: t.credit2 },
+              { org: "Misfits", text: t.credit3 },
+              { text: t.credit4 },
+            ]}
+          />
 
           {/* xPetu */}
-          <div className={styles.creatorCard}>
-            <div className={styles.creatorInfo}>
-              <p className={styles.leaderRole}>{t.contentCreator}</p>
-              <h3 className={styles.leaderName}>xPetu</h3>
-              <p className={styles.leaderRealName}>Challenger Shen · M.Sc. Mathematics</p>
-              <div className={styles.creatorStats}>
-                <div className={styles.creatorStat}>
-                  <span className={styles.creatorNumber} ref={twitchRef}>0K+</span>
-                  <span className={styles.creatorLabel}>{t.twitchFollowers}<a href={sources.twitchXpetu} target="_blank" rel="noreferrer" className={styles.cite} title="Twitch - xPetu">⁷</a></span>
-                </div>
-                <div className={styles.creatorStat}>
-                  <span className={styles.creatorNumber} ref={youtubeRef}>0M</span>
-                  <span className={styles.creatorLabel}>{t.youtubeViews}<a href={sources.youtubeXpetu} target="_blank" rel="noreferrer" className={styles.cite} title="YouTube - xPetu">⁸</a></span>
-                </div>
-              </div>
-              <p className={styles.creatorNote}>{t.creatorNote}</p>
-            </div>
-          </div>
+          <MemberCard
+            variant="creator"
+            name="xPetu"
+            role={t.contentCreator}
+            subtitle="Challenger Shen · M.Sc. Mathematics"
+            stats={[
+              {
+                value: <span ref={twitchRef}>0K+</span>,
+                label: <>{t.twitchFollowers}<a href={sources.twitchXpetu} target="_blank" rel="noreferrer" className={styles.cite} title="Twitch - xPetu">⁷</a></>,
+              },
+              {
+                value: <span ref={youtubeRef}>0M</span>,
+                label: <>{t.youtubeViews}<a href={sources.youtubeXpetu} target="_blank" rel="noreferrer" className={styles.cite} title="YouTube - xPetu">⁸</a></>,
+              },
+            ]}
+            creatorNote={t.creatorNote}
+          />
 
           {/* Roster */}
           <div className={styles.rosterSection}>
             <h4 className={styles.rosterTitle}>{t.rosterTitle}</h4>
             <p className={styles.rosterSubtitle}>{t.rosterSubtitle}</p>
             <div className={styles.rosterGrid}>
-              {rosterData.map((player) => (
-                <div key={player.name} className={styles.playerCard}>
-                  <div className={styles.playerImageWrap}>
-                    <Image
-                      src={player.image}
-                      alt={player.name}
-                      width={80}
-                      height={80}
-                      className={styles.playerImage}
-                    />
-                  </div>
-                  <div className={styles.playerInfo}>
-                    <span className={styles.playerRole}>{player.role}</span>
-                    <span className={styles.playerName}>{player.name}</span>
-                    <span className={styles.playerPeak}>{player.note}</span>
-                  </div>
-                </div>
+              {roster.map((player) => (
+                <MemberCard
+                  key={player.name}
+                  variant="compact"
+                  size="small"
+                  name={player.name}
+                  role={player.role}
+                  image={player.image}
+                  note={player.note}
+                />
               ))}
             </div>
             <p className={styles.rosterRecord}>

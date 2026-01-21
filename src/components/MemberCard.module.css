@@ -1,0 +1,387 @@
+/* =============================================================================
+   MEMBER CARD - Unified component for team/staff display
+   Variants: default, leader, compact
+   ============================================================================= */
+
+/* Shared variables - applied to all variants */
+.card,
+.leader,
+.creator,
+.compact {
+  --card-frost-blue: #4ED0FF;
+  --card-frost-dim: rgba(78, 208, 255, 0.15);
+  --card-bg-dark: #0a0a0f;
+  --card-text-primary: #ffffff;
+  --card-text-muted: rgba(255, 255, 255, 0.6);
+  --card-text-dim: rgba(255, 255, 255, 0.4);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --card-border-accent: rgba(78, 208, 255, 0.15);
+}
+
+/* =============================================================================
+   DEFAULT VARIANT - Used on homepage
+   ============================================================================= */
+
+.card {
+  border: none;
+  padding: 0.6rem 0.75rem;
+  display: grid;
+  gap: 0.65rem;
+  justify-items: center;
+  background: none;
+  width: 100%;
+}
+
+.clickable {
+  cursor: pointer;
+  border-radius: 14px;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease;
+  border: 1px solid transparent;
+  text-decoration: none;
+  color: inherit;
+}
+
+.clickable:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+}
+
+.clickable:focus-visible {
+  outline: 2px solid var(--card-text-primary);
+  outline-offset: 6px;
+}
+
+.avatar {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--card-border);
+  background-color: rgba(255, 255, 255, 0.04);
+  position: relative;
+}
+
+.avatar img,
+.avatar video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.name {
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  color: var(--card-text-primary);
+  margin-top: 0.35rem;
+}
+
+.role {
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: var(--card-text-muted);
+  margin-top: -0.35rem;
+}
+
+.placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.03) 0%,
+    rgba(255, 255, 255, 0.06) 100%
+  );
+}
+
+/* =============================================================================
+   LEADER VARIANT - Horizontal layout with credits
+   ============================================================================= */
+
+.leader {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 2rem;
+  background: linear-gradient(135deg, rgba(78, 208, 255, 0.05), transparent);
+  border: 1px solid var(--card-border-accent);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+
+.leader .avatar {
+  aspect-ratio: 1;
+  border-radius: 12px;
+  border: none;
+  background: var(--card-bg-dark);
+  overflow: hidden;
+}
+
+.leaderInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.leader .role {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--card-frost-blue);
+  margin: 0 0 0.5rem;
+}
+
+.leader .name {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  margin: 0 0 0.25rem;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: var(--card-text-muted);
+  margin: 0 0 1.5rem;
+}
+
+.credits {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.credits li {
+  font-size: 0.9rem;
+  color: var(--card-text-muted);
+  padding-left: 1rem;
+  position: relative;
+}
+
+.credits li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 4px;
+  height: 4px;
+  background: var(--card-frost-blue);
+  border-radius: 50%;
+}
+
+.creditOrg {
+  color: var(--card-text-primary);
+  font-weight: 600;
+}
+
+/* =============================================================================
+   COMPACT VARIANT - Small player cards for roster grids
+   ============================================================================= */
+
+.compact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  transition: border-color 0.2s ease;
+  width: 100%;
+}
+
+.compact:hover {
+  border-color: rgba(78, 208, 255, 0.3);
+}
+
+.compactClickable {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.compactClickable:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.compactClickable:focus-visible {
+  outline: 2px solid var(--card-frost-blue);
+  outline-offset: 4px;
+}
+
+.compact .avatar {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: 8px;
+  border: none;
+  background: var(--card-bg-dark);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+/* Small size modifier - circular avatars for deck roster */
+.compactSmall .avatar {
+  width: 80px;
+  height: 80px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+.compactInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.125rem;
+}
+
+.compact .role {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--card-frost-blue);
+  margin: 0;
+}
+
+.compact .name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: normal;
+  text-transform: none;
+  margin: 0;
+}
+
+.note {
+  font-size: 0.65rem;
+  color: var(--card-text-dim);
+  letter-spacing: 0.05em;
+  text-align: center;
+  white-space: pre-line;
+  line-height: 1.4;
+}
+
+/* =============================================================================
+   CREATOR VARIANT - Stats-focused card
+   ============================================================================= */
+
+.creator {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.02), transparent);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 3rem;
+}
+
+.creator .role {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--card-frost-blue);
+  margin: 0 0 0.5rem;
+}
+
+.creator .name {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  margin: 0 0 0.25rem;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.creatorInfo {
+  max-width: 600px;
+}
+
+.stats {
+  display: flex;
+  gap: 3rem;
+  margin: 1.5rem 0;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.statNumber {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--card-frost-blue);
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: 0.8rem;
+  color: var(--card-text-muted);
+  margin-top: 0.25rem;
+}
+
+.creatorNote {
+  font-size: 1rem;
+  color: var(--card-text-muted);
+  font-style: italic;
+  margin: 0;
+}
+
+/* =============================================================================
+   RESPONSIVE
+   ============================================================================= */
+
+@media (max-width: 768px) {
+  .leader {
+    grid-template-columns: 1fr;
+  }
+
+  .leader .avatar {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .stats {
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .card {
+    padding: 0.4rem;
+  }
+
+  .avatar {
+    border-radius: 10px;
+  }
+
+  .name {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+  }
+
+  .role {
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .compact .avatar {
+    border-radius: 6px;
+  }
+}
+
+@media (max-width: 380px) {
+  .avatar {
+    border-radius: 8px;
+  }
+
+  .name {
+    font-size: 0.65rem;
+  }
+}
