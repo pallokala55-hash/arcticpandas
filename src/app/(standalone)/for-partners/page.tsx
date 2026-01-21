@@ -27,6 +27,7 @@ const sources = {
   liquipediaAP: "https://liquipedia.net/leagueoflegends/Arctic_Pandas",
   liquipediaHiiva: "https://liquipedia.net/leagueoflegends/Hiiva",
   twitchXpetu: "https://www.twitch.tv/xpetu",
+  youtubeXpetu: "https://www.youtube.com/@xPetu",
 };
 
 const content = {
@@ -294,48 +295,43 @@ export default function DeckPage() {
 
       // Find current section (the one most in view)
       let currentIndex = 0;
-      let currentSection: Element | null = null;
       sections.forEach((section, index) => {
         const rect = section.getBoundingClientRect();
         if (rect.top < viewportHeight * 0.5) {
           currentIndex = index;
-          currentSection = section;
         }
       });
+      const currentSection = sections[currentIndex];
 
       if (e.key === "ArrowDown" || e.key === "PageDown" || e.key === " ") {
         e.preventDefault();
 
-        if (currentSection) {
-          const rect = currentSection.getBoundingClientRect();
-          const sectionBottom = rect.bottom;
+        if (!currentSection) return;
+        const rect = currentSection.getBoundingClientRect();
+        const sectionBottom = rect.bottom;
 
-          // If section extends below viewport, scroll by viewport height (but not past section)
-          if (sectionBottom > viewportHeight + 50) {
-            const scrollAmount = Math.min(viewportHeight, sectionBottom - viewportHeight);
-            window.scrollBy({ top: scrollAmount, behavior: "smooth" });
-          } else {
-            // Section fully visible, go to next section
-            const nextSection = sections[currentIndex + 1];
-            nextSection?.scrollIntoView({ behavior: "smooth" });
-          }
+        // If section extends below viewport, scroll by viewport height (but not past section)
+        if (sectionBottom > viewportHeight + 50) {
+          const scrollAmount = Math.min(viewportHeight, sectionBottom - viewportHeight);
+          window.scrollBy({ top: scrollAmount, behavior: "smooth" });
+        } else {
+          // Section fully visible, go to next section
+          const nextSection = sections[currentIndex + 1];
+          nextSection?.scrollIntoView({ behavior: "smooth" });
         }
       } else if (e.key === "ArrowUp" || e.key === "PageUp") {
         e.preventDefault();
 
-        if (currentSection) {
-          const rect = currentSection.getBoundingClientRect();
+        if (!currentSection) return;
+        const rect = currentSection.getBoundingClientRect();
 
-          // If section extends above viewport, scroll up by viewport height
-          if (rect.top < -50) {
-            window.scrollBy({ top: -viewportHeight, behavior: "smooth" });
-          } else {
-            // At top of current section, go to previous section
-            const prevSection = sections[currentIndex - 1];
-            if (prevSection) {
-              prevSection.scrollIntoView({ behavior: "smooth" });
-            }
-          }
+        // If section extends above viewport, scroll up by viewport height
+        if (rect.top < -50) {
+          window.scrollBy({ top: -viewportHeight, behavior: "smooth" });
+        } else {
+          // At top of current section, go to previous section
+          const prevSection = sections[currentIndex - 1];
+          prevSection?.scrollIntoView({ behavior: "smooth" });
         }
       } else if (e.key === "Home") {
         e.preventDefault();
@@ -478,7 +474,7 @@ export default function DeckPage() {
                 </div>
                 <div className={styles.creatorStat}>
                   <span className={styles.creatorNumber} ref={youtubeRef}>0M</span>
-                  <span className={styles.creatorLabel}>{t.youtubeViews}<a href={sources.twitchXpetu} target="_blank" rel="noreferrer" className={styles.cite} title="xPetu content stats">⁷</a></span>
+                  <span className={styles.creatorLabel}>{t.youtubeViews}<a href={sources.youtubeXpetu} target="_blank" rel="noreferrer" className={styles.cite} title="YouTube - xPetu">⁸</a></span>
                 </div>
               </div>
               <p className={styles.creatorNote}>{t.creatorNote}</p>
@@ -745,6 +741,7 @@ export default function DeckPage() {
                 <li><a href={sources.liquipediaAP} target="_blank" rel="noreferrer">Liquipedia - Arctic Pandas</a></li>
                 <li><a href={sources.liquipediaHiiva} target="_blank" rel="noreferrer">Liquipedia - Hiiva (Head Coach)</a></li>
                 <li><sup>7</sup> <a href={sources.twitchXpetu} target="_blank" rel="noreferrer">Twitch - xPetu</a></li>
+                <li><sup>8</sup> <a href={sources.youtubeXpetu} target="_blank" rel="noreferrer">YouTube - xPetu</a></li>
               </ul>
             </div>
           </div>
