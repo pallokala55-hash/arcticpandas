@@ -75,29 +75,60 @@
   margin: 0;
 }
 
+/* Language Toggle */
+.langToggle {
+  position: absolute;
+  top: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.75rem;
+  z-index: 10;
+}
+
+.langToggle button {
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.langToggle button:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  color: var(--text-primary);
+}
+
+.langActive {
+  background: rgba(78, 208, 255, 0.15) !important;
+  border-color: var(--frost-blue) !important;
+  color: var(--frost-blue) !important;
+}
+
+/* Scroll Hint */
 .scrollHint {
   position: absolute;
-  bottom: 3rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
-  color: var(--text-dim);
-  font-size: 0.75rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+  bottom: 4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: scrollBounce 2s ease-in-out infinite;
 }
 
-.scrollLine {
-  width: 1px;
-  height: 40px;
-  background: linear-gradient(180deg, var(--frost-blue), transparent);
-  animation: scrollPulse 2s ease-in-out infinite;
+.scrollHint svg {
+  width: 44px;
+  height: 44px;
+  color: var(--frost-blue);
+  opacity: 0.7;
 }
 
-@keyframes scrollPulse {
-  0%, 100% { opacity: 0.3; transform: scaleY(1); }
-  50% { opacity: 1; transform: scaleY(1.2); }
+@keyframes scrollBounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.7; }
+  50% { transform: translateX(-50%) translateY(8px); opacity: 1; }
 }
 
 /* =============================================================================
@@ -175,6 +206,21 @@
 .statCompare {
   font-size: 0.8rem;
   color: var(--text-dim);
+}
+
+/* Citation links */
+.cite {
+  color: var(--frost-blue);
+  text-decoration: none;
+  font-size: 0.7em;
+  vertical-align: super;
+  margin-left: 0.15em;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.cite:hover {
+  opacity: 1;
 }
 
 .pullQuote {
@@ -592,6 +638,55 @@
   font-size: 1.1rem;
   color: var(--text-muted);
   margin: 0;
+}
+
+/* =============================================================================
+   SOURCES SECTION
+   ============================================================================= */
+
+.sourcesList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.sourceGroup {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.sourceGroup h4 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--frost-blue);
+  margin: 0 0 1rem;
+}
+
+.sourceGroup ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.sourceGroup li {
+  font-size: 0.85rem;
+}
+
+.sourceGroup a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.sourceGroup a:hover {
+  color: var(--frost-blue);
 }
 
 /* =============================================================================
