@@ -73,6 +73,14 @@ const content = {
     brandValue2Desc: "Unified brand across stream, social, and all partner activations",
     brandValue3Title: "Content Engine",
     brandValue3Desc: "Daily streams, match coverage, behind-the-scenes, player content",
+    // Facility
+    facilityEyebrow: "The Facility",
+    facilityTitle1: "Purpose-built",
+    facilityTitle2: "for competition.",
+    facilityDesc: "Dedicated gaming house in Helsinki with 5-player team setup, production studio, and streaming infrastructure.",
+    facilityLabel1: "Team Room",
+    facilityLabel2: "Production",
+    facilityLabel3: "Overview",
     // Market
     marketEyebrow: "The Market",
     marketTitle1: "NLC is exploding.",
@@ -162,6 +170,14 @@ const content = {
     brandValue2Desc: "Sama brändi striimeissä, somessa ja kaikissa kumppaniaktivoinneissa",
     brandValue3Title: "Sisältökone",
     brandValue3Desc: "Päivittäiset striimit, otteluanalyysit, kulissien takaa, pelaajaprofilit",
+    // Facility
+    facilityEyebrow: "Tilat",
+    facilityTitle1: "Rakennettu",
+    facilityTitle2: "kilpailuun.",
+    facilityDesc: "Oma pelitalo Helsingissä: 5 pelaajan tiimitila, tuotantostudio ja striimausinfrastruktuuri.",
+    facilityLabel1: "Tiimitila",
+    facilityLabel2: "Tuotanto",
+    facilityLabel3: "Yleiskuva",
     // Market
     marketEyebrow: "Markkinat",
     marketTitle1: "NLC räjähtää.",
@@ -475,8 +491,52 @@ export default function DeckPage() {
         </div>
       </section>
 
-      {/* The Market */}
+      {/* The Facility */}
       <section className={styles.section + " " + styles.sectionDark}>
+        <div className={styles.sectionInner}>
+          <p className={styles.eyebrow}>{t.facilityEyebrow}</p>
+          <h2 className={styles.sectionTitle}>
+            {t.facilityTitle1}<br />
+            <span className={styles.accent}>{t.facilityTitle2}</span>
+          </h2>
+          <p className={styles.facilityDesc}>{t.facilityDesc}</p>
+          <div className={styles.facilityGrid}>
+            <div className={styles.facilityImage}>
+              <Image
+                src="/studio/sideview.webp"
+                alt="Arctic Pandas team room"
+                width={1400}
+                height={1005}
+                className={styles.facilityImg}
+              />
+              <span className={styles.facilityLabel}>{t.facilityLabel1}</span>
+            </div>
+            <div className={styles.facilityImage}>
+              <Image
+                src="/studio/command-center.webp"
+                alt="Production studio"
+                width={900}
+                height={1296}
+                className={styles.facilityImg}
+              />
+              <span className={styles.facilityLabel}>{t.facilityLabel2}</span>
+            </div>
+            <div className={styles.facilityImage}>
+              <Image
+                src="/studio/from-behind.webp"
+                alt="Facility overview"
+                width={1400}
+                height={1158}
+                className={styles.facilityImg}
+              />
+              <span className={styles.facilityLabel}>{t.facilityLabel3}</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* The Market */}
+      <section className={styles.section}>
         <div className={styles.sectionInner}>
           <p className={styles.eyebrow}>{t.marketEyebrow}</p>
           <h2 className={styles.sectionTitle}>
