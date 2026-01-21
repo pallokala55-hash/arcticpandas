@@ -20,7 +20,7 @@ const sources = {
   paypalReport: "https://newsroom.uk.paypal-corp.com/PayPal-Report-on-Esports-in-Europe-2020",
   esportsChartsNLC: "https://escharts.com/tournaments/lol/nlc-winter-2025",
   esportsEarningsFI: "https://www.esportsearnings.com/countries/fi",
-  helsinkiTimes: "https://www.helsinkitimes.fi/207-themes/player-one/19153-new-study-reveals-finns-are-gaming-more-than-ever.html",
+  pelaajabarometri: "https://trepo.tuni.fi/handle/10024/162303",
   seulOlympic: "https://seul.fi/liitto-on-hyvaksytty-suomen-olympiakomitean-jaseneksi/",
   esportsChartsSpring: "https://escharts.com/tournaments/lol/nlc-2025-spring",
   esportsChartsSummer: "https://escharts.com/tournaments/lol/nlc-summer-2025",
@@ -44,7 +44,7 @@ const content = {
     stat2Compare: "Peak: 360,545 viewers",
     stat3Label: "prize money earned by Finnish players",
     stat3Compare: "2,215 players · 4,588 tournaments",
-    pullQuote1: "Samsung, Kit Kat, and SanDisk are already in.",
+    pullQuote1: "Major brands are entering Nordic esports.",
     pullQuote2: "The window is open.",
     // Team
     teamEyebrow: "The Team",
@@ -62,7 +62,7 @@ const content = {
     credit1: "Assistant Coach 2022-2024",
     credit2: "LEC Finals 2024 — 2nd Place",
     credit3: "LFL Championship Winner",
-    credit4: "Former LEC Professional Player",
+    credit4: "Former Professional Player",
     // Brand
     brandEyebrow: "The Brand",
     brandTitle1: "Nordic by nature.",
@@ -89,7 +89,7 @@ const content = {
     losRatones: "Los Ratones now in LEC Versus 2026",
     audienceProfile: "Finnish Audience Profile",
     coreDemographic: "Core demographic",
-    finnsPlayGames: "of Finns play games",
+    finnsPlayGames: "of Finns play digital games",
     olympicRecognition: "Olympic Committee member (SEUL)",
     // Partnership
     partnerEyebrow: "Partnership Opportunities",
@@ -133,7 +133,7 @@ const content = {
     stat2Compare: "Huippu: 360 545 katsojaa",
     stat3Label: "palkintorahaa suomalaisten pelaajien voittamana",
     stat3Compare: "2 215 pelaajaa · 4 588 turnausta",
-    pullQuote1: "Samsung, Kit Kat ja SanDisk ovat jo mukana.",
+    pullQuote1: "Suuret brändit tulevat pohjoismaiseen esportsiin.",
     pullQuote2: "Ikkuna on auki.",
     // Team
     teamEyebrow: "Tiimi",
@@ -151,7 +151,7 @@ const content = {
     credit1: "Apuvalmentaja 2022-2024",
     credit2: "LEC-finaali 2024 — 2. sija",
     credit3: "LFL-mestari",
-    credit4: "Entinen LEC-ammattilaispelaaja",
+    credit4: "Entinen ammattilaispelaaja",
     // Brand
     brandEyebrow: "Brändi",
     brandTitle1: "Pohjoismainen luonnostaan.",
@@ -178,7 +178,7 @@ const content = {
     losRatones: "Los Ratones nyt LEC Versus 2026 -turnauksessa",
     audienceProfile: "Suomalainen yleisöprofiili",
     coreDemographic: "Ydinkohderyhmä",
-    finnsPlayGames: "suomalaisista pelaa pelejä",
+    finnsPlayGames: "suomalaisista pelaa digitaalisia pelejä",
     olympicRecognition: "Olympiakomitean jäsen (SEUL)",
     // Partnership
     partnerEyebrow: "Kumppanuusmahdollisuudet",
@@ -522,10 +522,10 @@ export default function DeckPage() {
                 <p>{t.coreDemographic}</p>
               </div>
               <div className={styles.audienceStat}>
-                <span>55%</span>
+                <span>64%</span>
                 <p>
                   {t.finnsPlayGames}
-                  <a href={sources.helsinkiTimes} target="_blank" rel="noreferrer" className={styles.cite} title="Helsinki Times">⁵</a>
+                  <a href={sources.pelaajabarometri} target="_blank" rel="noreferrer" className={styles.cite} title="Pelaajabarometri 2024 - Tampere University">⁵</a>
                 </p>
               </div>
               <div className={styles.audienceStat}>
@@ -603,7 +603,7 @@ export default function DeckPage() {
               <ul>
                 <li><sup>1</sup> <a href={sources.paypalReport} target="_blank" rel="noreferrer">PayPal Esports Report - Europe 2020</a></li>
                 <li><sup>3</sup> <a href={sources.esportsEarningsFI} target="_blank" rel="noreferrer">Esports Earnings - Finland</a></li>
-                <li><sup>5</sup> <a href={sources.helsinkiTimes} target="_blank" rel="noreferrer">Helsinki Times - Finnish Gaming Study</a></li>
+                <li><sup>5</sup> <a href={sources.pelaajabarometri} target="_blank" rel="noreferrer">Pelaajabarometri 2024 - Tampere University (PDF)</a></li>
                 <li><sup>6</sup> <a href={sources.seulOlympic} target="_blank" rel="noreferrer">SEUL - Olympic Committee Membership (Finnish)</a></li>
               </ul>
             </div>
