@@ -1,0 +1,728 @@
+/* =============================================================================
+   ARCTIC PANDAS PITCH DECK
+   Premium editorial design with esports energy
+   ============================================================================= */
+
+.deck {
+  --frost-blue: #4ED0FF;
+  --frost-blue-dim: rgba(78, 208, 255, 0.15);
+  --bg-dark: #0a0a0f;
+  --bg-darker: #050508;
+  --text-primary: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.6);
+  --text-dim: rgba(255, 255, 255, 0.4);
+
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-primary);
+}
+
+.accent {
+  color: var(--frost-blue);
+}
+
+/* =============================================================================
+   COVER SECTION
+   ============================================================================= */
+
+.cover {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.coverBg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 40%, rgba(78, 208, 255, 0.08), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 20% 80%, rgba(78, 208, 255, 0.05), transparent 50%),
+    radial-gradient(ellipse 50% 40% at 80% 20%, rgba(100, 40, 20, 0.08), transparent 50%),
+    linear-gradient(180deg, var(--bg-darker) 0%, var(--bg-dark) 100%);
+}
+
+.coverContent {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.coverLogo {
+  margin-bottom: 2rem;
+  opacity: 0.95;
+}
+
+.coverTitle {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin: 0 0 1.5rem;
+  line-height: 1;
+}
+
+.coverTagline {
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.scrollHint {
+  position: absolute;
+  bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--text-dim);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.scrollLine {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(180deg, var(--frost-blue), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.2); }
+}
+
+/* =============================================================================
+   SECTION BASE
+   ============================================================================= */
+
+.section {
+  position: relative;
+  padding: clamp(4rem, 10vw, 8rem) clamp(1.5rem, 5vw, 4rem);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.sectionDark {
+  background: var(--bg-darker);
+}
+
+.sectionInner {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--frost-blue);
+  margin: 0 0 1rem;
+}
+
+.sectionTitle {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0 0 3rem;
+}
+
+/* =============================================================================
+   STATS GRID (Opportunity Section)
+   ============================================================================= */
+
+.statGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.statCard {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.statNumber {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  color: var(--frost-blue);
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: 1rem;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.statCompare {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+.pullQuote {
+  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+  line-height: 1.6;
+  color: var(--text-muted);
+  text-align: center;
+  margin: 0;
+}
+
+/* =============================================================================
+   TEAM SECTION
+   ============================================================================= */
+
+.leaderCard {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 2rem;
+  background: linear-gradient(135deg, rgba(78, 208, 255, 0.05), transparent);
+  border: 1px solid rgba(78, 208, 255, 0.15);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+
+.leaderImage {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--bg-dark);
+}
+
+.leaderVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.leaderInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.leaderRole {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--frost-blue);
+  margin: 0 0 0.5rem;
+}
+
+.leaderName {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  margin: 0 0 0.25rem;
+}
+
+.leaderRealName {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin: 0 0 1.5rem;
+}
+
+.leaderCredits {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.leaderCredits li {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  padding-left: 1rem;
+  position: relative;
+}
+
+.leaderCredits li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 4px;
+  height: 4px;
+  background: var(--frost-blue);
+  border-radius: 50%;
+}
+
+.creditOrg {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Creator Card (xPetu) */
+.creatorCard {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.02), transparent);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 3rem;
+}
+
+.creatorInfo {
+  max-width: 600px;
+}
+
+.creatorStats {
+  display: flex;
+  gap: 3rem;
+  margin: 1.5rem 0;
+}
+
+.creatorStat {
+  display: flex;
+  flex-direction: column;
+}
+
+.creatorNumber {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--frost-blue);
+  line-height: 1;
+}
+
+.creatorLabel {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+.creatorNote {
+  font-size: 1rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin: 0;
+}
+
+/* Roster */
+.rosterSection {
+  text-align: center;
+}
+
+.rosterTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+}
+
+.rosterSubtitle {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0 0 2rem;
+}
+
+.rosterGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.playerCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  transition: border-color 0.2s ease;
+}
+
+.playerCard:hover {
+  border-color: rgba(78, 208, 255, 0.3);
+}
+
+.playerImageWrap {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--bg-dark);
+}
+
+.playerImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.playerInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.125rem;
+}
+
+.playerRole {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--frost-blue);
+}
+
+.playerName {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.playerPeak {
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  letter-spacing: 0.05em;
+}
+
+.rosterRecord {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+/* =============================================================================
+   BRAND SECTION
+   ============================================================================= */
+
+.brandValues {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.brandValue {
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.02), transparent);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+}
+
+.brandIcon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 1rem;
+  color: var(--frost-blue);
+}
+
+.brandIcon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.brandValue h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+}
+
+.brandValue p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* =============================================================================
+   MARKET SECTION
+   ============================================================================= */
+
+.marketGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.marketCard {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.marketCard h4 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 0.75rem;
+}
+
+.marketNumber {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--frost-blue);
+  display: block;
+  line-height: 1;
+}
+
+.marketCard p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0.25rem 0 1rem;
+}
+
+.marketBar {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+
+.marketBarFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--frost-blue), rgba(78, 208, 255, 0.5));
+  border-radius: 2px;
+  transition: width 1s ease-out;
+}
+
+.marketNote {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+.audienceBlock {
+  background: linear-gradient(135deg, rgba(78, 208, 255, 0.05), transparent);
+  border: 1px solid rgba(78, 208, 255, 0.15);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.audienceBlock h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 1.5rem;
+  color: var(--text-muted);
+}
+
+.audienceStats {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  flex-wrap: wrap;
+}
+
+.audienceStat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.audienceStat span {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--frost-blue);
+}
+
+.audienceStat p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 0.25rem 0 0;
+}
+
+/* =============================================================================
+   PARTNERSHIP SECTION
+   ============================================================================= */
+
+.partnerGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.partnerCard {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.partnerCard:hover {
+  border-color: rgba(78, 208, 255, 0.3);
+  background: rgba(78, 208, 255, 0.03);
+}
+
+.partnerIcon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.partnerCard h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+}
+
+.partnerCard p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.partnerNote {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* =============================================================================
+   CONTACT SECTION
+   ============================================================================= */
+
+.contact {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 60%, rgba(78, 208, 255, 0.08), transparent 60%),
+    var(--bg-darker);
+}
+
+.contactInner {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contactLogo {
+  margin-bottom: 2rem;
+  opacity: 0.8;
+}
+
+.contactCta {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  margin: 0 0 2rem;
+}
+
+.contactInfo {
+  margin-bottom: 3rem;
+}
+
+.contactName {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.contactRole {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0.25rem 0 1rem;
+}
+
+.contactEmail {
+  display: inline-block;
+  font-size: 1.1rem;
+  color: var(--frost-blue);
+  text-decoration: none;
+  padding: 0.75rem 2rem;
+  border: 1px solid var(--frost-blue);
+  border-radius: 6px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.contactEmail:hover {
+  background: var(--frost-blue);
+  color: var(--bg-dark);
+}
+
+.contactFooter {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+/* =============================================================================
+   RESPONSIVE
+   ============================================================================= */
+
+@media (max-width: 768px) {
+  .leaderCard {
+    grid-template-columns: 1fr;
+  }
+
+  .leaderImage {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .rosterGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .rosterGrid .playerCard:last-child {
+    grid-column: 1 / -1;
+    max-width: 200px;
+    margin: 0 auto;
+  }
+
+  .creatorStats {
+    gap: 2rem;
+  }
+
+  .audienceStats {
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .rosterGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .playerImageWrap {
+    width: 48px;
+    height: 48px;
+  }
+
+  .statGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .brandValues {
+    grid-template-columns: 1fr;
+  }
+
+  .partnerGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .marketGrid {
+    grid-template-columns: 1fr;
+  }
+}

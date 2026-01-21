@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import PlayerProfile from "../../components/sections/PlayerProfile";
-import { players, playersBySlug } from "../../data/players";
-import { siteConfig } from "../../lib/config";
+import PlayerProfile from "../../../components/sections/PlayerProfile";
+import { players, playersBySlug } from "../../../data/players";
+import { siteConfig } from "../../../lib/config";
 
 type Props = {
   params: Promise<{ player: string }>;

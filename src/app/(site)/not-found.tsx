@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { colors, withAlpha } from "../theme";
-import type { CSSVarStyles } from "../theme";
+import { colors, withAlpha } from "../../theme";
+import type { CSSVarStyles } from "../../theme";
 
 export default function NotFound() {
   const containerStyle: CSSVarStyles = {

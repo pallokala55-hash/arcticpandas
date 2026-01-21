@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import { siteConfig, socialConfig, assets } from "../lib/config";
 import { colors, layout } from "../theme";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import SmoothScroll from "../components/SmoothScroll";
 import "./globals.css";
 import styles from "./layout.module.css";
 
@@ -66,7 +63,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // Generate CSS variables for theme
   const cssVariables = {
     "--color-background": colors.background,
     "--color-foreground": colors.foreground,
@@ -94,10 +90,7 @@ export default function RootLayout({
             color: colors.foreground,
           }}
         >
-          <SmoothScroll />
-          <Header />
-          <main className={styles.main}>{children}</main>
-          <Footer />
+          {children}
         </div>
       </body>
     </html>
