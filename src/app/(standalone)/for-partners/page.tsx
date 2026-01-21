@@ -78,9 +78,8 @@ const content = {
     facilityTitle1: "Purpose-built",
     facilityTitle2: "for competition.",
     facilityDesc: "Dedicated gaming house in Helsinki with 5-player team setup, production studio, and streaming infrastructure.",
-    facilityLabel1: "Team Room",
+    facilityLabel1: "Studio",
     facilityLabel2: "Production",
-    facilityLabel3: "Overview",
     // Market
     marketEyebrow: "The Market",
     marketTitle1: "NLC is exploding.",
@@ -175,9 +174,8 @@ const content = {
     facilityTitle1: "Rakennettu",
     facilityTitle2: "kilpailuun.",
     facilityDesc: "Oma pelitalo Helsingissä: 5 pelaajan tiimitila, tuotantostudio ja striimausinfrastruktuuri.",
-    facilityLabel1: "Tiimitila",
+    facilityLabel1: "Studio",
     facilityLabel2: "Tuotanto",
-    facilityLabel3: "Yleiskuva",
     // Market
     marketEyebrow: "Markkinat",
     marketTitle1: "NLC räjähtää.",
@@ -277,6 +275,7 @@ function useCountUp(end: number, duration: number = 2000, suffix: string = "") {
 export default function DeckPage() {
   const [lang, setLang] = useState<Lang>("en");
   const t = content[lang];
+  const deckRef = useRef<HTMLDivElement>(null);
 
   const stat1Ref = useCountUp(52, 1500, "%");
   const stat2Ref = useCountUp(8400, 2000, "%");
@@ -285,8 +284,74 @@ export default function DeckPage() {
   const youtubeRef = useCountUp(102, 1800, "M");
   const twitchRef = useCountUp(100, 1500, "K+");
 
+  // Keyboard navigation for slide-based scrolling
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!deckRef.current) return;
+
+      const sections = deckRef.current.querySelectorAll("section");
+      const viewportHeight = window.innerHeight;
+
+      // Find current section (the one most in view)
+      let currentIndex = 0;
+      let currentSection: Element | null = null;
+      sections.forEach((section, index) => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < viewportHeight * 0.5) {
+          currentIndex = index;
+          currentSection = section;
+        }
+      });
+
+      if (e.key === "ArrowDown" || e.key === "PageDown" || e.key === " ") {
+        e.preventDefault();
+
+        if (currentSection) {
+          const rect = currentSection.getBoundingClientRect();
+          const sectionBottom = rect.bottom;
+
+          // If section extends below viewport, scroll by viewport height (but not past section)
+          if (sectionBottom > viewportHeight + 50) {
+            const scrollAmount = Math.min(viewportHeight, sectionBottom - viewportHeight);
+            window.scrollBy({ top: scrollAmount, behavior: "smooth" });
+          } else {
+            // Section fully visible, go to next section
+            const nextSection = sections[currentIndex + 1];
+            nextSection?.scrollIntoView({ behavior: "smooth" });
+          }
+        }
+      } else if (e.key === "ArrowUp" || e.key === "PageUp") {
+        e.preventDefault();
+
+        if (currentSection) {
+          const rect = currentSection.getBoundingClientRect();
+
+          // If section extends above viewport, scroll up by viewport height
+          if (rect.top < -50) {
+            window.scrollBy({ top: -viewportHeight, behavior: "smooth" });
+          } else {
+            // At top of current section, go to previous section
+            const prevSection = sections[currentIndex - 1];
+            if (prevSection) {
+              prevSection.scrollIntoView({ behavior: "smooth" });
+            }
+          }
+        }
+      } else if (e.key === "Home") {
+        e.preventDefault();
+        sections[0]?.scrollIntoView({ behavior: "smooth" });
+      } else if (e.key === "End") {
+        e.preventDefault();
+        sections[sections.length - 1]?.scrollIntoView({ behavior: "smooth" });
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   return (
-    <div className={styles.deck}>
+    <div className={styles.deck} ref={deckRef}>
       {/* Cover */}
       <section className={styles.cover}>
         <div className={styles.coverBg} aria-hidden="true" />
@@ -505,8 +570,8 @@ export default function DeckPage() {
               <Image
                 src="/studio/sideview.webp"
                 alt="Arctic Pandas team room"
-                width={1400}
-                height={1005}
+                width={2048}
+                height={1365}
                 className={styles.facilityImg}
               />
               <span className={styles.facilityLabel}>{t.facilityLabel1}</span>
@@ -515,8 +580,8 @@ export default function DeckPage() {
               <Image
                 src="/studio/command-center.webp"
                 alt="Production studio"
-                width={900}
-                height={1296}
+                width={1129}
+                height={1534}
                 className={styles.facilityImg}
               />
               <span className={styles.facilityLabel}>{t.facilityLabel2}</span>
@@ -525,11 +590,10 @@ export default function DeckPage() {
               <Image
                 src="/studio/from-behind.webp"
                 alt="Facility overview"
-                width={1400}
-                height={1158}
+                width={1388}
+                height={1365}
                 className={styles.facilityImg}
               />
-              <span className={styles.facilityLabel}>{t.facilityLabel3}</span>
             </div>
           </div>
         </div>
