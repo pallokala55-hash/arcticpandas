@@ -1,0 +1,52 @@
+{
+  "id": "115762378910707655",
+  "date": "2026-01-21",
+  "patch": "16.1.736.4955",
+  "duration": 1735,
+  "durationRealtime": 2125,
+  "tournament": {
+    "name": "NLC 2026 Winter",
+    "stage": "Regular Season"
+  },
+  "vods": [
+    { "url": "https://www.twitch.tv/videos/2676194933?t=01h28m41s", "label": "NLC Broadcast" }
+  ],
+  "teams": [
+    {
+      "teamId": "ap",
+      "side": "red",
+      "result": "win",
+      "kills": 28,
+      "deaths": 16,
+      "gold": 65896,
+      "towers": 9,
+      "dragons": ["infernal"],
+      "barons": 2,
+      "players": [
+        { "playerId": "nille", "name": "AP Nille", "role": "top", "champion": "Aurora", "kills": 7, "deaths": 3, "assists": 8, "cs": 242, "gold": 12525, "kp": 0.54, "dmgShare": 0.22 },
+        { "playerId": "dibu", "name": "AP DIBU", "role": "jungle", "champion": "Vi", "kills": 6, "deaths": 5, "assists": 13, "cs": 201, "gold": 13058, "kp": 0.68, "dmgShare": 0.17 },
+        { "playerId": "simpli", "name": "AP Simpli", "role": "mid", "champion": "Ryze", "kills": 8, "deaths": 1, "assists": 10, "cs": 290, "gold": 15456, "kp": 0.64, "dmgShare": 0.30 },
+        { "playerId": "kehvo", "name": "AP Kehvo", "role": "bottom", "champion": "Corki", "kills": 7, "deaths": 5, "assists": 9, "cs": 258, "gold": 16635, "kp": 0.57, "dmgShare": 0.25 },
+        { "playerId": "boltox", "name": "AP Boltox", "role": "support", "champion": "Alistar", "kills": 0, "deaths": 2, "assists": 21, "cs": 30, "gold": 8222, "kp": 0.75, "dmgShare": 0.06 }
+      ]
+    },
+    {
+      "teamId": "lls",
+      "side": "blue",
+      "result": "loss",
+      "kills": 16,
+      "deaths": 28,
+      "gold": 54751,
+      "towers": 3,
+      "dragons": ["hextech", "mountain"],
+      "barons": 0,
+      "players": [
+        { "playerId": null, "name": "LLS Thunder2", "role": "top", "champion": "Rumble", "kills": 1, "deaths": 5, "assists": 2, "cs": 182, "gold": 8696 },
+        { "playerId": null, "name": "LLS CLEARS", "role": "jungle", "champion": "MonkeyKing", "kills": 9, "deaths": 6, "assists": 5, "cs": 199, "gold": 13003 },
+        { "playerId": null, "name": "LLS MathisV", "role": "mid", "champion": "Sylas", "kills": 3, "deaths": 5, "assists": 9, "cs": 218, "gold": 12018 },
+        { "playerId": null, "name": "LLS Kobbe", "role": "bottom", "champion": "Sivir", "kills": 3, "deaths": 7, "assists": 7, "cs": 272, "gold": 13172 },
+        { "playerId": null, "name": "LLS Soul2", "role": "support", "champion": "Bard", "kills": 0, "deaths": 5, "assists": 10, "cs": 32, "gold": 7862 }
+      ]
+    }
+  ]
+}

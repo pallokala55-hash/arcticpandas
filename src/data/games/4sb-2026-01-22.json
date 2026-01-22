@@ -1,0 +1,50 @@
+{
+  "id": "4sb-2026-01-22",
+  "date": "2026-01-22",
+  "duration": 1362,
+  "tournament": {
+    "name": "NLC 2026 Winter",
+    "stage": "Regular Season"
+  },
+  "vods": [
+    { "url": "https://www.twitch.tv/videos/2676981964?t=01h47m52s", "label": "NLC Broadcast" }
+  ],
+  "teams": [
+    {
+      "teamId": "ap",
+      "side": "blue",
+      "result": "win",
+      "kills": 19,
+      "deaths": 0,
+      "gold": 52500,
+      "towers": 10,
+      "dragons": ["infernal", "infernal"],
+      "barons": 1,
+      "players": [
+        { "playerId": "nille", "name": "AP Nille", "role": "top", "champion": "Unknown", "kills": 0, "deaths": 0, "assists": 0 },
+        { "playerId": "dibu", "name": "AP DIBU", "role": "jungle", "champion": "Unknown", "kills": 0, "deaths": 0, "assists": 0 },
+        { "playerId": "simpli", "name": "AP Simpli", "role": "mid", "champion": "Unknown", "kills": 0, "deaths": 0, "assists": 0 },
+        { "playerId": "kehvo", "name": "AP Kehvo", "role": "bottom", "champion": "Unknown", "kills": 0, "deaths": 0, "assists": 0 },
+        { "playerId": "boltox", "name": "AP Boltox", "role": "support", "champion": "Unknown", "kills": 0, "deaths": 0, "assists": 0 }
+      ]
+    },
+    {
+      "teamId": "4sb",
+      "side": "red",
+      "result": "loss",
+      "kills": 0,
+      "deaths": 19,
+      "gold": 35400,
+      "towers": 0,
+      "dragons": [],
+      "barons": 0,
+      "players": [
+        { "playerId": null, "name": "4S&B Top", "role": "top", "champion": "Unknown", "kills": 0, "deaths": 0, "assists": 0 },
+        { "playerId": null, "name": "4S&B Jungle", "role": "jungle", "champion": "Unknown", "kills": 0, "deaths": 0, "assists": 0 },
+        { "playerId": null, "name": "4S&B Mid", "role": "mid", "champion": "Unknown", "kills": 0, "deaths": 0, "assists": 0 },
+        { "playerId": null, "name": "4S&B Bot", "role": "bottom", "champion": "Unknown", "kills": 0, "deaths": 0, "assists": 0 },
+        { "playerId": null, "name": "4S&B Support", "role": "support", "champion": "Unknown", "kills": 0, "deaths": 0, "assists": 0 }
+      ]
+    }
+  ]
+}

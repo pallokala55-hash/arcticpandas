@@ -1,0 +1,52 @@
+{
+  "id": "115762378910707629",
+  "date": "2026-01-15",
+  "patch": "16.1.736.4955",
+  "duration": 2179,
+  "durationRealtime": 2261,
+  "tournament": {
+    "name": "NLC 2026 Winter",
+    "stage": "Regular Season"
+  },
+  "vods": [
+    { "url": "https://www.twitch.tv/videos/2670746985?t=05h11m00s", "label": "NLC Broadcast" }
+  ],
+  "teams": [
+    {
+      "teamId": "ap",
+      "side": "blue",
+      "result": "win",
+      "kills": 26,
+      "deaths": 20,
+      "gold": 75588,
+      "towers": 10,
+      "dragons": ["mountain", "ocean"],
+      "barons": 2,
+      "players": [
+        { "playerId": "nille", "name": "AP Nille", "role": "top", "champion": "Ambessa", "kills": 7, "deaths": 3, "assists": 11, "cs": 278, "gold": 16243, "kp": 0.69, "dmgShare": 0.18 },
+        { "playerId": "dibu", "name": "AP DIBU", "role": "jungle", "champion": "Vi", "kills": 4, "deaths": 6, "assists": 11, "cs": 190, "gold": 13252, "kp": 0.58, "dmgShare": 0.10 },
+        { "playerId": "simpli", "name": "AP Simpli", "role": "mid", "champion": "Swain", "kills": 3, "deaths": 5, "assists": 21, "cs": 265, "gold": 14234, "kp": 0.92, "dmgShare": 0.26 },
+        { "playerId": "kehvo", "name": "AP Kehvo", "role": "bottom", "champion": "Corki", "kills": 11, "deaths": 4, "assists": 8, "cs": 352, "gold": 22084, "kp": 0.73, "dmgShare": 0.37 },
+        { "playerId": "boltox", "name": "AP Boltox", "role": "support", "champion": "Nami", "kills": 1, "deaths": 2, "assists": 22, "cs": 30, "gold": 9775, "kp": 0.88, "dmgShare": 0.09 }
+      ]
+    },
+    {
+      "teamId": "ver",
+      "side": "red",
+      "result": "loss",
+      "kills": 20,
+      "deaths": 26,
+      "gold": 69620,
+      "towers": 5,
+      "dragons": ["chemtech", "ocean", "ocean"],
+      "barons": 0,
+      "players": [
+        { "playerId": null, "name": "VER bobista", "role": "top", "champion": "Rumble", "kills": 9, "deaths": 6, "assists": 7, "cs": 286, "gold": 15113 },
+        { "playerId": null, "name": "VER Mafro", "role": "jungle", "champion": "JarvanIV", "kills": 2, "deaths": 6, "assists": 16, "cs": 209, "gold": 12428 },
+        { "playerId": null, "name": "VER Furuy", "role": "mid", "champion": "Taliyah", "kills": 3, "deaths": 3, "assists": 12, "cs": 350, "gold": 14419 },
+        { "playerId": null, "name": "VER Mishi", "role": "bottom", "champion": "Yunara", "kills": 6, "deaths": 6, "assists": 8, "cs": 335, "gold": 19300 },
+        { "playerId": null, "name": "VER guggu", "role": "support", "champion": "Alistar", "kills": 0, "deaths": 5, "assists": 15, "cs": 23, "gold": 8360 }
+      ]
+    }
+  ]
+}
