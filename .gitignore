@@ -45,3 +45,6 @@ next-env.d.ts
 
 # Bun
 bun.lock
+
+# Worktrees
+.worktrees
