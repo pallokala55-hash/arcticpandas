@@ -238,3 +238,87 @@ export function formatMatchTime(datetime: string): string {
     minute: "2-digit",
   });
 }
+
+// ============================================================
+// Matches page helpers
+// ============================================================
+
+// Get all AP games sorted by date (newest first)
+export function getAPGames(): Game[] {
+  return games
+    .filter((game) => game.teams.some((t) => t.teamId === "ap"))
+    .sort((a, b) => b.date.localeCompare(a.date));
+}
+
+// Get AP's team participation from a game
+export function getAPTeam(game: Game) {
+  return game.teams.find((t) => t.teamId === "ap")!;
+}
+
+// Get opponent's team participation from a game
+export function getOpponentTeam(game: Game) {
+  return game.teams.find((t) => t.teamId !== "ap")!;
+}
+
+// Check if a game was a perfect game (0 deaths for AP)
+export function isPerfectGame(game: Game): boolean {
+  const apTeam = getAPTeam(game);
+  return apTeam.deaths === 0;
+}
+
+// Format duration in seconds to "mm:ss" string
+export function formatDuration(seconds: number | undefined): string {
+  if (!seconds) return "";
+  const mins = Math.floor(seconds / 60);
+  const secs = seconds % 60;
+  return `${mins}:${secs.toString().padStart(2, "0")}`;
+}
+
+// Get season totals for AP
+export function getSeasonTotals() {
+  const apGames = getAPGames();
+  let wins = 0;
+  let losses = 0;
+  let kills = 0;
+  let deaths = 0;
+  let assists = 0;
+  let barons = 0;
+  let dragons = 0;
+
+  for (const game of apGames) {
+    const apTeam = getAPTeam(game);
+    if (apTeam.result === "win") wins++;
+    if (apTeam.result === "loss") losses++;
+    kills += apTeam.kills ?? 0;
+    deaths += apTeam.deaths ?? 0;
+    barons += apTeam.barons ?? 0;
+    dragons += apTeam.dragons?.length ?? 0;
+
+    // Sum assists from players
+    for (const player of apTeam.players) {
+      assists += player.assists ?? 0;
+    }
+  }
+
+  const kda = deaths > 0 ? (kills + assists) / deaths : kills + assists;
+
+  return { wins, losses, kills, deaths, assists, kda, barons, dragons };
+}
+
+// Get player slug from esportsId (for linking to player profiles)
+export function getPlayerSlug(esportsId: string | undefined): string | null {
+  if (!esportsId) return null;
+
+  for (const [slug, player] of players.entries()) {
+    if (player.esportsIds?.lolesports === esportsId) {
+      return slug;
+    }
+  }
+  return null;
+}
+
+// Get player slug from playerId directly
+export function getPlayerSlugFromId(playerId: string | null): string | null {
+  if (!playerId) return null;
+  return players.has(playerId) ? playerId : null;
+}

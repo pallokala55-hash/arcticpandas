@@ -1,0 +1,362 @@
+.main {
+  min-height: 100vh;
+  padding-bottom: 96px;
+}
+
+/* Hero */
+.hero {
+  padding: 72px 24px 48px;
+  text-align: center;
+}
+
+.backLink {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+  transition: color 0.2s;
+}
+
+.backLink:hover {
+  color: #4ED0FF;
+}
+
+.matchup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin: 1.5rem 0;
+}
+
+.teamBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.teamName {
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.teamScore {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.vs {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.badges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.resultBadge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.35rem 1rem;
+  border-radius: 4px;
+}
+
+.resultBadge[data-result="win"] {
+  background: rgba(34, 197, 94, 0.2);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.4);
+}
+
+.resultBadge[data-result="loss"] {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.perfectBadge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.35rem 1rem;
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(245, 158, 11, 0.2));
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.4);
+  border-radius: 4px;
+}
+
+.duration {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Overview */
+.overview {
+  max-width: 700px;
+  margin: 0 auto 48px;
+  padding: 0 24px;
+}
+
+.overviewGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+}
+
+.overviewStat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.overviewLabel {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.overviewValue {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.overviewValue[data-positive="true"] {
+  color: #4ade80;
+}
+
+.overviewValue[data-positive="false"] {
+  color: #f87171;
+}
+
+.dragons {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.dragon {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: capitalize;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dragon[data-type="infernal"] {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #f87171;
+}
+
+.dragon[data-type="mountain"] {
+  background: rgba(161, 98, 7, 0.15);
+  border-color: rgba(161, 98, 7, 0.3);
+  color: #d97706;
+}
+
+.dragon[data-type="ocean"] {
+  background: rgba(59, 130, 246, 0.15);
+  border-color: rgba(59, 130, 246, 0.3);
+  color: #60a5fa;
+}
+
+.dragon[data-type="cloud"] {
+  background: rgba(156, 163, 175, 0.15);
+  border-color: rgba(156, 163, 175, 0.3);
+  color: #9ca3af;
+}
+
+.dragon[data-type="hextech"] {
+  background: rgba(139, 92, 246, 0.15);
+  border-color: rgba(139, 92, 246, 0.3);
+  color: #a78bfa;
+}
+
+.dragon[data-type="chemtech"] {
+  background: rgba(34, 197, 94, 0.15);
+  border-color: rgba(34, 197, 94, 0.3);
+  color: #4ade80;
+}
+
+/* Players section */
+.playersSection {
+  max-width: 800px;
+  margin: 0 auto 48px;
+  padding: 0 24px;
+}
+
+.sectionTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.playersList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.playerRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s;
+}
+
+.playerRow[data-linked="true"]:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(78, 208, 255, 0.3);
+}
+
+.playerInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.playerRole {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  min-width: 55px;
+}
+
+.playerName {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.playerChampion {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.playerKda {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.kdaNumbers {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.kdaRatio {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.playerStats {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.playerStat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  min-width: 40px;
+}
+
+.statVal {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.statKey {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Meta */
+.metaSection {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 24px;
+  text-align: center;
+}
+
+.metaText {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .hero {
+    padding: 56px 16px 32px;
+  }
+
+  .matchup {
+    gap: 1.5rem;
+  }
+
+  .teamScore {
+    font-size: 2.5rem;
+  }
+
+  .overviewGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .playersSection {
+    padding: 0 16px;
+  }
+
+  .playerRow {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    text-align: center;
+  }
+
+  .playerInfo {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .playerStats {
+    justify-content: center;
+  }
+}
