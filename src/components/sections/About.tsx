@@ -1,6 +1,6 @@
 import MemberCard from "../MemberCard";
 import styles from "./About.module.css";
-import { roster } from "../../data/roster";
+import { roster } from "../../data";
 import { management } from "../../data/management";
 import { colors, withAlpha } from "../../theme";
 import type { CSSVarStyles } from "../../theme";

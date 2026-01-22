@@ -10,5 +10,21 @@
   },
   "esportsIds": {
     "lolesports": "112440590902095873"
-  }
+  },
+  "role": "Support",
+  "origin": "Estonia",
+  "subtitle": "Rising Estonian talent climbing through the Nordic circuit.",
+  "tags": ["Estonian", "NLC rising", "Challenger peak"],
+  "highlights": [
+    "Challenger peak at 1099 LP on EUW",
+    "NLC 2nd Division experience with BlueWhites",
+    "Ultraliga 2nd Division with Estonian Vipers"
+  ],
+  "playbook": "Nautilus · Rell · Karma · Bard",
+  "peak": {
+    "tier": "challenger",
+    "text": "CHALLENGER · 1099 LP",
+    "opggUrl": "https://op.gg/lol/summoners/euw/Boltox-EUW"
+  },
+  "rosterNote": "Estonia\nChallenger 1099 LP"
 }

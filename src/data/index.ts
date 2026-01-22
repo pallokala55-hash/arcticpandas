@@ -1,5 +1,3 @@
-import fs from "fs";
-import path from "path";
 import {
   PlayerSchema,
   TeamSchema,
@@ -13,49 +11,56 @@ import {
   type DragonRef,
 } from "./schemas";
 
-const dataDir = path.join(process.cwd(), "src/data");
+// Static imports for JSON data (Next.js compatible)
+import nilleData from "./players/nille.json";
+import dibuData from "./players/dibu.json";
+import simpliData from "./players/simpli.json";
+import kehvoData from "./players/kehvo.json";
+import boltoxData from "./players/boltox.json";
 
-function loadJsonFiles<T>(dir: string, schema: { parse: (data: unknown) => T }): Map<string, T> {
-  const result = new Map<string, T>();
-  const fullPath = path.join(dataDir, dir);
+import apTeamData from "./teams/ap.json";
+import verTeamData from "./teams/ver.json";
+import llsTeamData from "./teams/lls.json";
+import foursbTeamData from "./teams/4sb.json";
+import bombTeamData from "./teams/bomb.json";
+import bdgTeamData from "./teams/bdg.json";
 
-  if (!fs.existsSync(fullPath)) return result;
+import game1Data from "./games/115762378910707629.json";
+import game2Data from "./games/115762378910707655.json";
+import game3Data from "./games/4sb-2026-01-22.json";
 
-  for (const file of fs.readdirSync(fullPath)) {
-    if (!file.endsWith(".json")) continue;
-    const content = JSON.parse(fs.readFileSync(path.join(fullPath, file), "utf-8"));
-    const parsed = schema.parse(content);
-    const id = (parsed as { id: string }).id;
-    result.set(id, parsed);
-  }
-  return result;
-}
+import championsData from "./lol/champions.json";
+import dragonsData from "./lol/dragons.json";
 
-function loadGames(): Game[] {
-  const gamesPath = path.join(dataDir, "games");
-  if (!fs.existsSync(gamesPath)) return [];
+// Parse and validate all data
+const playerDataArray = [nilleData, dibuData, simpliData, kehvoData, boltoxData];
+const teamDataArray = [apTeamData, verTeamData, llsTeamData, foursbTeamData, bombTeamData, bdgTeamData];
+const gameDataArray = [game1Data, game2Data, game3Data];
 
-  const games: Game[] = [];
-  for (const file of fs.readdirSync(gamesPath)) {
-    if (!file.endsWith(".json")) continue;
-    const content = JSON.parse(fs.readFileSync(path.join(gamesPath, file), "utf-8"));
-    games.push(GameSchema.parse(content));
-  }
-  return games.sort((a, b) => b.date.localeCompare(a.date));
-}
+// Load players into Map
+export const players = new Map<string, Player>(
+  playerDataArray.map((data) => {
+    const player = PlayerSchema.parse(data);
+    return [player.id, player];
+  })
+);
 
-function loadLolData<T>(file: string, schema: { parse: (data: unknown) => T }): T {
-  const filePath = path.join(dataDir, "lol", file);
-  const content = JSON.parse(fs.readFileSync(filePath, "utf-8"));
-  return schema.parse(content);
-}
+// Load teams into Map
+export const teams = new Map<string, Team>(
+  teamDataArray.map((data) => {
+    const team = TeamSchema.parse(data);
+    return [team.id, team];
+  })
+);
 
-// Load all data
-export const players = loadJsonFiles<Player>("players", PlayerSchema);
-export const teams = loadJsonFiles<Team>("teams", TeamSchema);
-export const games = loadGames();
-export const champions = loadLolData<Record<string, Champion>>("champions.json", ChampionsFileSchema);
-export const dragons = loadLolData<Record<string, DragonRef>>("dragons.json", DragonsFileSchema);
+// Load and sort games
+export const games: Game[] = gameDataArray
+  .map((data) => GameSchema.parse(data))
+  .sort((a, b) => b.date.localeCompare(a.date));
+
+// Load LoL reference data
+export const champions = ChampionsFileSchema.parse(championsData) as Record<string, Champion>;
+export const dragons = DragonsFileSchema.parse(dragonsData) as Record<string, DragonRef>;
 
 // Helper functions
 export function getPlayer(id: string): Player | undefined {
@@ -99,3 +104,137 @@ export function getTeamRecord(teamId: string): { wins: number; losses: number } 
 // Re-export types
 export type { Player, Team, Game, Champion, DragonRef } from "./schemas";
 export type { PlayerParticipation, TeamParticipation, Role, DragonType } from "./schemas";
+
+// ============================================================
+// Compatibility exports for existing components
+// ============================================================
+
+// PlayerProfileData type compatible with old players.ts
+export type PlayerProfileData = {
+  slug: string;
+  name: string;
+  role: string;
+  origin: string;
+  image: string;
+  headline: string;
+  subtitle: string;
+  bio: string;
+  tags: string[];
+  highlights: string[];
+  playbook: string;
+  peak: {
+    tier: "grandmaster" | "challenger";
+    text: string;
+    opggUrl: string;
+  };
+};
+
+// Convert Player to PlayerProfileData
+function toPlayerProfileData(player: Player): PlayerProfileData {
+  return {
+    slug: player.id,
+    name: player.name,
+    role: player.role ?? "",
+    origin: player.origin ?? "",
+    image: player.photo ?? "",
+    headline: player.realName ?? "",
+    subtitle: player.subtitle ?? "",
+    bio: player.bio ?? "",
+    tags: player.tags ?? [],
+    highlights: player.highlights ?? [],
+    playbook: player.playbook ?? "",
+    peak: player.peak ?? { tier: "grandmaster", text: "", opggUrl: "" },
+  };
+}
+
+// Players array for generateStaticParams and similar
+export const playersArray: PlayerProfileData[] = Array.from(players.values()).map(toPlayerProfileData);
+
+// Players by slug lookup for page rendering
+export const playersBySlug: Record<string, PlayerProfileData> = Object.fromEntries(
+  playersArray.map((p) => [p.slug, p])
+);
+
+// RosterPlayer type compatible with old roster.ts
+export type RosterPlayer = {
+  name: string;
+  slug: string;
+  role: string;
+  image: string;
+  note: string;
+};
+
+// Roster order (explicit to maintain display order)
+const rosterOrder = ["nille", "dibu", "simpli", "kehvo", "boltox"];
+
+// Roster array for Team section
+export const roster: RosterPlayer[] = rosterOrder
+  .map((id) => players.get(id))
+  .filter((p): p is Player => p !== undefined)
+  .map((player) => ({
+    name: player.name,
+    slug: player.id,
+    role: player.role?.replace(" Laner", "").replace("er", "") ?? "",
+    image: player.photo ?? "",
+    note: player.rosterNote ?? "",
+  }));
+
+// ============================================================
+// Schedule compatibility (derived from games)
+// ============================================================
+
+export type MatchResult = "win" | "loss";
+
+export type Match = {
+  datetime: string;
+  opponent: string;
+  opponentShort: string;
+  result: MatchResult | null;
+  vodUrl: string | null;
+  thumbnail?: string | null;
+};
+
+// Convert games to matches format
+export const matches: Match[] = games
+  .filter((game) => game.teams.some((t) => t.teamId === "ap"))
+  .map((game) => {
+    const apTeam = game.teams.find((t) => t.teamId === "ap")!;
+    const opponent = game.teams.find((t) => t.teamId !== "ap")!;
+    const opponentData = getTeam(opponent.teamId);
+
+    return {
+      datetime: `${game.date}T18:00:00Z`,
+      opponent: opponentData?.name ?? opponent.teamId,
+      opponentShort: opponentData?.code ?? opponent.teamId.toUpperCase(),
+      result: apTeam.result as MatchResult,
+      vodUrl: game.vods?.[0]?.url ?? null,
+      thumbnail: null,
+    };
+  })
+  .sort((a, b) => a.datetime.localeCompare(b.datetime));
+
+export function getLatestPlayedMatch(): Match | null {
+  const played = matches.filter((m) => m.result !== null);
+  return played.length > 0 ? played[played.length - 1] : null;
+}
+
+export function getUpcomingMatches(): Match[] {
+  return matches.filter((m) => m.result === null);
+}
+
+export function formatMatchDate(datetime: string): string {
+  const date = new Date(datetime);
+  return date.toLocaleDateString(undefined, {
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+  });
+}
+
+export function formatMatchTime(datetime: string): string {
+  const date = new Date(datetime);
+  return date.toLocaleTimeString(undefined, {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}

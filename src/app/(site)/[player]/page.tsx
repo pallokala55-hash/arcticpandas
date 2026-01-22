@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import PlayerProfile from "../../../components/sections/PlayerProfile";
-import { players, playersBySlug } from "../../../data/players";
+import { playersArray, playersBySlug } from "../../../data";
 import { siteConfig } from "../../../lib/config";
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
 
 // Generate static paths for all players at build time
 export async function generateStaticParams() {
-  return players.map((player) => ({
+  return playersArray.map((player) => ({
     player: player.slug,
   }));
 }

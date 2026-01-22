@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { contactConfig } from "../../../lib/config";
 import MemberCard from "../../../components/MemberCard";
-import { roster } from "../../../data/roster";
+import { roster } from "../../../data";
 
 type Lang = "en" | "fi";
 

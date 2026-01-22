@@ -9,7 +9,7 @@ import {
   getUpcomingMatches,
   formatMatchDate,
   formatMatchTime,
-} from "../../data/schedule";
+} from "../../data";
 import styles from "./TwitchHighlight.module.css";
 
 const TwitchHighlight = () => {

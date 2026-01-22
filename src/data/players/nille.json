@@ -11,5 +11,21 @@
   },
   "esportsIds": {
     "lolesports": "103877885177694021"
-  }
+  },
+  "role": "Top Laner",
+  "origin": "Finland",
+  "subtitle": "Seven-year veteran with 15+ teams and 200+ pro matches.",
+  "tags": ["ERL veteran", "NLC All-Pro 2023", "Nordic Champion"],
+  "highlights": [
+    "1st place Nordic Championship 2020 Spring (Team Singularity)",
+    "1st place LFL Division 2 2025 Spring (Team Valiant)",
+    "2nd place NLC Spring 2023 & EMEA Masters qualifier (Verdant)"
+  ],
+  "playbook": "Ornn · Renekton · K'Sante · Camille",
+  "peak": {
+    "tier": "challenger",
+    "text": "CHALLENGER · 1394 LP",
+    "opggUrl": "https://op.gg/lol/summoners/euw/Frank%20Lundy-AGENT"
+  },
+  "rosterNote": "200+ pro matches\nNordic Champion"
 }

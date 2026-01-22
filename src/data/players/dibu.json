@@ -10,5 +10,21 @@
   },
   "esportsIds": {
     "lolesports": "103935622852857101"
-  }
+  },
+  "role": "Jungler",
+  "origin": "Finland",
+  "subtitle": "Belgian League triple crown winner, ERL veteran since 2019.",
+  "tags": ["Belgian League MVP", "Triple crown 2020", "ERL veteran"],
+  "highlights": [
+    "1st place Belgian League Spring, Summer & Country Finals 2020 (Sector One)",
+    "MVP Belgian League Spring 2020 Playoffs Final",
+    "MVP Dutch League Summer 2021 Week 5 (LowLandLions)"
+  ],
+  "playbook": "Viego · Lee Sin · Rek'Sai · Sejuani",
+  "peak": {
+    "tier": "grandmaster",
+    "text": "GRANDMASTER · 465 LP",
+    "opggUrl": "https://op.gg/lol/summoners/euw/Jan%20Olejko-1234"
+  },
+  "rosterNote": "ERL veteran\nLowLandLions, Sector One"
 }

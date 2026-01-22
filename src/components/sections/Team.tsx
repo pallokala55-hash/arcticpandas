@@ -1,6 +1,6 @@
 import MemberCard from "../MemberCard";
 import styles from "./Team.module.css";
-import { roster } from "../../data/roster";
+import { roster } from "../../data";
 import { management } from "../../data/management";
 
 const Team = () => {

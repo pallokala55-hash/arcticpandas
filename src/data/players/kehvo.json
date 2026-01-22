@@ -10,5 +10,21 @@
   },
   "esportsIds": {
     "lolesports": "105519570521259934"
-  }
+  },
+  "role": "ADC",
+  "origin": "Finland",
+  "subtitle": "Benelux Masters champion, international career across 5 regions.",
+  "tags": ["Benelux champion", "ENCE 2020", "International career"],
+  "highlights": [
+    "1st place Elite Series Benelux Masters 2023 (Myth Esports)",
+    "2nd place Arabian League 2025 Winter (Anubis Gaming)",
+    "2nd place NLC Spring 2023 Division 1 (Verdant)"
+  ],
+  "playbook": "Ezreal · Kai'Sa · Smolder · Senna",
+  "peak": {
+    "tier": "grandmaster",
+    "text": "GRANDMASTER · 876 LP",
+    "opggUrl": "https://op.gg/lol/summoners/euw/Kehvo-EUW"
+  },
+  "rosterNote": "ENCE, Verdant\nRiddle alumni"
 }

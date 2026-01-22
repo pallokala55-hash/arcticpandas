@@ -1,5 +1,5 @@
 import Image from "next/image";
-import type { PlayerProfileData } from "../../data/players";
+import type { PlayerProfileData } from "../../data";
 import styles from "./PlayerProfile.module.css";
 
 type PlayerProfileProps = {
