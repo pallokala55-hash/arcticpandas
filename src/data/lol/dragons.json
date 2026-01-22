@@ -1,0 +1,8 @@
+{
+  "infernal": { "name": "Infernal", "color": "#ef4444" },
+  "mountain": { "name": "Mountain", "color": "#d97706" },
+  "ocean": { "name": "Ocean", "color": "#3b82f6" },
+  "cloud": { "name": "Cloud", "color": "#9ca3af" },
+  "hextech": { "name": "Hextech", "color": "#8b5cf6" },
+  "chemtech": { "name": "Chemtech", "color": "#22c55e" }
+}
