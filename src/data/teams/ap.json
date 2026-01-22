@@ -1,0 +1,19 @@
+{
+  "id": "ap",
+  "name": "Arctic Pandas",
+  "code": "AP",
+  "region": "FI",
+  "league": "NLC",
+  "logo": "/teams/ap.png",
+  "colors": {
+    "primary": "#4ED0FF",
+    "secondary": "#1a1a2e"
+  },
+  "socials": {
+    "twitter": "ArcticPandasGG",
+    "twitch": "arcticpandasgg"
+  },
+  "esportsIds": {
+    "lolesports": "115848475436772149"
+  }
+}

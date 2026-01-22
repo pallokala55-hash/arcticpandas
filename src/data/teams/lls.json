@@ -1,0 +1,9 @@
+{
+  "id": "lls",
+  "name": "Lundqvist Lightside",
+  "code": "LLS",
+  "league": "NLC",
+  "esportsIds": {
+    "lolesports": "107565473980214294"
+  }
+}
