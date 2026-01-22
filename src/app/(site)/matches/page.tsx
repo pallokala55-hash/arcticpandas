@@ -9,6 +9,7 @@ import {
   isPerfectGame,
   formatDuration,
   getTeam,
+  getGameSlug,
 } from "../../../data";
 import styles from "./page.module.css";
 
@@ -66,10 +67,12 @@ export default function MatchesPage() {
           const perfect = isPerfectGame(game);
           const duration = formatDuration(game.duration);
 
+          const slug = getGameSlug(game.id);
+
           return (
             <Link
               key={game.id}
-              href={`/matches/${game.id}`}
+              href={`/matches/${slug}`}
               className={styles.matchCard}
               data-result={apTeam.result}
             >

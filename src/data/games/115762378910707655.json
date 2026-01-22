@@ -1,5 +1,12 @@
 {
   "id": "115762378910707655",
+  "slugs": [
+    "lundqvist-lightside",
+    "lls",
+    "jan-21-lls",
+    "2026-01-21-lls",
+    "winter-2026-lls"
+  ],
   "date": "2026-01-21",
   "patch": "16.1.736.4955",
   "duration": 1735,

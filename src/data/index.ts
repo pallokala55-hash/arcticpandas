@@ -58,6 +58,63 @@ export const games: Game[] = gameDataArray
   .map((data) => GameSchema.parse(data))
   .sort((a, b) => b.date.localeCompare(a.date));
 
+// Compute canonical slugs (simplest unique slug for each game)
+function computeCanonicalSlugs(games: Game[]): { slugToGame: Map<string, Game>; gameToSlug: Map<string, string> } {
+  const slugToGame = new Map<string, Game>();
+  const gameToSlug = new Map<string, string>();
+  const usedSlugs = new Set<string>();
+
+  // First pass: find the simplest unique slug for each game
+  for (const game of games) {
+    for (const slug of game.slugs) {
+      // Check if this slug is unique (not in another game's slugs)
+      const isUnique = !games.some(
+        (other) => other.id !== game.id && other.slugs.includes(slug)
+      );
+
+      if (isUnique && !usedSlugs.has(slug)) {
+        gameToSlug.set(game.id, slug);
+        usedSlugs.add(slug);
+        break;
+      }
+    }
+
+    // Fallback to game ID if no unique slug found
+    if (!gameToSlug.has(game.id)) {
+      gameToSlug.set(game.id, game.id);
+      usedSlugs.add(game.id);
+    }
+  }
+
+  // Second pass: map all slugs to their games (for redirects)
+  for (const game of games) {
+    for (const slug of game.slugs) {
+      slugToGame.set(slug, game);
+    }
+    // Also map the game ID
+    slugToGame.set(game.id, game);
+  }
+
+  return { slugToGame, gameToSlug };
+}
+
+const { slugToGame, gameToSlug } = computeCanonicalSlugs(games);
+
+// Get canonical slug for a game
+export function getGameSlug(gameId: string): string {
+  return gameToSlug.get(gameId) ?? gameId;
+}
+
+// Get game by any valid slug
+export function getGameBySlug(slug: string): Game | undefined {
+  return slugToGame.get(slug);
+}
+
+// Get all valid slugs for redirects
+export function getAllGameSlugs(): string[] {
+  return Array.from(slugToGame.keys());
+}
+
 // Load LoL reference data
 export const champions = ChampionsFileSchema.parse(championsData) as Record<string, Champion>;
 export const dragons = DragonsFileSchema.parse(dragonsData) as Record<string, DragonRef>;

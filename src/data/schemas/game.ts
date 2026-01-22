@@ -52,6 +52,8 @@ export const GameSchema = z.object({
   tournament: TournamentSchema.optional(),
   vods: z.array(VodSchema).optional(),
   teams: z.tuple([TeamParticipationSchema, TeamParticipationSchema]),
+  // URL slugs - array of valid permutations, simplest first
+  slugs: z.array(z.string().min(1)),
 });
 
 export type PlayerParticipation = z.infer<typeof PlayerParticipationSchema>;

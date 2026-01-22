@@ -4,7 +4,8 @@ import { notFound } from "next/navigation";
 import SectionEyebrow from "../../../../components/SectionEyebrow";
 import {
   getAPGames,
-  getGame,
+  getGameBySlug,
+  getGameSlug,
   getAPTeam,
   getOpponentTeam,
   getTeam,
@@ -21,12 +22,12 @@ interface Props {
 
 export async function generateStaticParams() {
   const games = getAPGames();
-  return games.map((game) => ({ gameId: game.id }));
+  return games.map((game) => ({ gameId: getGameSlug(game.id) }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { gameId } = await params;
-  const game = getGame(gameId);
+  const game = getGameBySlug(gameId);
   if (!game) return { title: "Match Not Found" };
 
   const apTeam = getAPTeam(game);
@@ -100,7 +101,7 @@ function PlayerRow({ player }: { player: PlayerParticipation }) {
 
 export default async function MatchDetailPage({ params }: Props) {
   const { gameId } = await params;
-  const game = getGame(gameId);
+  const game = getGameBySlug(gameId);
 
   if (!game) {
     notFound();
