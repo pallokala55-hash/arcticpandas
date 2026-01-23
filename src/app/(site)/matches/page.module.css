@@ -13,17 +13,6 @@
   overflow: hidden;
 }
 
-.heroGlow {
-  position: absolute;
-  top: -20%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 600px;
-  height: 400px;
-  background: radial-gradient(ellipse, rgba(78, 208, 255, 0.15), transparent 60%);
-  pointer-events: none;
-}
-
 .title {
   display: flex;
   flex-direction: column;
@@ -32,7 +21,28 @@
   margin: 1rem 0 0;
 }
 
+.titleRecordWrap {
+  position: relative;
+}
+
+.heroGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 350px;
+  background: radial-gradient(ellipse, rgba(78, 208, 255, 0.15), transparent 60%);
+  pointer-events: none;
+}
+
 .titleRecord {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.recordNum {
   font-size: clamp(4rem, 12vw, 7rem);
   font-weight: 800;
   letter-spacing: -0.04em;
@@ -41,6 +51,14 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.recordDash {
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 300;
+  line-height: 1;
+  margin: 0 0.1em;
+  color: rgba(255, 255, 255, 0.25);
 }
 
 .titleLabel {
@@ -77,11 +95,6 @@
   gap: 0.25rem;
   padding: 1.25rem 0.5rem;
   background: rgba(10, 10, 15, 0.9);
-  transition: background 0.2s;
-}
-
-.statCard:hover {
-  background: rgba(20, 20, 30, 0.9);
 }
 
 .statCard[data-highlight="true"] {
@@ -504,8 +517,12 @@
     padding: 80px 20px 48px;
   }
 
-  .titleRecord {
+  .recordNum {
     font-size: clamp(3rem, 15vw, 5rem);
+  }
+
+  .recordDash {
+    font-size: clamp(2rem, 10vw, 3rem);
   }
 
   .statsGrid {
@@ -547,12 +564,8 @@
     padding: 0 16px;
   }
 
-  .statsGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .statCard {
-    padding: 1rem;
+    padding: 1rem 0.25rem;
   }
 
   .featuredMatchup {

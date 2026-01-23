@@ -8,6 +8,7 @@ import {
   getTeam,
   getGameSlug,
   isPerfectGame,
+  formatDuration,
   type Game,
 } from "../../../data";
 import styles from "./page.module.css";
@@ -105,14 +106,14 @@ export default function MatchCard({ game, variant }: MatchCardProps): React.Reac
           </div>
         </div>
 
-        {isUpcoming ? (
-          <div className={styles.featuredMeta}>
-            <span className={styles.featuredDate}>{weekday}, {month} {day}</span>
+        <div className={styles.featuredMeta}>
+          <span className={styles.featuredDate}>{weekday}, {month} {day}</span>
+          {isUpcoming ? (
             <span className={styles.featuredTime}>{timeStr}</span>
-          </div>
-        ) : (
-          <span className={styles.featuredMeta}>{dateStr}</span>
-        )}
+          ) : game.duration ? (
+            <span className={styles.featuredTime}>{Math.floor(game.duration / 60)}m {game.duration % 60}s</span>
+          ) : null}
+        </div>
       </Link>
     );
   }

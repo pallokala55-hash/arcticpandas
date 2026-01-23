@@ -17,10 +17,16 @@ export default function MatchesPage() {
     <main className={styles.main}>
       {/* Hero */}
       <section className={styles.hero}>
-        <div className={styles.heroGlow} />
         <SectionEyebrow>NLC 2026 Winter</SectionEyebrow>
         <h1 className={styles.title}>
-          <span className={styles.titleRecord}>{seasonStats.wins}–{seasonStats.losses}</span>
+          <div className={styles.titleRecordWrap}>
+            <div className={styles.heroGlow} />
+            <span className={styles.titleRecord}>
+              <span className={styles.recordNum}>{seasonStats.wins}</span>
+              <span className={styles.recordDash}>–</span>
+              <span className={styles.recordNum}>{seasonStats.losses}</span>
+            </span>
+          </div>
           <span className={styles.titleLabel}>Season Record</span>
         </h1>
       </section>
