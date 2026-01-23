@@ -311,6 +311,27 @@ export function getSeasonTotals() {
   return { wins, losses, kills, deaths, assists, kda, barons, dragons };
 }
 
+// Partition AP games into upcoming and completed, sorted appropriately
+export function partitionAPGames(allGames: Game[]): {
+  upcoming: Game[];
+  completed: Game[];
+  nextUpcoming: Game | undefined;
+  latestWin: Game | undefined;
+} {
+  const upcoming = allGames
+    .filter((g) => !getAPTeam(g).result)
+    .sort((a, b) => a.date.localeCompare(b.date));
+
+  const completed = allGames
+    .filter((g) => getAPTeam(g).result)
+    .sort((a, b) => b.date.localeCompare(a.date));
+
+  const nextUpcoming = upcoming[0];
+  const latestWin = completed.find((g) => getAPTeam(g).result === "win");
+
+  return { upcoming, completed, nextUpcoming, latestWin };
+}
+
 // Get player slug from esportsId (for linking to player profiles)
 export function getPlayerSlug(esportsId: string | undefined): string | null {
   if (!esportsId) return null;

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import MatchCard from "./MatchCard";
-import { getAPTeam, type Game } from "../../../data";
+import { partitionAPGames, type Game } from "../../../data";
 import styles from "./page.module.css";
 
 type MatchTimelineProps = {
@@ -10,22 +10,11 @@ type MatchTimelineProps = {
   initialVisiblePast: number;
 };
 
-export default function MatchTimeline({ games, initialVisiblePast }: MatchTimelineProps) {
+export default function MatchTimeline({ games, initialVisiblePast }: MatchTimelineProps): React.ReactElement {
   const [showAll, setShowAll] = useState(false);
 
-  const upcoming = games
-    .filter((g) => !getAPTeam(g).result)
-    .sort((a, b) => a.date.localeCompare(b.date));
+  const { upcoming, completed, nextUpcoming, latestWin } = partitionAPGames(games);
 
-  const completed = games
-    .filter((g) => getAPTeam(g).result)
-    .sort((a, b) => b.date.localeCompare(a.date));
-
-  // Featured items
-  const nextUpcoming = upcoming[0];
-  const latestWin = completed.find((g) => getAPTeam(g).result === "win");
-
-  // Remaining items (exclude featured)
   const otherUpcoming = upcoming.slice(1);
   const otherCompleted = completed.filter((g) => g.id !== latestWin?.id);
 

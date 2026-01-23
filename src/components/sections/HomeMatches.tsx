@@ -1,23 +1,13 @@
 import Link from "next/link";
 import SectionEyebrow from "../SectionEyebrow";
 import MatchCard from "../../app/(site)/matches/MatchCard";
-import { getAPGames, getAPTeam } from "../../data";
+import { getAPGames, partitionAPGames } from "../../data";
 import styles from "./HomeMatches.module.css";
 
-export default function HomeMatches() {
+export default function HomeMatches(): React.ReactElement | null {
   const games = getAPGames();
-
-  const upcoming = games
-    .filter((g) => !getAPTeam(g).result)
-    .sort((a, b) => a.date.localeCompare(b.date));
-
-  const completed = games
-    .filter((g) => getAPTeam(g).result)
-    .sort((a, b) => b.date.localeCompare(a.date));
-
-  const nextUpcoming = upcoming[0];
+  const { upcoming, nextUpcoming, latestWin } = partitionAPGames(games);
   const otherUpcoming = upcoming.slice(1, 4);
-  const latestWin = completed.find((g) => getAPTeam(g).result === "win");
 
   if (!latestWin && !nextUpcoming) {
     return null;

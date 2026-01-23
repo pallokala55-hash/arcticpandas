@@ -17,17 +17,30 @@ type MatchCardProps = {
   variant: "featured" | "compact";
 };
 
-function formatScheduleDate(date: string, time?: string) {
+function formatScheduleDate(date: string, time?: string): {
+  weekday: string;
+  day: string;
+  month: string;
+  timeStr: string;
+} {
   const d = new Date(`${date}T${time ?? "18:00"}:00Z`);
+  const opts = { timeZone: "Europe/Helsinki" } as const;
   return {
-    weekday: d.toLocaleDateString("en-US", { weekday: "long", timeZone: "Europe/Helsinki" }),
-    day: d.toLocaleDateString("en-US", { day: "numeric", timeZone: "Europe/Helsinki" }),
-    month: d.toLocaleDateString("en-US", { month: "short", timeZone: "Europe/Helsinki" }),
-    timeStr: d.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: false, timeZone: "Europe/Helsinki" }),
+    weekday: d.toLocaleDateString("en-US", { ...opts, weekday: "long" }),
+    day: d.toLocaleDateString("en-US", { ...opts, day: "numeric" }),
+    month: d.toLocaleDateString("en-US", { ...opts, month: "short" }),
+    timeStr: d.toLocaleTimeString("en-US", { ...opts, hour: "2-digit", minute: "2-digit", hour12: false }),
   };
 }
 
-export default function MatchCard({ game, variant }: MatchCardProps) {
+function getFeaturedLabel(isUpcoming: boolean, perfect: boolean, stomp: boolean): { text: string; gold: boolean } {
+  if (isUpcoming) return { text: "Next Match", gold: false };
+  if (perfect) return { text: "Perfect Victory", gold: true };
+  if (stomp) return { text: "Dominant Win", gold: false };
+  return { text: "Latest Victory", gold: false };
+}
+
+export default function MatchCard({ game, variant }: MatchCardProps): React.ReactElement {
   const apTeam = getAPTeam(game);
   const oppTeam = getOpponentTeam(game);
   const apData = getTeam("ap");
@@ -37,12 +50,8 @@ export default function MatchCard({ game, variant }: MatchCardProps) {
   const isUpcoming = !apTeam.result;
   const isWin = apTeam.result === "win";
   const perfect = isPerfectGame(game);
-  const stomp = isWin && !perfect && ((apTeam.kills ?? 0) - (oppTeam.kills ?? 0) >= 15);
+  const stomp = isWin && !perfect && (apTeam.kills ?? 0) - (oppTeam.kills ?? 0) >= 15;
 
-  const apLogo = apData?.logo ?? null;
-  const apInvertLogo = apData?.invertLogo ?? false;
-  const oppLogo = oppData?.logo ?? null;
-  const oppInvertLogo = oppData?.invertLogo ?? false;
   const oppCode = oppData?.code ?? oppTeam.teamId.toUpperCase();
   const oppName = oppData?.name ?? oppTeam.teamId;
 
@@ -50,6 +59,10 @@ export default function MatchCard({ game, variant }: MatchCardProps) {
   const dateStr = new Date(game.date).toLocaleDateString("en-US", { month: "short", day: "numeric" });
 
   if (variant === "featured") {
+    const label = getFeaturedLabel(isUpcoming, perfect, stomp);
+    const apLogoClass = `${styles.featuredLogo} ${apData?.invertLogo ? styles.invertLogo : ""}`;
+    const oppLogoClass = `${styles.featuredLogo} ${oppData?.invertLogo ? styles.invertLogo : ""}`;
+
     return (
       <Link
         href={`/matches/${slug}`}
@@ -60,20 +73,14 @@ export default function MatchCard({ game, variant }: MatchCardProps) {
       >
         <div className={styles.featuredGlow} />
 
-        {isUpcoming ? (
-          <span className={styles.featuredLabel}>Next Match</span>
-        ) : perfect ? (
-          <span className={styles.featuredLabel} data-gold>Perfect Victory</span>
-        ) : stomp ? (
-          <span className={styles.featuredLabel}>Dominant Win</span>
-        ) : (
-          <span className={styles.featuredLabel}>Latest Victory</span>
-        )}
+        <span className={styles.featuredLabel} data-gold={label.gold || undefined}>
+          {label.text}
+        </span>
 
         <div className={styles.featuredMatchup}>
           <div className={styles.featuredTeam} data-winner={isUpcoming ? undefined : isWin}>
-            {apLogo && (
-              <Image src={apLogo} alt="AP" width={72} height={72} className={`${styles.featuredLogo} ${apInvertLogo ? styles.invertLogo : ""}`} />
+            {apData?.logo && (
+              <Image src={apData.logo} alt="AP" width={72} height={72} className={apLogoClass} />
             )}
             <span className={styles.featuredTeamName}>Arctic Pandas</span>
           </div>
@@ -85,14 +92,14 @@ export default function MatchCard({ game, variant }: MatchCardProps) {
           ) : (
             <div className={styles.featuredScore}>
               <span className={styles.featuredScoreNum} data-winner={isWin}>{apTeam.kills ?? 0}</span>
-              <span className={styles.featuredScoreSep}>–</span>
+              <span className={styles.featuredScoreSep}>-</span>
               <span className={styles.featuredScoreNum} data-winner={!isWin}>{oppTeam.kills ?? 0}</span>
             </div>
           )}
 
           <div className={styles.featuredTeam} data-winner={isUpcoming ? undefined : !isWin}>
-            {oppLogo && (
-              <Image src={oppLogo} alt={oppCode} width={72} height={72} className={`${styles.featuredLogo} ${oppInvertLogo ? styles.invertLogo : ""}`} />
+            {oppData?.logo && (
+              <Image src={oppData.logo} alt={oppCode} width={72} height={72} className={oppLogoClass} />
             )}
             <span className={styles.featuredTeamName}>{oppName}</span>
           </div>
@@ -111,6 +118,9 @@ export default function MatchCard({ game, variant }: MatchCardProps) {
   }
 
   // Compact variant
+  const apSmallLogoClass = `${styles.smallLogo} ${apData?.invertLogo ? styles.invertLogo : ""}`;
+  const oppSmallLogoClass = `${styles.smallLogo} ${oppData?.invertLogo ? styles.invertLogo : ""}`;
+
   return (
     <Link
       href={`/matches/${slug}`}
@@ -120,15 +130,15 @@ export default function MatchCard({ game, variant }: MatchCardProps) {
     >
       <div className={styles.smallTeams}>
         <div className={styles.smallTeam} data-winner={isUpcoming ? undefined : isWin}>
-          {apLogo && <Image src={apLogo} alt="AP" width={24} height={24} className={`${styles.smallLogo} ${apInvertLogo ? styles.invertLogo : ""}`} />}
+          {apData?.logo && <Image src={apData.logo} alt="AP" width={24} height={24} className={apSmallLogoClass} />}
           <span>AP</span>
           {!isUpcoming && <span className={styles.smallScore}>{apTeam.kills}</span>}
         </div>
-        <span className={isUpcoming ? styles.smallVs : styles.smallSep}>{isUpcoming ? "vs" : "–"}</span>
+        <span className={isUpcoming ? styles.smallVs : styles.smallSep}>{isUpcoming ? "vs" : "-"}</span>
         <div className={styles.smallTeam} data-winner={isUpcoming ? undefined : !isWin}>
           {!isUpcoming && <span className={styles.smallScore}>{oppTeam.kills}</span>}
           <span>{oppCode}</span>
-          {oppLogo && <Image src={oppLogo} alt={oppCode} width={24} height={24} className={`${styles.smallLogo} ${oppInvertLogo ? styles.invertLogo : ""}`} />}
+          {oppData?.logo && <Image src={oppData.logo} alt={oppCode} width={24} height={24} className={oppSmallLogoClass} />}
         </div>
       </div>
       <span className={styles.smallDate}>
