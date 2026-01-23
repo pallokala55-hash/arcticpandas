@@ -1,14 +1,9 @@
 import Image from "next/image";
-import type { PlayerProfileData } from "../../data";
+import { getRankEmblemUrl, type PlayerProfileData } from "../../data";
 import styles from "./PlayerProfile.module.css";
 
 type PlayerProfileProps = {
   player: PlayerProfileData;
-};
-
-const peakBadgeByTier: Record<PlayerProfileData["peak"]["tier"], string> = {
-  grandmaster: "/GRANDMASTER_SMALL.webp",
-  challenger: "/CHALLENGER_SMALL.webp",
 };
 
 // Players who were on ENCE 2020 together
@@ -16,7 +11,7 @@ const enceReunionSlugs = ["nille", "simpli", "kehvo"];
 
 export default function PlayerProfile({ player }: PlayerProfileProps): React.ReactElement {
   const isEnceReunion = enceReunionSlugs.includes(player.slug);
-  const peakBadgeSrc = peakBadgeByTier[player.peak.tier];
+  const peakBadgeSrc = getRankEmblemUrl(player.peak.tier);
   const opggUrl = player.peak.opggUrl;
 
   return (
@@ -48,15 +43,13 @@ export default function PlayerProfile({ player }: PlayerProfileProps): React.Rea
               <span className={styles.peakLabel}>PEAK RANK</span>
             </div>
             <div className={styles.peakBody}>
-              {peakBadgeSrc && (
-                <Image
-                  src={peakBadgeSrc}
-                  alt={player.peak.tier}
-                  className={styles.peakBadge}
-                  width={56}
-                  height={56}
-                />
-              )}
+              <Image
+                src={peakBadgeSrc}
+                alt={player.peak.tier}
+                className={styles.peakBadge}
+                width={56}
+                height={56}
+              />
               <div className={styles.peakInfo}>
                 <span className={styles.peakTier}>{player.peak.tier.toUpperCase()}</span>
                 <span className={styles.peakText}>{player.peak.text}</span>

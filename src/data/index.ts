@@ -352,6 +352,11 @@ export function getPlayerSlugFromId(playerId: string | null): string | null {
 // Data Dragon version for champion icons
 const DDRAGON_VERSION = "14.24.1";
 
+// Get ranked emblem URL (local cropped versions)
+export function getRankEmblemUrl(tier: string): string {
+  return `/ranks/${tier.toLowerCase()}.webp`;
+}
+
 // Get champion icon URL from Riot's Data Dragon CDN
 export function getChampionIconUrl(championName: string | undefined): string | null {
   if (!championName || championName === "Unknown") return null;
