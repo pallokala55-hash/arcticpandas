@@ -21,7 +21,7 @@ import boltoxData from "./players/boltox.json";
 import apTeamData from "./teams/ap.json";
 import verTeamData from "./teams/ver.json";
 import llsTeamData from "./teams/lls.json";
-import foursbTeamData from "./teams/4sb.json";
+import ff15TeamData from "./teams/ff15.json";
 import bombTeamData from "./teams/bomb.json";
 import bdgTeamData from "./teams/bdg.json";
 import dmgTeamData from "./teams/dmg.json";
@@ -31,7 +31,7 @@ import rudTeamData from "./teams/rud.json";
 
 import game1Data from "./games/115762378910707629.json";
 import game2Data from "./games/115762378910707655.json";
-import game3Data from "./games/4sb-2026-01-22.json";
+import game3Data from "./games/115762378910707683.json";
 import game4Data from "./games/bomb-2026-01-29.json";
 import game5Data from "./games/bdg-2026-02-05.json";
 import game6Data from "./games/leo-2026-02-12.json";
@@ -44,7 +44,7 @@ import dragonsData from "./lol/dragons.json";
 
 // Parse and validate all data
 const playerDataArray = [nilleData, dibuData, simpliData, kehvoData, boltoxData];
-const teamDataArray = [apTeamData, verTeamData, llsTeamData, foursbTeamData, bombTeamData, bdgTeamData, dmgTeamData, leoTeamData, deerTeamData, rudTeamData];
+const teamDataArray = [apTeamData, verTeamData, llsTeamData, ff15TeamData, bombTeamData, bdgTeamData, dmgTeamData, leoTeamData, deerTeamData, rudTeamData];
 const gameDataArray = [game1Data, game2Data, game3Data, game4Data, game5Data, game6Data, game7Data, game8Data, game9Data];
 
 // Load players into Map
@@ -350,7 +350,7 @@ export function getPlayerSlugFromId(playerId: string | null): string | null {
 }
 
 // Data Dragon version for champion icons
-const DDRAGON_VERSION = "14.24.1";
+const DDRAGON_VERSION = "16.2.1";
 
 // Get ranked emblem URL (local cropped versions)
 export function getRankEmblemUrl(tier: string): string {

@@ -6,7 +6,7 @@
 const TEAM_NAMES: Record<string, string> = {
   ver: "Verdant",
   lls: "Lundqvist Lightside",
-  "4sb": "4 Swines and a Bum",
+  ff15: "4 Swines and a Bum",
   bomb: "La BOMBAS",
   bdg: "Bulldog Esports",
   dmg: "DMG Esports",

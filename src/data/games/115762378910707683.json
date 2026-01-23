@@ -1,0 +1,595 @@
+{
+  "id": "115762378910707683",
+  "date": "2026-01-22",
+  "patch": "16.1.736.4955",
+  "duration": 1371,
+  "durationRealtime": 1371,
+  "tournament": {
+    "name": "NLC 2026 Winter",
+    "stage": "Regular Season"
+  },
+  "teams": [
+    {
+      "teamId": "ap",
+      "side": "red",
+      "result": "win",
+      "kills": 19,
+      "deaths": 0,
+      "gold": 52547,
+      "towers": 10,
+      "inhibitors": 2,
+      "dragons": [
+        "infernal",
+        "mountain"
+      ],
+      "barons": 1,
+      "players": [
+        {
+          "playerId": "nille",
+          "name": "AP Nille",
+          "role": "top",
+          "champion": "Ambessa",
+          "kills": 4,
+          "deaths": 0,
+          "assists": 3,
+          "cs": 223,
+          "gold": 11216,
+          "level": 16,
+          "items": [
+            6692,
+            3363,
+            3161,
+            2019,
+            3133,
+            1037
+          ],
+          "kp": 0.37,
+          "dmgShare": 0.26,
+          "wardsPlaced": 13,
+          "wardsDestroyed": 1,
+          "perks": {
+            "styleId": 8400,
+            "subStyleId": 8300,
+            "perks": [
+              8437,
+              8401,
+              8444,
+              8242,
+              8304,
+              8313,
+              5008,
+              5011
+            ]
+          },
+          "abilities": [
+            "Q",
+            "W",
+            "E",
+            "Q",
+            "Q",
+            "R",
+            "Q",
+            "E",
+            "Q",
+            "E",
+            "E",
+            "R",
+            "E",
+            "W",
+            "W",
+            "W",
+            "R"
+          ]
+        },
+        {
+          "playerId": "dibu",
+          "name": "AP DIBU",
+          "role": "jungle",
+          "champion": "Jayce",
+          "kills": 3,
+          "deaths": 0,
+          "assists": 6,
+          "cs": 203,
+          "gold": 11334,
+          "level": 15,
+          "items": [
+            3142,
+            6701,
+            3158,
+            2055,
+            6695,
+            1036
+          ],
+          "kp": 0.47,
+          "dmgShare": 0.19,
+          "wardsPlaced": 5,
+          "wardsDestroyed": 4,
+          "perks": {
+            "styleId": 8300,
+            "subStyleId": 8000,
+            "perks": [
+              8369,
+              8321,
+              8313,
+              8347,
+              9105,
+              8017,
+              5008,
+              5001
+            ]
+          },
+          "abilities": [
+            "R",
+            "Q",
+            "W",
+            "E",
+            "Q",
+            "Q",
+            "W",
+            "Q",
+            "W",
+            "Q",
+            "W",
+            "W",
+            "Q",
+            "W",
+            "E",
+            "E",
+            "E"
+          ]
+        },
+        {
+          "playerId": "simpli",
+          "name": "AP Simpli",
+          "role": "mid",
+          "champion": "Ryze",
+          "kills": 7,
+          "deaths": 0,
+          "assists": 4,
+          "cs": 270,
+          "gold": 12028,
+          "level": 17,
+          "items": [
+            1056,
+            6657,
+            3363,
+            2522
+          ],
+          "kp": 0.58,
+          "dmgShare": 0.3,
+          "wardsPlaced": 13,
+          "wardsDestroyed": 1,
+          "perks": {
+            "styleId": 8200,
+            "subStyleId": 8300,
+            "perks": [
+              8230,
+              8226,
+              8234,
+              8237,
+              8347,
+              8313,
+              5005,
+              5008,
+              5011
+            ]
+          },
+          "abilities": [
+            "E",
+            "Q",
+            "W",
+            "Q",
+            "Q",
+            "R",
+            "Q",
+            "E",
+            "Q",
+            "E",
+            "E",
+            "R",
+            "E",
+            "W",
+            "W",
+            "W",
+            "R",
+            "W"
+          ]
+        },
+        {
+          "playerId": "kehvo",
+          "name": "AP Kehvo",
+          "role": "bottom",
+          "champion": "Ezreal",
+          "kills": 4,
+          "deaths": 0,
+          "assists": 5,
+          "cs": 224,
+          "gold": 11769,
+          "level": 14,
+          "items": [
+            1055,
+            2031,
+            3078,
+            3158,
+            3363,
+            3133,
+            3035
+          ],
+          "kp": 0.47,
+          "dmgShare": 0.19,
+          "wardsPlaced": 9,
+          "wardsDestroyed": 4,
+          "perks": {
+            "styleId": 8000,
+            "subStyleId": 8300,
+            "perks": [
+              8005,
+              8009,
+              9105,
+              8017,
+              8316,
+              8321,
+              5005,
+              5008,
+              5011
+            ]
+          },
+          "abilities": [
+            "Q",
+            "E",
+            "W",
+            "Q",
+            "Q",
+            "R",
+            "Q",
+            "E",
+            "Q",
+            "E",
+            "R",
+            "E",
+            "E",
+            "W"
+          ]
+        },
+        {
+          "playerId": "boltox",
+          "name": "AP Boltox",
+          "role": "support",
+          "champion": "Leona",
+          "kills": 1,
+          "deaths": 0,
+          "assists": 7,
+          "cs": 25,
+          "gold": 6200,
+          "level": 11,
+          "items": [
+            3364,
+            3047,
+            2524,
+            2055,
+            3067,
+            1029,
+            1033
+          ],
+          "kp": 0.42,
+          "dmgShare": 0.06,
+          "wardsPlaced": 27,
+          "wardsDestroyed": 6,
+          "perks": {
+            "styleId": 8300,
+            "subStyleId": 8400,
+            "perks": [
+              8360,
+              8306,
+              8345,
+              8347,
+              8429,
+              8451,
+              5007,
+              5001,
+              5011
+            ]
+          },
+          "abilities": [
+            "E",
+            "Q",
+            "W",
+            "W",
+            "W",
+            "R",
+            "W",
+            "E",
+            "W",
+            "E",
+            "R"
+          ]
+        }
+      ]
+    },
+    {
+      "teamId": "ff15",
+      "side": "blue",
+      "result": "loss",
+      "kills": 0,
+      "deaths": 19,
+      "gold": 35431,
+      "towers": 1,
+      "inhibitors": 0,
+      "dragons": [
+        "chemtech"
+      ],
+      "barons": 0,
+      "players": [
+        {
+          "playerId": null,
+          "name": "FF15 Druttut",
+          "role": "top",
+          "champion": "KSante",
+          "kills": 0,
+          "deaths": 4,
+          "assists": 0,
+          "cs": 205,
+          "gold": 7497,
+          "level": 14,
+          "items": [
+            3047,
+            6662,
+            3363,
+            2502
+          ],
+          "kp": 0,
+          "dmgShare": 0.21,
+          "wardsPlaced": 5,
+          "wardsDestroyed": 2,
+          "perks": {
+            "styleId": 8400,
+            "subStyleId": 8300,
+            "perks": [
+              8437,
+              8401,
+              8429,
+              8451,
+              8347,
+              8345,
+              5005,
+              5001
+            ]
+          },
+          "abilities": [
+            "Q",
+            "E",
+            "W",
+            "Q",
+            "Q",
+            "R",
+            "Q",
+            "E",
+            "Q",
+            "E",
+            "R",
+            "E",
+            "E",
+            "W"
+          ]
+        },
+        {
+          "playerId": null,
+          "name": "FF15 Forsen",
+          "role": "jungle",
+          "champion": "Chogath",
+          "kills": 0,
+          "deaths": 7,
+          "assists": 0,
+          "cs": 119,
+          "gold": 6198,
+          "level": 11,
+          "items": [
+            3364,
+            2524,
+            3111,
+            3066,
+            1031,
+            1028
+          ],
+          "kp": 0,
+          "dmgShare": 0.11,
+          "wardsPlaced": 0,
+          "wardsDestroyed": 1,
+          "perks": {
+            "styleId": 8100,
+            "subStyleId": 8300,
+            "perks": [
+              9923,
+              8126,
+              8140,
+              8106,
+              8410,
+              8304,
+              5005,
+              5010,
+              5001
+            ]
+          },
+          "abilities": [
+            "E",
+            "Q",
+            "E",
+            "W",
+            "E",
+            "R",
+            "E",
+            "Q",
+            "E",
+            "Q",
+            "R"
+          ]
+        },
+        {
+          "playerId": null,
+          "name": "FF15 Veigar v2",
+          "role": "mid",
+          "champion": "Azir",
+          "kills": 0,
+          "deaths": 2,
+          "assists": 0,
+          "cs": 225,
+          "gold": 7979,
+          "level": 14,
+          "items": [
+            1056,
+            1082,
+            3115,
+            3111,
+            3363,
+            3145,
+            1058
+          ],
+          "kp": 0,
+          "dmgShare": 0.32,
+          "wardsPlaced": 6,
+          "wardsDestroyed": 1,
+          "perks": {
+            "styleId": 8000,
+            "subStyleId": 8300,
+            "perks": [
+              8008,
+              8009,
+              9104,
+              8017,
+              8313,
+              8321,
+              5005,
+              5008,
+              5001
+            ]
+          },
+          "abilities": [
+            "W",
+            "Q",
+            "W",
+            "E",
+            "W",
+            "R",
+            "W",
+            "Q",
+            "W",
+            "Q",
+            "Q",
+            "R",
+            "Q",
+            "E",
+            "E"
+          ]
+        },
+        {
+          "playerId": null,
+          "name": "FF15 Jackspektra",
+          "role": "bottom",
+          "champion": "Tristana",
+          "kills": 0,
+          "deaths": 2,
+          "assists": 0,
+          "cs": 226,
+          "gold": 8673,
+          "level": 12,
+          "items": [
+            1055,
+            3032,
+            3006,
+            3363,
+            3031,
+            1042
+          ],
+          "kp": 0,
+          "dmgShare": 0.25,
+          "wardsPlaced": 8,
+          "wardsDestroyed": 2,
+          "perks": {
+            "styleId": 8000,
+            "subStyleId": 8200,
+            "perks": [
+              8008,
+              9111,
+              9103,
+              8017,
+              8233,
+              8236,
+              5005,
+              5008,
+              5011
+            ]
+          },
+          "abilities": [
+            "E",
+            "W",
+            "Q",
+            "E",
+            "E",
+            "R",
+            "E",
+            "Q",
+            "E",
+            "Q",
+            "R",
+            "Q"
+          ]
+        },
+        {
+          "playerId": null,
+          "name": "FF15 Pobelter",
+          "role": "support",
+          "champion": "Lulu",
+          "kills": 0,
+          "deaths": 4,
+          "assists": 0,
+          "cs": 27,
+          "gold": 5084,
+          "level": 10,
+          "items": [
+            3364,
+            3504,
+            3158,
+            2055,
+            3067
+          ],
+          "kp": 0,
+          "dmgShare": 0.12,
+          "wardsPlaced": 19,
+          "wardsDestroyed": 8,
+          "perks": {
+            "styleId": 8200,
+            "subStyleId": 8400,
+            "perks": [
+              8214,
+              8226,
+              8210,
+              8237,
+              8473,
+              8453,
+              5008,
+              5011
+            ]
+          },
+          "abilities": [
+            "Q",
+            "E",
+            "W",
+            "Q",
+            "E",
+            "R",
+            "E",
+            "E",
+            "E",
+            "W"
+          ]
+        }
+      ]
+    }
+  ],
+  "slugs": [
+    "4-swines-and-a-bum",
+    "jan-22-ff15",
+    "2026-01-22-ff15",
+    "winter-2026-ff15"
+  ]
+}
