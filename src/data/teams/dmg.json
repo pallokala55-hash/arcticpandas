@@ -1,0 +1,8 @@
+{
+  "id": "dmg",
+  "name": "DMG Esports",
+  "code": "DMG",
+  "league": "NLC",
+  "logo": "/logos/dmg.webp",
+  "invertLogo": true
+}
