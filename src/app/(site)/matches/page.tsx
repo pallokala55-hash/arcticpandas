@@ -10,7 +10,9 @@ import {
   formatDuration,
   getTeam,
   getGameSlug,
+  type Game,
 } from "../../../data";
+import MatchTimeline from "./MatchTimeline";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -22,93 +24,91 @@ export default function MatchesPage() {
   const games = getAPGames();
   const seasonStats = getSeasonTotals();
 
+  // Split into upcoming (no result) and completed (has result)
+  const upcomingGames = games
+    .filter((g) => !getAPTeam(g).result)
+    .sort((a, b) => a.date.localeCompare(b.date));
+
+  const completedGames = games
+    .filter((g) => getAPTeam(g).result)
+    .sort((a, b) => b.date.localeCompare(a.date));
+
+  // Get AP team data for logo
+  const apData = getTeam("ap");
+
+  // Prepare serializable game data for client component
+  const timelineGames = games.map((game) => {
+    const apTeam = getAPTeam(game);
+    const oppTeam = getOpponentTeam(game);
+    const oppData = getTeam(oppTeam.teamId);
+
+    return {
+      id: game.id,
+      slug: getGameSlug(game.id),
+      date: game.date,
+      time: game.time,
+      result: apTeam.result ?? null,
+      apKills: apTeam.kills ?? null,
+      oppKills: oppTeam.kills ?? null,
+      oppCode: oppData?.code ?? oppTeam.teamId.toUpperCase(),
+      oppName: oppData?.name ?? oppTeam.teamId,
+      oppLogo: oppData?.logo ?? null,
+      oppInvertLogo: oppData?.invertLogo ?? false,
+      duration: game.duration ?? null,
+      isPerfect: isPerfectGame(game),
+      gold: apTeam.gold ?? null,
+      towers: apTeam.towers ?? null,
+      dragons: apTeam.dragons?.length ?? null,
+    };
+  });
+
+  const apLogo = apData?.logo ?? null;
+  const apInvertLogo = apData?.invertLogo ?? false;
+
   return (
     <main className={styles.main}>
+      {/* Hero */}
       <section className={styles.hero}>
+        <div className={styles.heroGlow} />
         <SectionEyebrow>NLC 2026 Winter</SectionEyebrow>
-        <h1 className={styles.title}>Match History</h1>
-        <p className={styles.subtitle}>
-          {seasonStats.wins}-{seasonStats.losses} Record
-        </p>
+        <h1 className={styles.title}>
+          <span className={styles.titleRecord}>{seasonStats.wins}–{seasonStats.losses}</span>
+          <span className={styles.titleLabel}>Season Record</span>
+        </h1>
       </section>
 
-      <section className={styles.statsBar}>
-        <div className={styles.stat}>
-          <span className={styles.statValue}>{seasonStats.kills}</span>
-          <span className={styles.statLabel}>Kills</span>
-        </div>
-        <div className={styles.stat}>
-          <span className={styles.statValue}>{seasonStats.deaths}</span>
-          <span className={styles.statLabel}>Deaths</span>
-        </div>
-        <div className={styles.stat}>
-          <span className={styles.statValue}>{seasonStats.assists}</span>
-          <span className={styles.statLabel}>Assists</span>
-        </div>
-        <div className={styles.stat}>
-          <span className={styles.statValue}>{seasonStats.kda.toFixed(1)}</span>
-          <span className={styles.statLabel}>KDA</span>
-        </div>
-        <div className={styles.stat}>
-          <span className={styles.statValue}>{seasonStats.barons}</span>
-          <span className={styles.statLabel}>Barons</span>
-        </div>
-        <div className={styles.stat}>
-          <span className={styles.statValue}>{seasonStats.dragons}</span>
-          <span className={styles.statLabel}>Dragons</span>
+      {/* Season Stats */}
+      <section className={styles.statsSection}>
+        <div className={styles.statsGrid}>
+          <div className={styles.statCard}>
+            <span className={styles.statValue}>{seasonStats.kills}</span>
+            <span className={styles.statLabel}>Kills</span>
+          </div>
+          <div className={styles.statCard}>
+            <span className={styles.statValue}>{seasonStats.deaths}</span>
+            <span className={styles.statLabel}>Deaths</span>
+          </div>
+          <div className={styles.statCard}>
+            <span className={styles.statValue}>{seasonStats.assists}</span>
+            <span className={styles.statLabel}>Assists</span>
+          </div>
+          <div className={styles.statCard} data-highlight="true">
+            <span className={styles.statValue}>{seasonStats.kda.toFixed(1)}</span>
+            <span className={styles.statLabel}>KDA</span>
+          </div>
+          <div className={styles.statCard}>
+            <span className={styles.statValue}>{seasonStats.barons}</span>
+            <span className={styles.statLabel}>Barons</span>
+          </div>
+          <div className={styles.statCard}>
+            <span className={styles.statValue}>{seasonStats.dragons}</span>
+            <span className={styles.statLabel}>Dragons</span>
+          </div>
         </div>
       </section>
 
-      <section className={styles.matchList}>
-        {games.map((game) => {
-          const apTeam = getAPTeam(game);
-          const oppTeam = getOpponentTeam(game);
-          const oppData = getTeam(oppTeam.teamId);
-          const perfect = isPerfectGame(game);
-          const duration = formatDuration(game.duration);
-
-          const slug = getGameSlug(game.id);
-
-          return (
-            <Link
-              key={game.id}
-              href={`/matches/${slug}`}
-              className={styles.matchCard}
-              data-result={apTeam.result}
-            >
-              <div className={styles.matchHeader}>
-                <span className={styles.matchDate}>{game.date}</span>
-                {perfect && <span className={styles.perfectBadge}>Perfect Game</span>}
-              </div>
-
-              <div className={styles.matchTeams}>
-                <div className={styles.team}>
-                  <span className={styles.teamCode}>AP</span>
-                  <span className={styles.teamScore}>{apTeam.kills}</span>
-                </div>
-                <span className={styles.vs}>vs</span>
-                <div className={styles.team}>
-                  <span className={styles.teamScore}>{oppTeam.kills}</span>
-                  <span className={styles.teamCode}>{oppData?.code ?? oppTeam.teamId.toUpperCase()}</span>
-                </div>
-              </div>
-
-              <div className={styles.matchMeta}>
-                <span className={styles.resultBadge} data-result={apTeam.result}>
-                  {apTeam.result === "win" ? "Victory" : "Defeat"}
-                </span>
-                {duration && <span className={styles.duration}>{duration}</span>}
-              </div>
-
-              <div className={styles.matchStats}>
-                {apTeam.gold && <span>Gold: {(apTeam.gold / 1000).toFixed(1)}k</span>}
-                {apTeam.towers !== undefined && <span>Towers: {apTeam.towers}</span>}
-                {apTeam.dragons && <span>Dragons: {apTeam.dragons.length}</span>}
-              </div>
-            </Link>
-          );
-        })}
-      </section>
+      {/* Timeline */}
+      <MatchTimeline games={timelineGames} apLogo={apLogo} apInvertLogo={apInvertLogo} initialVisiblePast={3} />
     </main>
   );
 }
