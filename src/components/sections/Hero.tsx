@@ -2,7 +2,7 @@ import Image from "next/image";
 import Button from "../Button";
 import styles from "./Hero.module.css";
 
-const Hero = () => {
+export default function Hero(): React.ReactElement {
   return (
     <section id="hero" className={styles.hero}>
       <div className={styles.backdrop} />
@@ -39,6 +39,4 @@ const Hero = () => {
       </div>
     </section>
   );
-};
-
-export default Hero;
+}

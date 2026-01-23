@@ -44,15 +44,16 @@ export const layout = {
 
 export type CSSVarStyles = CSSProperties & Record<string, string | number>;
 
-const hexToRgb = (hex: string) => {
+function hexToRgb(hex: string): { r: number; g: number; b: number } {
   const normalized = hex.replace("#", "");
-  const r = parseInt(normalized.substring(0, 2), 16);
-  const g = parseInt(normalized.substring(2, 4), 16);
-  const b = parseInt(normalized.substring(4, 6), 16);
-  return { r, g, b };
-};
+  return {
+    r: parseInt(normalized.substring(0, 2), 16),
+    g: parseInt(normalized.substring(2, 4), 16),
+    b: parseInt(normalized.substring(4, 6), 16),
+  };
+}
 
-export const withAlpha = (hex: string, alpha: number) => {
+export function withAlpha(hex: string, alpha: number): string {
   const { r, g, b } = hexToRgb(hex);
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-};
+}

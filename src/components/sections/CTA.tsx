@@ -1,7 +1,7 @@
 import { contactConfig } from "../../lib/config";
 import styles from "./CTA.module.css";
 
-const CTA = () => {
+export default function CTA(): React.ReactElement {
   return (
     <section id="contact" className={styles.section}>
       <div className={styles.container}>
@@ -21,6 +21,4 @@ const CTA = () => {
       </div>
     </section>
   );
-};
-
-export default CTA;
+}

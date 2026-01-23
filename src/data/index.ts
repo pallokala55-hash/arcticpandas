@@ -268,8 +268,7 @@ export function getOpponentTeam(game: Game) {
 
 // Check if a game was a perfect game (0 deaths for AP)
 export function isPerfectGame(game: Game): boolean {
-  const apTeam = getAPTeam(game);
-  return apTeam.deaths === 0;
+  return getAPTeam(game).deaths === 0;
 }
 
 // Format duration in seconds to "mm:ss" string

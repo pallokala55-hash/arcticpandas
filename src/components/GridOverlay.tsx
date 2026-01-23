@@ -7,18 +7,11 @@ type GridOverlayProps = {
   color?: string;
 };
 
-const GridOverlay = ({ className, color }: GridOverlayProps) => {
+export default function GridOverlay({ className, color }: GridOverlayProps): React.ReactElement {
   const overlayStyle: CSSVarStyles = {
     "--grid-line-color": color ?? withAlpha(colors.frostGrey, 0.12),
   };
+  const classes = [styles.overlay, className].filter(Boolean).join(" ");
 
-  return (
-    <div
-      className={`${styles.overlay} ${className ?? ""}`}
-      style={overlayStyle}
-      aria-hidden="true"
-    />
-  );
-};
-
-export default GridOverlay;
+  return <div className={classes} style={overlayStyle} aria-hidden="true" />;
+}

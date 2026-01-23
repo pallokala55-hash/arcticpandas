@@ -9,7 +9,7 @@ import styles from "./Shop.module.css";
 import { colors, layout, withAlpha } from "../../theme";
 import type { CSSVarStyles } from "../../theme";
 
-const Shop = () => {
+export default function Shop(): React.ReactElement {
   const [selectedName, setSelectedName] = useState<string>(merchItems[0].name);
 
   const selected = useMemo(
@@ -76,6 +76,4 @@ const Shop = () => {
       </div>
     </section>
   );
-};
-
-export default Shop;
+}

@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import SectionEyebrow from "../../../../components/SectionEyebrow";
 import {
   getAPGames,
   getGameBySlug,
@@ -37,7 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const oppTeam = getOpponentTeam(game);
   const oppData = getTeam(oppTeam.teamId);
 
-  const resultText = !apTeam.result ? "Upcoming match" : apTeam.result === "win" ? "Victory" : "Defeat";
+  const resultText = apTeam.result === "win" ? "Victory" : apTeam.result === "loss" ? "Defeat" : "Upcoming match";
   const scoreText = apTeam.result ? `${apTeam.kills}-${oppTeam.kills}` : "";
 
   return {
@@ -47,8 +46,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 function isStomp(apKills: number, oppKills: number, result: string | null): boolean {
-  if (result !== "win") return false;
-  return apKills - oppKills >= 15;
+  return result === "win" && apKills - oppKills >= 15;
+}
+
+function getResultLabel(isUpcoming: boolean, perfect: boolean, stomp: boolean, isWin: boolean): string {
+  if (isUpcoming) return "Upcoming";
+  if (perfect) return "Perfect Victory";
+  if (stomp) return "Dominant Victory";
+  if (isWin) return "Victory";
+  return "Defeat";
 }
 
 // Role colors for visual distinction
@@ -284,7 +290,7 @@ export default async function MatchDetailPage({ params }: Props) {
         <div className={styles.heroContent}>
           {/* Result Label */}
           <div className={styles.resultLabel}>
-            {isUpcoming ? "Upcoming" : perfect ? "Perfect Victory" : stomp ? "Dominant Victory" : isWin ? "Victory" : "Defeat"}
+            {getResultLabel(isUpcoming, perfect, stomp, isWin)}
           </div>
 
           {/* Matchup */}
@@ -297,7 +303,7 @@ export default async function MatchDetailPage({ params }: Props) {
                   alt="AP"
                   width={80}
                   height={80}
-                  className={`${styles.teamLogo} ${apData?.invertLogo ? styles.invertLogo : ""}`}
+                  className={[styles.teamLogo, apData?.invertLogo && styles.invertLogo].filter(Boolean).join(" ")}
                 />
               )}
               <span className={styles.teamName}>Arctic Pandas</span>
@@ -327,7 +333,7 @@ export default async function MatchDetailPage({ params }: Props) {
                   alt={oppData?.code ?? ""}
                   width={80}
                   height={80}
-                  className={`${styles.teamLogo} ${oppData?.invertLogo ? styles.invertLogo : ""}`}
+                  className={[styles.teamLogo, oppData?.invertLogo && styles.invertLogo].filter(Boolean).join(" ")}
                 />
               )}
               <span className={styles.teamName}>{oppData?.name ?? oppTeam.teamId}</span>

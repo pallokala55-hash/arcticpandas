@@ -1,6 +1,9 @@
+import fs from "fs";
+import path from "path";
+
 const DDRAGON_VERSION_URL = "https://ddragon.leagueoflegends.com/api/versions.json";
 
-async function fetchChampions() {
+async function fetchChampions(): Promise<void> {
   // Get latest version
   const versionsRes = await fetch(DDRAGON_VERSION_URL);
   const versions = await versionsRes.json();
@@ -15,15 +18,10 @@ async function fetchChampions() {
   // Transform to our format
   const champions: Record<string, { id: string; name: string }> = {};
   for (const [key, champ] of Object.entries(champData.data as Record<string, { id: string; name: string }>)) {
-    champions[key] = {
-      id: champ.id,
-      name: champ.name,
-    };
+    champions[key] = { id: champ.id, name: champ.name };
   }
 
   // Write to file
-  const fs = await import("fs");
-  const path = await import("path");
   const outPath = path.join(process.cwd(), "src/data/lol/champions.json");
   fs.writeFileSync(outPath, JSON.stringify(champions, null, 2) + "\n");
   console.log(`Wrote ${Object.keys(champions).length} champions to ${outPath}`);

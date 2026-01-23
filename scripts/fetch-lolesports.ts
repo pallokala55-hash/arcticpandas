@@ -265,15 +265,11 @@ function formatDuration(seconds: number): string {
 
 // ============ Main Logic ============
 
+const VALID_ROLES = new Set(["top", "jungle", "mid", "bottom", "support"]);
+
 function normalizeRole(role: string): string {
-  const roleMap: Record<string, string> = {
-    top: "top",
-    jungle: "jungle",
-    mid: "mid",
-    bottom: "bottom",
-    support: "support",
-  };
-  return roleMap[role.toLowerCase()] ?? role.toLowerCase();
+  const lower = role.toLowerCase();
+  return VALID_ROLES.has(lower) ? lower : lower;
 }
 
 async function fetchGameData(gameId: string, oppTeamId?: string): Promise<GameData | null> {

@@ -27,7 +27,7 @@ type MemberCardProps = {
   creatorNote?: string;
 };
 
-const MemberCard = ({
+function MemberCard({
   name,
   image,
   role,
@@ -40,10 +40,10 @@ const MemberCard = ({
   stats,
   note,
   creatorNote,
-}: MemberCardProps) => {
-  const isVideo = Boolean(image && image.match(/\.(mp4|mov|webm)$/i));
+}: MemberCardProps): React.ReactElement {
+  const isVideo = image?.match(/\.(mp4|mov|webm)$/i);
 
-  const renderMedia = () => {
+  function renderMedia(): React.ReactElement {
     if (!image) {
       return <div className={styles.placeholder} />;
     }
@@ -70,7 +70,7 @@ const MemberCard = ({
         style={{ objectFit: "cover" }}
       />
     );
-  };
+  }
 
   // Leader variant - horizontal layout with credits
   if (variant === "leader") {
@@ -183,6 +183,6 @@ const MemberCard = ({
       {content}
     </div>
   );
-};
+}
 
 export default MemberCard;

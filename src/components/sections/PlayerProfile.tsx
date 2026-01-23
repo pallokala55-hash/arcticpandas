@@ -14,7 +14,7 @@ const peakBadgeByTier: Record<PlayerProfileData["peak"]["tier"], string> = {
 // Players who were on ENCE 2020 together
 const enceReunionSlugs = ["nille", "simpli", "kehvo"];
 
-const PlayerProfile = ({ player }: PlayerProfileProps) => {
+export default function PlayerProfile({ player }: PlayerProfileProps): React.ReactElement {
   const isEnceReunion = enceReunionSlugs.includes(player.slug);
   const peakBadgeSrc = peakBadgeByTier[player.peak.tier];
   const opggUrl = player.peak.opggUrl;
@@ -127,6 +127,4 @@ const PlayerProfile = ({ player }: PlayerProfileProps) => {
       </div>
     </section>
   );
-};
-
-export default PlayerProfile;
+}

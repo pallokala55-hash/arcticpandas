@@ -10,7 +10,7 @@ type HeaderProps = {
   navLinks?: NavLink[];
 };
 
-const SocialIcon = ({
+function SocialIcon({
   href,
   label,
   children,
@@ -18,19 +18,21 @@ const SocialIcon = ({
   href: string;
   label: string;
   children: React.ReactNode;
-}) => (
-  <a
-    href={href}
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label={label}
-    className={styles.socialLink}
-  >
-    {children}
-  </a>
-);
+}): React.ReactElement {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={label}
+      className={styles.socialLink}
+    >
+      {children}
+    </a>
+  );
+}
 
-const Header = ({ navLinks = mainNavLinks }: HeaderProps) => {
+function Header({ navLinks = mainNavLinks }: HeaderProps): React.ReactElement {
   const headerStyle: CSSVarStyles = {
     backgroundColor: colors.background,
     color: colors.foreground,

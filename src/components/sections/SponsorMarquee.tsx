@@ -3,16 +3,16 @@ import styles from "./SponsorMarquee.module.css";
 import { colors, withAlpha } from "../../theme";
 import type { CSSVarStyles } from "../../theme";
 
-const SponsorMarquee = () => {
-  const sectionStyle: CSSVarStyles = {
-    "--marquee-bg": "rgba(4, 8, 16, 0.94)",
-    "--marquee-border": withAlpha(colors.frostGrey, 0.16),
-    "--marquee-text": colors.foreground,
-    "--marquee-muted": withAlpha(colors.frostGrey, 0.65),
-  };
+const sectionStyle: CSSVarStyles = {
+  "--marquee-bg": "rgba(4, 8, 16, 0.94)",
+  "--marquee-border": withAlpha(colors.frostGrey, 0.16),
+  "--marquee-text": colors.foreground,
+  "--marquee-muted": withAlpha(colors.frostGrey, 0.65),
+};
 
-  const rollingLabels = [...sponsorLabels, ...sponsorLabels];
+const rollingLabels = [...sponsorLabels, ...sponsorLabels];
 
+export default function SponsorMarquee(): React.ReactElement {
   return (
     <section className={styles.marquee} style={sectionStyle}>
       <div className={styles.backdrop} aria-hidden="true" />
@@ -28,6 +28,4 @@ const SponsorMarquee = () => {
       </div>
     </section>
   );
-};
-
-export default SponsorMarquee;
+}

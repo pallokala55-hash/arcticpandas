@@ -5,13 +5,13 @@ import { management } from "../../data/management";
 import { colors, withAlpha } from "../../theme";
 import type { CSSVarStyles } from "../../theme";
 
-const About = () => {
-  const sectionStyle: CSSVarStyles = {
-    "--divider-color": withAlpha(colors.frostGrey, 0.16),
-    "--muted": colors.frostGrey,
-    "--about-bg": withAlpha(colors.foreground, 0.01),
-  };
+const sectionStyle: CSSVarStyles = {
+  "--divider-color": withAlpha(colors.frostGrey, 0.16),
+  "--muted": colors.frostGrey,
+  "--about-bg": withAlpha(colors.foreground, 0.01),
+};
 
+export default function About(): React.ReactElement {
   return (
     <section id="team" className={styles.about} style={sectionStyle}>
       <div className={styles.container}>
@@ -49,6 +49,4 @@ const About = () => {
       </div>
     </section>
   );
-};
-
-export default About;
+}

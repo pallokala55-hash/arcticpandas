@@ -11,7 +11,7 @@ type ButtonProps = {
   className?: string;
 };
 
-const Button = ({
+export default function Button({
   variant = "secondary",
   children,
   href,
@@ -19,20 +19,13 @@ const Button = ({
   rel,
   onClick,
   className,
-}: ButtonProps) => {
+}: ButtonProps): React.ReactElement {
   const variantClass = variant === "primary" ? styles.primary : styles.secondary;
-  const computedClass = className
-    ? `${styles.button} ${variantClass} ${className}`
-    : `${styles.button} ${variantClass}`;
+  const computedClass = [styles.button, variantClass, className].filter(Boolean).join(" ");
 
   if (href) {
     return (
-      <a
-        className={computedClass}
-        href={href}
-        target={target}
-        rel={rel}
-      >
+      <a className={computedClass} href={href} target={target} rel={rel}>
         {children}
       </a>
     );
@@ -43,6 +36,4 @@ const Button = ({
       {children}
     </button>
   );
-};
-
-export default Button;
+}

@@ -3,7 +3,7 @@ import styles from "./Team.module.css";
 import { roster } from "../../data";
 import { management } from "../../data/management";
 
-const Team = () => {
+export default function Team(): React.ReactElement {
   return (
     <section id="team" className={styles.section}>
       <div className={styles.container}>
@@ -47,6 +47,4 @@ const Team = () => {
       </div>
     </section>
   );
-};
-
-export default Team;
+}

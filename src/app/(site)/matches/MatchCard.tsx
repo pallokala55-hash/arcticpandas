@@ -60,8 +60,8 @@ export default function MatchCard({ game, variant }: MatchCardProps): React.Reac
 
   if (variant === "featured") {
     const label = getFeaturedLabel(isUpcoming, perfect, stomp);
-    const apLogoClass = `${styles.featuredLogo} ${apData?.invertLogo ? styles.invertLogo : ""}`;
-    const oppLogoClass = `${styles.featuredLogo} ${oppData?.invertLogo ? styles.invertLogo : ""}`;
+    const apLogoClass = [styles.featuredLogo, apData?.invertLogo && styles.invertLogo].filter(Boolean).join(" ");
+    const oppLogoClass = [styles.featuredLogo, oppData?.invertLogo && styles.invertLogo].filter(Boolean).join(" ");
 
     return (
       <Link
@@ -118,8 +118,8 @@ export default function MatchCard({ game, variant }: MatchCardProps): React.Reac
   }
 
   // Compact variant
-  const apSmallLogoClass = `${styles.smallLogo} ${apData?.invertLogo ? styles.invertLogo : ""}`;
-  const oppSmallLogoClass = `${styles.smallLogo} ${oppData?.invertLogo ? styles.invertLogo : ""}`;
+  const apSmallLogoClass = [styles.smallLogo, apData?.invertLogo && styles.invertLogo].filter(Boolean).join(" ");
+  const oppSmallLogoClass = [styles.smallLogo, oppData?.invertLogo && styles.invertLogo].filter(Boolean).join(" ");
 
   return (
     <Link
