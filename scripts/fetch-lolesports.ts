@@ -132,6 +132,48 @@ interface LivestatsDetails {
   frames: DetailFrame[];
 }
 
+// Event Details API types
+interface EventDetailsGame {
+  number: number;
+  id: string;
+  state: string;
+  teams: { id: string; side: "blue" | "red" }[];
+  vods: {
+    id: string;
+    parameter: string;
+    locale: string;
+    provider: string;
+    offset: number;
+    firstFrameTime: string;
+    startMillis: number;
+    endMillis: number;
+  }[];
+}
+
+interface EventDetailsTeam {
+  id: string;
+  name: string;
+  code: string;
+  image: string;
+  result: { gameWins: number };
+}
+
+interface EventDetails {
+  data: {
+    event: {
+      id: string;
+      type: string;
+      tournament: { id: string };
+      league: { id: string; slug: string; name: string };
+      match: {
+        strategy: { count: number };
+        teams: EventDetailsTeam[];
+        games: EventDetailsGame[];
+      };
+    };
+  };
+}
+
 // ============ Output Types (new normalized format) ============
 
 // Map of esportsId -> playerId for AP players
@@ -252,6 +294,15 @@ async function getDetailStats(gameId: string, startTime: string, participantIds:
   }
 }
 
+async function getEventDetails(matchId: string): Promise<EventDetails | null> {
+  const url = `https://esports-api.lolesports.com/persisted/gw/getEventDetails?hl=en-GB&id=${matchId}`;
+  try {
+    return await fetchWithApiKey(url) as EventDetails;
+  } catch {
+    return null;
+  }
+}
+
 function roundTimestamp(date: Date): string {
   const roundedMs = Math.floor(date.getTime() / 10000) * 10000;
   return new Date(roundedMs).toISOString();
@@ -263,6 +314,11 @@ function formatDuration(seconds: number): string {
   return `${mins}:${secs.toString().padStart(2, "0")}`;
 }
 
+function hasValidStats(frame: WindowFrame): boolean {
+  return frame.blueTeam.totalKills > 0 || frame.redTeam.totalKills > 0 ||
+         frame.blueTeam.totalGold > 0 || frame.redTeam.totalGold > 0;
+}
+
 // ============ Main Logic ============
 
 const VALID_ROLES = new Set(["top", "jungle", "mid", "bottom", "support"]);
@@ -272,7 +328,13 @@ function normalizeRole(role: string): string {
   return VALID_ROLES.has(lower) ? lower : lower;
 }
 
-async function fetchGameData(gameId: string, oppTeamId?: string): Promise<GameData | null> {
+interface FetchGameContext {
+  oppTeamId: string;
+  apWon: boolean;
+  eventGame?: EventDetailsGame;
+}
+
+async function fetchGameData(gameId: string, context: FetchGameContext): Promise<GameData | null> {
   // Get base window stats (includes game start timestamp and metadata)
   const baseWindow = await getWindowStats(gameId);
   if (!baseWindow || !baseWindow.frames.length) {
@@ -286,12 +348,22 @@ async function fetchGameData(gameId: string, oppTeamId?: string): Promise<GameDa
   // Get end-game window stats
   const endTime = roundTimestamp(new Date(gameStart.getTime() + 60 * 60 * 1000));
   const endWindow = await getWindowStats(gameId, endTime);
-  if (!endWindow || !endWindow.frames.length) {
-    console.log(`  No end data for game ${gameId}`);
-    return null;
+
+  // Check if we have valid stats data
+  const endFrame = endWindow?.frames?.length ? endWindow.frames[endWindow.frames.length - 1] : null;
+  const hasStats = endFrame && hasValidStats(endFrame);
+
+  // Determine which side AP is on
+  const apIsBlue = baseWindow.gameMetadata.blueTeamMetadata.esportsTeamId === ARCTIC_PANDAS_ID;
+  const blueMetadata = baseWindow.gameMetadata.blueTeamMetadata;
+  const redMetadata = baseWindow.gameMetadata.redTeamMetadata;
+
+  // If no valid stats, build metadata-only game data
+  if (!hasStats) {
+    console.log(`  ⚠ No livestats data, using metadata only`);
+    return buildMetadataOnlyGame(gameId, baseWindow, context, apIsBlue);
   }
 
-  const endFrame = endWindow.frames[endWindow.frames.length - 1];
   const gameEnd = new Date(endFrame.rfc460Timestamp);
 
   // Get detailed player stats at end of game
@@ -307,11 +379,6 @@ async function fetchGameData(gameId: string, oppTeamId?: string): Promise<GameDa
     }
   }
 
-  // Determine which side AP is on
-  const apIsBlue = baseWindow.gameMetadata.blueTeamMetadata.esportsTeamId === ARCTIC_PANDAS_ID;
-
-  const blueMetadata = baseWindow.gameMetadata.blueTeamMetadata;
-  const redMetadata = baseWindow.gameMetadata.redTeamMetadata;
   const blueStats = endFrame.blueTeam;
   const redStats = endFrame.redTeam;
 
@@ -382,7 +449,7 @@ async function fetchGameData(gameId: string, oppTeamId?: string): Promise<GameDa
     if (isApTeam) {
       teamId = "ap";
     } else {
-      teamId = TEAM_IDS[metadata.esportsTeamId] ?? oppTeamId ?? metadata.esportsTeamId;
+      teamId = TEAM_IDS[metadata.esportsTeamId] ?? context.oppTeamId ?? metadata.esportsTeamId;
     }
 
     return {
@@ -402,12 +469,8 @@ async function fetchGameData(gameId: string, oppTeamId?: string): Promise<GameDa
 
   const durationSeconds = Math.round((gameEnd.getTime() - gameStart.getTime()) / 1000);
 
-  // Determine winner
-  const blueKills = blueStats.participants.reduce((sum, p) => sum + p.kills, 0);
-  const redKills = redStats.participants.reduce((sum, p) => sum + p.kills, 0);
-  const blueWon = blueKills > redKills || (blueKills === redKills && blueStats.totalGold > redStats.totalGold);
-
-  const apWon = apIsBlue ? blueWon : !blueWon;
+  // Use match result from event details API (context.apWon) - don't guess from stats
+  const apWon = context.apWon;
 
   const apTeam = apIsBlue
     ? buildTeamParticipation(blueMetadata, blueStats, "blue", true, apWon ? "win" : "loss")
@@ -431,11 +494,94 @@ async function fetchGameData(gameId: string, oppTeamId?: string): Promise<GameDa
   };
 }
 
+function buildMetadataOnlyGame(
+  gameId: string,
+  baseWindow: LivestatsWindow,
+  context: FetchGameContext,
+  apIsBlue: boolean
+): GameData {
+  const startFrame = baseWindow.frames[0];
+  const gameStart = new Date(startFrame.rfc460Timestamp);
+
+  const blueMetadata = baseWindow.gameMetadata.blueTeamMetadata;
+  const redMetadata = baseWindow.gameMetadata.redTeamMetadata;
+
+  function buildMetadataOnlyPlayer(metadata: ParticipantMetadata, isApTeam: boolean): PlayerParticipation {
+    const playerId = isApTeam ? (AP_PLAYER_IDS[metadata.esportsPlayerId] ?? null) : null;
+    return {
+      playerId,
+      name: metadata.summonerName,
+      role: normalizeRole(metadata.role),
+      champion: metadata.championId,
+    };
+  }
+
+  function buildMetadataOnlyTeam(
+    metadata: TeamMetadata,
+    side: "blue" | "red",
+    isApTeam: boolean,
+    result: "win" | "loss"
+  ): TeamParticipation {
+    const players = metadata.participantMetadata.map((pm) => buildMetadataOnlyPlayer(pm, isApTeam));
+
+    let teamId: string;
+    if (isApTeam) {
+      teamId = "ap";
+    } else {
+      teamId = TEAM_IDS[metadata.esportsTeamId] ?? context.oppTeamId ?? metadata.esportsTeamId;
+    }
+
+    return {
+      teamId,
+      side,
+      result,
+      players,
+    };
+  }
+
+  const apTeam = apIsBlue
+    ? buildMetadataOnlyTeam(blueMetadata, "blue", true, context.apWon ? "win" : "loss")
+    : buildMetadataOnlyTeam(redMetadata, "red", true, context.apWon ? "win" : "loss");
+
+  const oppTeam = apIsBlue
+    ? buildMetadataOnlyTeam(redMetadata, "red", false, context.apWon ? "loss" : "win")
+    : buildMetadataOnlyTeam(blueMetadata, "blue", false, context.apWon ? "loss" : "win");
+
+  const game: GameData = {
+    id: gameId,
+    date: gameStart.toISOString().split("T")[0],
+    patch: baseWindow.gameMetadata.patchVersion,
+    tournament: {
+      name: "NLC 2026 Winter",
+      stage: "Regular Season",
+    },
+    teams: [apTeam, oppTeam],
+  };
+
+  // Add VOD info if available from event details
+  if (context.eventGame?.vods?.length) {
+    const vod = context.eventGame.vods[0];
+    if (vod.provider === "twitch") {
+      game.vods = [{
+        url: `https://www.twitch.tv/videos/${vod.parameter}?t=${Math.floor(vod.startMillis / 1000)}s`,
+        label: "Twitch VOD",
+      }];
+    } else if (vod.provider === "youtube") {
+      game.vods = [{
+        url: `https://www.youtube.com/watch?v=${vod.parameter}`,
+        label: "YouTube VOD",
+      }];
+    }
+  }
+
+  return game;
+}
+
 // Map of opponent code -> teamId
 const OPP_TEAM_IDS: Record<string, string> = {
   VER: "ver",
   LLS: "lls",
-  "4S&B": "4sb",
+  FF15: "ff15",
   BOMB: "bomb",
   BDG: "bdg",
 };
@@ -458,18 +604,38 @@ async function main() {
 
   for (const match of apMatches) {
     const opponent = match.match.teams.find((t) => t.code !== "AP")!;
+    const apTeam = match.match.teams.find((t) => t.code === "AP")!;
     const oppTeamId = OPP_TEAM_IDS[opponent.code] ?? opponent.code.toLowerCase();
     console.log(`Processing: ${match.startTime.split("T")[0]} vs ${opponent.name}`);
+
+    // Fetch event details to get VOD info and accurate win/loss
+    const eventDetails = await getEventDetails(match.match.id);
+    const eventGames = eventDetails?.data?.event?.match?.games ?? [];
+
+    // Determine match winner from event details (more reliable than stats)
+    const apWonMatch = apTeam.result.gameWins > opponent.result.gameWins;
 
     for (const game of match.games) {
       if (game.state !== "completed") continue;
 
-      const data = await fetchGameData(game.id, oppTeamId);
+      const eventGame = eventGames.find((g) => g.id === game.id);
+      const context: FetchGameContext = {
+        oppTeamId,
+        apWon: apWonMatch, // For BO1s this is correct; for series we'd need per-game logic
+        eventGame,
+      };
+
+      const data = await fetchGameData(game.id, context);
       if (data) {
         allGameData.push(data);
-        const apTeam = data.teams.find(t => t.teamId === "ap")!;
-        const oppTeam = data.teams.find(t => t.teamId !== "ap")!;
-        console.log(`  ✓ ${apTeam.kills}-${oppTeam.kills} (${formatDuration(data.duration ?? 0)})`);
+        const apTeamData = data.teams.find(t => t.teamId === "ap")!;
+        const oppTeamData = data.teams.find(t => t.teamId !== "ap")!;
+        const hasStats = apTeamData.kills !== undefined;
+        if (hasStats) {
+          console.log(`  ✓ ${apTeamData.kills}-${oppTeamData.kills} (${formatDuration(data.duration ?? 0)})`);
+        } else {
+          console.log(`  ✓ ${apTeamData.result.toUpperCase()} (metadata only)`);
+        }
       }
     }
   }
@@ -478,12 +644,21 @@ async function main() {
   for (const game of allGameData) {
     const apTeam = game.teams.find(t => t.teamId === "ap")!;
     const oppTeam = game.teams.find(t => t.teamId !== "ap")!;
+    const hasStats = apTeam.kills !== undefined;
     console.log(`${game.date} vs ${oppTeam.teamId}`);
-    console.log(`  ${apTeam.result.toUpperCase()} | ${apTeam.kills}-${oppTeam.kills} | ${formatDuration(game.duration ?? 0)}`);
+    if (hasStats) {
+      console.log(`  ${apTeam.result.toUpperCase()} | ${apTeam.kills}-${oppTeam.kills} | ${formatDuration(game.duration ?? 0)}`);
+    } else {
+      console.log(`  ${apTeam.result.toUpperCase()} | (no stats available)`);
+    }
     console.log(`  Players:`);
     for (const p of apTeam.players) {
-      const kp = p.kp !== undefined ? `${Math.round(p.kp * 100)}% KP` : "";
-      console.log(`    ${p.role.padEnd(7)} ${p.name.padEnd(12)} ${p.champion.padEnd(10)} ${p.kills ?? 0}/${p.deaths ?? 0}/${p.assists ?? 0} ${kp}`);
+      if (hasStats) {
+        const kp = p.kp !== undefined ? `${Math.round(p.kp * 100)}% KP` : "";
+        console.log(`    ${p.role.padEnd(7)} ${p.name.padEnd(12)} ${p.champion.padEnd(10)} ${p.kills ?? 0}/${p.deaths ?? 0}/${p.assists ?? 0} ${kp}`);
+      } else {
+        console.log(`    ${p.role.padEnd(7)} ${p.name.padEnd(12)} ${p.champion}`);
+      }
     }
     console.log();
   }
