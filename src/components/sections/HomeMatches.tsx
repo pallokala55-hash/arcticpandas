@@ -1,6 +1,6 @@
 import Link from "next/link";
 import SectionEyebrow from "../SectionEyebrow";
-import MatchCard from "../../app/(site)/matches/MatchCard";
+import MatchCard, { type MatchCardGame } from "../../app/(site)/matches/MatchCard";
 import {
   getAPGames,
   getAPTeam,
@@ -8,10 +8,32 @@ import {
   getTeam,
   getGameSlug,
   isPerfectGame,
+  type Game,
 } from "../../data";
-import styles from "./MatchHighlight.module.css";
+import styles from "./HomeMatches.module.css";
 
-export default function MatchHighlight() {
+function toCardGame(game: Game): MatchCardGame {
+  const apTeam = getAPTeam(game);
+  const oppTeam = getOpponentTeam(game);
+  const oppData = getTeam(oppTeam.teamId);
+
+  return {
+    id: game.id,
+    slug: getGameSlug(game.id),
+    date: game.date,
+    time: game.time,
+    result: apTeam.result ?? null,
+    apKills: apTeam.kills ?? null,
+    oppKills: oppTeam.kills ?? null,
+    oppCode: oppData?.code ?? oppTeam.teamId.toUpperCase(),
+    oppName: oppData?.name ?? oppTeam.teamId,
+    oppLogo: oppData?.logo ?? null,
+    oppInvertLogo: oppData?.invertLogo ?? false,
+    isPerfect: isPerfectGame(game),
+  };
+}
+
+export default function HomeMatches() {
   const games = getAPGames();
   const apData = getTeam("ap");
 
@@ -24,29 +46,8 @@ export default function MatchHighlight() {
     .sort((a, b) => b.date.localeCompare(a.date));
 
   const nextUpcoming = upcoming[0];
+  const otherUpcoming = upcoming.slice(1, 4);
   const latestWin = completed.find((g) => getAPTeam(g).result === "win");
-
-  // Convert to MatchCard format
-  const toCardGame = (game: typeof games[0]) => {
-    const apTeam = getAPTeam(game);
-    const oppTeam = getOpponentTeam(game);
-    const oppData = getTeam(oppTeam.teamId);
-
-    return {
-      id: game.id,
-      slug: getGameSlug(game.id),
-      date: game.date,
-      time: game.time,
-      result: apTeam.result ?? null,
-      apKills: apTeam.kills ?? null,
-      oppKills: oppTeam.kills ?? null,
-      oppCode: oppData?.code ?? oppTeam.teamId.toUpperCase(),
-      oppName: oppData?.name ?? oppTeam.teamId,
-      oppLogo: oppData?.logo ?? null,
-      oppInvertLogo: oppData?.invertLogo ?? false,
-      isPerfect: isPerfectGame(game),
-    };
-  };
 
   const apLogo = apData?.logo ?? null;
   const apInvertLogo = apData?.invertLogo ?? false;
@@ -60,7 +61,7 @@ export default function MatchHighlight() {
       <div className={styles.container}>
         <SectionEyebrow>NLC 2026 Winter</SectionEyebrow>
 
-        <div className={styles.cards}>
+        <div className={styles.featured}>
           {latestWin && (
             <MatchCard
               game={toCardGame(latestWin)}
@@ -78,6 +79,23 @@ export default function MatchHighlight() {
             />
           )}
         </div>
+
+        {otherUpcoming.length > 0 && (
+          <div className={styles.upcoming}>
+            <span className={styles.upcomingLabel}>Upcoming</span>
+            <div className={styles.upcomingGrid}>
+              {otherUpcoming.map((game) => (
+                <MatchCard
+                  key={game.id}
+                  game={toCardGame(game)}
+                  apLogo={apLogo}
+                  apInvertLogo={apInvertLogo}
+                  variant="compact"
+                />
+              ))}
+            </div>
+          </div>
+        )}
 
         <Link href="/matches" className={styles.viewAll}>
           View all matches →

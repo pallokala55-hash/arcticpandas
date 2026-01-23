@@ -11,10 +11,33 @@
   gap: 2rem;
 }
 
-.cards {
+.featured {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 16px;
+  width: 100%;
+}
+
+.upcoming {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.upcomingLabel {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.upcomingGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 8px;
   width: 100%;
 }
 
@@ -35,7 +58,11 @@
     padding: 64px 16px;
   }
 
-  .cards {
+  .featured {
+    grid-template-columns: 1fr;
+  }
+
+  .upcomingGrid {
     grid-template-columns: 1fr;
   }
 }
