@@ -5,6 +5,12 @@ export const SideSchema = z.enum(["blue", "red"]);
 export const ResultSchema = z.enum(["win", "loss"]);
 export const DragonTypeSchema = z.enum(["infernal", "mountain", "ocean", "cloud", "hextech", "chemtech"]);
 
+export const PerkMetadataSchema = z.object({
+  styleId: z.number().int(),
+  subStyleId: z.number().int(),
+  perks: z.array(z.number().int()),
+});
+
 export const PlayerParticipationSchema = z.object({
   playerId: z.string().nullable(),
   name: z.string().min(1),
@@ -15,22 +21,28 @@ export const PlayerParticipationSchema = z.object({
   assists: z.number().int().nonnegative().optional(),
   cs: z.number().int().nonnegative().optional(),
   gold: z.number().int().nonnegative().optional(),
+  level: z.number().int().positive().optional(),
   items: z.array(z.number().int()).optional(),
   kp: z.number().min(0).max(1).optional(),
   dmgShare: z.number().min(0).max(1).optional(),
+  wardsPlaced: z.number().int().nonnegative().optional(),
+  wardsDestroyed: z.number().int().nonnegative().optional(),
+  perks: PerkMetadataSchema.optional(),
+  abilities: z.array(z.string()).optional(),
 });
 
 export const TeamParticipationSchema = z.object({
   teamId: z.string().min(1),
-  side: SideSchema,
-  result: ResultSchema,
+  side: SideSchema.optional(),
+  result: ResultSchema.optional(),
   kills: z.number().int().nonnegative().optional(),
   deaths: z.number().int().nonnegative().optional(),
   gold: z.number().int().nonnegative().optional(),
   towers: z.number().int().nonnegative().optional(),
+  inhibitors: z.number().int().nonnegative().optional(),
   dragons: z.array(DragonTypeSchema).optional(),
   barons: z.number().int().nonnegative().optional(),
-  players: z.array(PlayerParticipationSchema),
+  players: z.array(PlayerParticipationSchema).optional(),
 });
 
 export const TournamentSchema = z.object({
@@ -46,6 +58,7 @@ export const VodSchema = z.object({
 export const GameSchema = z.object({
   id: z.string().min(1),
   date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  time: z.string().regex(/^\d{2}:\d{2}$/).optional(), // HH:MM in UTC
   patch: z.string().optional(),
   duration: z.number().int().positive().optional(),
   durationRealtime: z.number().int().positive().optional(),
@@ -56,6 +69,7 @@ export const GameSchema = z.object({
   slugs: z.array(z.string().min(1)),
 });
 
+export type PerkMetadata = z.infer<typeof PerkMetadataSchema>;
 export type PlayerParticipation = z.infer<typeof PlayerParticipationSchema>;
 export type TeamParticipation = z.infer<typeof TeamParticipationSchema>;
 export type Game = z.infer<typeof GameSchema>;
