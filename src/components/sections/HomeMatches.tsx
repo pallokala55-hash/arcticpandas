@@ -1,41 +1,11 @@
 import Link from "next/link";
 import SectionEyebrow from "../SectionEyebrow";
-import MatchCard, { type MatchCardGame } from "../../app/(site)/matches/MatchCard";
-import {
-  getAPGames,
-  getAPTeam,
-  getOpponentTeam,
-  getTeam,
-  getGameSlug,
-  isPerfectGame,
-  type Game,
-} from "../../data";
+import MatchCard from "../../app/(site)/matches/MatchCard";
+import { getAPGames, getAPTeam } from "../../data";
 import styles from "./HomeMatches.module.css";
-
-function toCardGame(game: Game): MatchCardGame {
-  const apTeam = getAPTeam(game);
-  const oppTeam = getOpponentTeam(game);
-  const oppData = getTeam(oppTeam.teamId);
-
-  return {
-    id: game.id,
-    slug: getGameSlug(game.id),
-    date: game.date,
-    time: game.time,
-    result: apTeam.result ?? null,
-    apKills: apTeam.kills ?? null,
-    oppKills: oppTeam.kills ?? null,
-    oppCode: oppData?.code ?? oppTeam.teamId.toUpperCase(),
-    oppName: oppData?.name ?? oppTeam.teamId,
-    oppLogo: oppData?.logo ?? null,
-    oppInvertLogo: oppData?.invertLogo ?? false,
-    isPerfect: isPerfectGame(game),
-  };
-}
 
 export default function HomeMatches() {
   const games = getAPGames();
-  const apData = getTeam("ap");
 
   const upcoming = games
     .filter((g) => !getAPTeam(g).result)
@@ -49,9 +19,6 @@ export default function HomeMatches() {
   const otherUpcoming = upcoming.slice(1, 4);
   const latestWin = completed.find((g) => getAPTeam(g).result === "win");
 
-  const apLogo = apData?.logo ?? null;
-  const apInvertLogo = apData?.invertLogo ?? false;
-
   if (!latestWin && !nextUpcoming) {
     return null;
   }
@@ -62,22 +29,8 @@ export default function HomeMatches() {
         <SectionEyebrow>NLC 2026 Winter</SectionEyebrow>
 
         <div className={styles.featured}>
-          {latestWin && (
-            <MatchCard
-              game={toCardGame(latestWin)}
-              apLogo={apLogo}
-              apInvertLogo={apInvertLogo}
-              variant="featured"
-            />
-          )}
-          {nextUpcoming && (
-            <MatchCard
-              game={toCardGame(nextUpcoming)}
-              apLogo={apLogo}
-              apInvertLogo={apInvertLogo}
-              variant="featured"
-            />
-          )}
+          {latestWin && <MatchCard game={latestWin} variant="featured" />}
+          {nextUpcoming && <MatchCard game={nextUpcoming} variant="featured" />}
         </div>
 
         {otherUpcoming.length > 0 && (
@@ -85,13 +38,7 @@ export default function HomeMatches() {
             <span className={styles.upcomingLabel}>Upcoming</span>
             <div className={styles.upcomingGrid}>
               {otherUpcoming.map((game) => (
-                <MatchCard
-                  key={game.id}
-                  game={toCardGame(game)}
-                  apLogo={apLogo}
-                  apInvertLogo={apInvertLogo}
-                  variant="compact"
-                />
+                <MatchCard key={game.id} game={game} variant="compact" />
               ))}
             </div>
           </div>

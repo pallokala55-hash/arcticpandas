@@ -1,15 +1,6 @@
 import { Metadata } from "next";
-import Link from "next/link";
 import SectionEyebrow from "../../../components/SectionEyebrow";
-import {
-  getAPGames,
-  getAPTeam,
-  getOpponentTeam,
-  getSeasonTotals,
-  isPerfectGame,
-  getTeam,
-  getGameSlug,
-} from "../../../data";
+import { getAPGames, getSeasonTotals } from "../../../data";
 import MatchTimeline from "./MatchTimeline";
 import styles from "./page.module.css";
 
@@ -21,32 +12,6 @@ export const metadata: Metadata = {
 export default function MatchesPage() {
   const games = getAPGames();
   const seasonStats = getSeasonTotals();
-  const apData = getTeam("ap");
-
-  // Prepare serializable game data for client component
-  const timelineGames = games.map((game) => {
-    const apTeam = getAPTeam(game);
-    const oppTeam = getOpponentTeam(game);
-    const oppData = getTeam(oppTeam.teamId);
-
-    return {
-      id: game.id,
-      slug: getGameSlug(game.id),
-      date: game.date,
-      time: game.time,
-      result: apTeam.result ?? null,
-      apKills: apTeam.kills ?? null,
-      oppKills: oppTeam.kills ?? null,
-      oppCode: oppData?.code ?? oppTeam.teamId.toUpperCase(),
-      oppName: oppData?.name ?? oppTeam.teamId,
-      oppLogo: oppData?.logo ?? null,
-      oppInvertLogo: oppData?.invertLogo ?? false,
-      isPerfect: isPerfectGame(game),
-    };
-  });
-
-  const apLogo = apData?.logo ?? null;
-  const apInvertLogo = apData?.invertLogo ?? false;
 
   return (
     <main className={styles.main}>
@@ -91,7 +56,7 @@ export default function MatchesPage() {
       </section>
 
       {/* Timeline */}
-      <MatchTimeline games={timelineGames} apLogo={apLogo} apInvertLogo={apInvertLogo} initialVisiblePast={3} />
+      <MatchTimeline games={games} initialVisiblePast={3} />
     </main>
   );
 }
