@@ -245,68 +245,6 @@ export const roster: RosterPlayer[] = rosterOrder
     image: player.photo ?? "",
     note: player.rosterNote ?? "",
   }));
-
-// ============================================================
-// Schedule compatibility (derived from games)
-// ============================================================
-
-export type MatchResult = "win" | "loss";
-
-export type Match = {
-  datetime: string;
-  opponent: string;
-  opponentShort: string;
-  result: MatchResult | null;
-  vodUrl: string | null;
-  thumbnail?: string | null;
-};
-
-// Convert games to matches format
-export const matches: Match[] = games
-  .filter((game) => game.teams.some((t) => t.teamId === "ap"))
-  .map((game) => {
-    const apTeam = game.teams.find((t) => t.teamId === "ap")!;
-    const opponent = game.teams.find((t) => t.teamId !== "ap")!;
-    const opponentData = getTeam(opponent.teamId);
-    const time = game.time ?? "18:00";
-
-    return {
-      datetime: `${game.date}T${time}:00Z`,
-      opponent: opponentData?.name ?? opponent.teamId,
-      opponentShort: opponentData?.code ?? opponent.teamId.toUpperCase(),
-      result: apTeam.result ?? null,
-      vodUrl: game.vods?.[0]?.url ?? null,
-      thumbnail: null,
-    };
-  })
-  .sort((a, b) => a.datetime.localeCompare(b.datetime));
-
-export function getLatestPlayedMatch(): Match | null {
-  const played = matches.filter((m) => m.result !== null);
-  return played.length > 0 ? played[played.length - 1] : null;
-}
-
-export function getUpcomingMatches(): Match[] {
-  return matches.filter((m) => m.result === null);
-}
-
-export function formatMatchDate(datetime: string): string {
-  const date = new Date(datetime);
-  return date.toLocaleDateString(undefined, {
-    weekday: "short",
-    month: "short",
-    day: "numeric",
-  });
-}
-
-export function formatMatchTime(datetime: string): string {
-  const date = new Date(datetime);
-  return date.toLocaleTimeString(undefined, {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-}
-
 // ============================================================
 // Matches page helpers
 // ============================================================

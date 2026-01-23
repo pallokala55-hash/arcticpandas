@@ -1,13 +1,13 @@
 import CTA from "../../components/sections/CTA";
 import Hero from "../../components/sections/Hero";
 import Team from "../../components/sections/Team";
-import TwitchHighlight from "../../components/sections/TwitchHighlight";
+import MatchHighlight from "../../components/sections/MatchHighlight";
 
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <TwitchHighlight />
+      <MatchHighlight />
       <Team />
       <CTA />
     </>
