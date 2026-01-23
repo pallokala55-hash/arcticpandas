@@ -281,16 +281,18 @@ export default async function MatchDetailPage({ params }: Props) {
     <main className={styles.main} data-result={isUpcoming ? "upcoming" : apTeam.result} data-perfect={perfect} data-stomp={stomp}>
       {/* Hero */}
       <section className={styles.hero}>
-        <div className={styles.heroGlow} />
+        <div className={styles.heroInner}>
+          <Link href="/matches" className={styles.backLink}>
+            ← Matches
+          </Link>
 
-        <Link href="/matches" className={styles.backLink}>
-          ← Matches
-        </Link>
-
-        <div className={styles.heroContent}>
+          <div className={styles.heroContent}>
           {/* Result Label */}
-          <div className={styles.resultLabel}>
-            {getResultLabel(isUpcoming, perfect, stomp, isWin)}
+          <div className={styles.resultLabelWrap}>
+            <div className={styles.heroGlow} />
+            <div className={styles.resultLabel}>
+              {getResultLabel(isUpcoming, perfect, stomp, isWin)}
+            </div>
           </div>
 
           {/* Matchup */}
@@ -345,6 +347,7 @@ export default async function MatchDetailPage({ params }: Props) {
             <span>{dateStr}</span>
             {game.patch && <span>Patch {game.patch}</span>}
           </div>
+        </div>
         </div>
       </section>
 

@@ -8,20 +8,24 @@
    ======================================== */
 .hero {
   position: relative;
-  padding: 64px 24px 48px;
+  padding: 64px 0 48px;
   overflow: hidden;
+}
+
+.resultLabelWrap {
+  position: relative;
 }
 
 .heroGlow {
   position: absolute;
-  top: -100px;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  width: 600px;
-  height: 400px;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 350px;
   border-radius: 50%;
   pointer-events: none;
-  opacity: 0.4;
+  opacity: 0.5;
 }
 
 .main[data-result="win"] .heroGlow {
@@ -45,14 +49,20 @@
   opacity: 0.6;
 }
 
-.backLink {
+.heroInner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
   position: relative;
+}
+
+.backLink {
   display: inline-block;
   font-size: 0.8rem;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.4);
   text-decoration: none;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   transition: color 0.2s;
 }
 
@@ -695,7 +705,11 @@
    ======================================== */
 @media (max-width: 640px) {
   .hero {
-    padding: 48px 16px 32px;
+    padding: 48px 0 32px;
+  }
+
+  .heroInner {
+    padding: 0 16px;
   }
 
   .matchup {
