@@ -1,16 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import {
-  FeaturedUpcomingCard,
-  FeaturedWinCard,
-  SmallMatchCard,
-  type TimelineGame,
-} from "./MatchCards";
+import MatchCard, { type MatchCardGame } from "./MatchCard";
 import styles from "./page.module.css";
 
 type MatchTimelineProps = {
-  games: TimelineGame[];
+  games: MatchCardGame[];
   apLogo: string | null;
   apInvertLogo: boolean;
   initialVisiblePast: number;
@@ -43,8 +38,8 @@ export default function MatchTimeline({ games, apLogo, apInvertLogo, initialVisi
       {/* Featured Section */}
       {(nextUpcoming || latestWin) && (
         <div className={styles.featuredSection}>
-          {latestWin && <FeaturedWinCard game={latestWin} apLogo={apLogo} apInvertLogo={apInvertLogo} />}
-          {nextUpcoming && <FeaturedUpcomingCard game={nextUpcoming} apLogo={apLogo} apInvertLogo={apInvertLogo} />}
+          {latestWin && <MatchCard game={latestWin} apLogo={apLogo} apInvertLogo={apInvertLogo} variant="featured" />}
+          {nextUpcoming && <MatchCard game={nextUpcoming} apLogo={apLogo} apInvertLogo={apInvertLogo} variant="featured" />}
         </div>
       )}
 
@@ -54,7 +49,7 @@ export default function MatchTimeline({ games, apLogo, apInvertLogo, initialVisi
           <span className={styles.sectionLabel}>Match History</span>
           <div className={styles.smallGrid}>
             {visibleOtherCompleted.map((game) => (
-              <SmallMatchCard key={game.id} game={game} apLogo={apLogo} apInvertLogo={apInvertLogo} />
+              <MatchCard key={game.id} game={game} apLogo={apLogo} apInvertLogo={apInvertLogo} variant="compact" />
             ))}
           </div>
           {!showAll && hiddenCount > 0 && (
@@ -71,7 +66,7 @@ export default function MatchTimeline({ games, apLogo, apInvertLogo, initialVisi
           <span className={styles.sectionLabel}>Schedule</span>
           <div className={styles.smallGrid}>
             {otherUpcoming.map((game) => (
-              <SmallMatchCard key={game.id} game={game} apLogo={apLogo} apInvertLogo={apInvertLogo} />
+              <MatchCard key={game.id} game={game} apLogo={apLogo} apInvertLogo={apInvertLogo} variant="compact" />
             ))}
           </div>
         </div>

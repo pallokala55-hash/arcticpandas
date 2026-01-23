@@ -7,10 +7,8 @@ import {
   getOpponentTeam,
   getSeasonTotals,
   isPerfectGame,
-  formatDuration,
   getTeam,
   getGameSlug,
-  type Game,
 } from "../../../data";
 import MatchTimeline from "./MatchTimeline";
 import styles from "./page.module.css";
@@ -23,17 +21,6 @@ export const metadata: Metadata = {
 export default function MatchesPage() {
   const games = getAPGames();
   const seasonStats = getSeasonTotals();
-
-  // Split into upcoming (no result) and completed (has result)
-  const upcomingGames = games
-    .filter((g) => !getAPTeam(g).result)
-    .sort((a, b) => a.date.localeCompare(b.date));
-
-  const completedGames = games
-    .filter((g) => getAPTeam(g).result)
-    .sort((a, b) => b.date.localeCompare(a.date));
-
-  // Get AP team data for logo
   const apData = getTeam("ap");
 
   // Prepare serializable game data for client component
@@ -54,11 +41,7 @@ export default function MatchesPage() {
       oppName: oppData?.name ?? oppTeam.teamId,
       oppLogo: oppData?.logo ?? null,
       oppInvertLogo: oppData?.invertLogo ?? false,
-      duration: game.duration ?? null,
       isPerfect: isPerfectGame(game),
-      gold: apTeam.gold ?? null,
-      towers: apTeam.towers ?? null,
-      dragons: apTeam.dragons?.length ?? null,
     };
   });
 
