@@ -69,15 +69,17 @@ function validateGames(playerIds: Set<string>, teamIds: Set<string>, championIds
           errors.push(`Game ${game.id}: Unknown team ${teamPart.teamId}`);
         }
 
-        // Check player references
-        for (const player of teamPart.players) {
-          if (player.playerId !== null && !playerIds.has(player.playerId)) {
-            errors.push(`Game ${game.id}: Unknown player ${player.playerId}`);
-          }
+        // Check player references (if game has been played)
+        if (teamPart.players) {
+          for (const player of teamPart.players) {
+            if (player.playerId !== null && !playerIds.has(player.playerId)) {
+              errors.push(`Game ${game.id}: Unknown player ${player.playerId}`);
+            }
 
-          // Check champion exists (skip "Unknown" placeholder)
-          if (player.champion !== "Unknown" && !championIds.has(player.champion)) {
-            warnings.push(`Game ${game.id}: Unknown champion ${player.champion}`);
+            // Check champion exists (skip "Unknown" placeholder)
+            if (player.champion !== "Unknown" && !championIds.has(player.champion)) {
+              warnings.push(`Game ${game.id}: Unknown champion ${player.champion}`);
+            }
           }
         }
       }

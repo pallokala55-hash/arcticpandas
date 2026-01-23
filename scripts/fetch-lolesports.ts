@@ -150,6 +150,12 @@ const TEAM_IDS: Record<string, string> = {
   "107565473980214294": "lls",
 };
 
+interface PerkMetadata {
+  styleId: number;
+  subStyleId: number;
+  perks: number[];
+}
+
 interface PlayerParticipation {
   playerId: string | null;
   name: string;
@@ -160,9 +166,14 @@ interface PlayerParticipation {
   assists?: number;
   cs?: number;
   gold?: number;
+  level?: number;
   items?: number[];
   kp?: number;
   dmgShare?: number;
+  wardsPlaced?: number;
+  wardsDestroyed?: number;
+  perks?: PerkMetadata;
+  abilities?: string[];
 }
 
 interface TeamParticipation {
@@ -173,6 +184,7 @@ interface TeamParticipation {
   deaths?: number;
   gold?: number;
   towers?: number;
+  inhibitors?: number;
   dragons?: string[];
   barons?: number;
   players: PlayerParticipation[];
@@ -322,6 +334,7 @@ async function fetchGameData(gameId: string, oppTeamId?: string): Promise<GameDa
       assists: windowStats.assists,
       cs: windowStats.creepScore,
       gold: windowStats.totalGold,
+      level: windowStats.level,
     };
 
     if (detail?.items?.length) {
@@ -332,6 +345,22 @@ async function fetchGameData(gameId: string, oppTeamId?: string): Promise<GameDa
     }
     if (detail?.championDamageShare !== undefined) {
       player.dmgShare = Math.round(detail.championDamageShare * 100) / 100;
+    }
+    if (detail?.wardsPlaced !== undefined) {
+      player.wardsPlaced = detail.wardsPlaced;
+    }
+    if (detail?.wardsDestroyed !== undefined) {
+      player.wardsDestroyed = detail.wardsDestroyed;
+    }
+    if (detail?.perkMetadata) {
+      player.perks = {
+        styleId: detail.perkMetadata.styleId,
+        subStyleId: detail.perkMetadata.subStyleId,
+        perks: detail.perkMetadata.perks,
+      };
+    }
+    if (detail?.abilities?.length) {
+      player.abilities = detail.abilities;
     }
 
     return player;
@@ -368,6 +397,7 @@ async function fetchGameData(gameId: string, oppTeamId?: string): Promise<GameDa
       deaths,
       gold: windowStats.totalGold,
       towers: windowStats.towers,
+      inhibitors: windowStats.inhibitors,
       dragons: windowStats.dragons.map(d => d.toLowerCase()),
       barons: windowStats.barons,
       players,
@@ -413,6 +443,8 @@ const OPP_TEAM_IDS: Record<string, string> = {
   BOMB: "bomb",
   BDG: "bdg",
 };
+
+import { generateGameSlugs } from "../src/data/slugs";
 
 async function main() {
   console.log("Fetching NLC 2026 Winter schedule...\n");
@@ -468,8 +500,34 @@ async function main() {
   console.log("=== Writing game files ===\n");
   for (const game of allGameData) {
     const filePath = path.join(gamesDir, `${game.id}.json`);
-    fs.writeFileSync(filePath, JSON.stringify(game, null, 2) + "\n");
-    console.log(`Wrote ${filePath}`);
+
+    // Preserve existing slugs/vods if file exists
+    let existingSlugs: string[] | undefined;
+    let existingVods: Vod[] | undefined;
+    if (fs.existsSync(filePath)) {
+      try {
+        const existing = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+        existingSlugs = existing.slugs;
+        existingVods = existing.vods;
+      } catch {
+        // Ignore parse errors
+      }
+    }
+
+    // Generate slugs for new games
+    if (!existingSlugs) {
+      const oppTeam = game.teams.find(t => t.teamId !== "ap")!;
+      existingSlugs = generateGameSlugs(oppTeam.teamId, game.date);
+    }
+
+    const output = {
+      ...game,
+      slugs: existingSlugs,
+      ...(existingVods && { vods: existingVods }),
+    };
+
+    fs.writeFileSync(filePath, JSON.stringify(output, null, 2) + "\n");
+    console.log(`Wrote ${filePath}${existingVods ? " (preserved vods)" : ""}`);
   }
 
   console.log("\nDone! Don't forget to update src/data/index.ts with new game imports.");
