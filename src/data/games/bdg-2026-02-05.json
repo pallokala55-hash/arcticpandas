@@ -1,0 +1,19 @@
+{
+  "id": "bdg-2026-02-05",
+  "date": "2026-02-05",
+  "time": "19:20",
+  "slugs": [
+    "bulldog-esports",
+    "feb-5-bdg",
+    "2026-02-05-bdg",
+    "winter-2026-bdg"
+  ],
+  "tournament": {
+    "name": "NLC 2026 Winter",
+    "stage": "Regular Season"
+  },
+  "teams": [
+    { "teamId": "ap" },
+    { "teamId": "bdg" }
+  ]
+}

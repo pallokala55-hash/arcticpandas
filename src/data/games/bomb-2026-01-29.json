@@ -1,0 +1,19 @@
+{
+  "id": "bomb-2026-01-29",
+  "date": "2026-01-29",
+  "time": "20:20",
+  "slugs": [
+    "la-bombas",
+    "jan-29-bomb",
+    "2026-01-29-bomb",
+    "winter-2026-bomb"
+  ],
+  "tournament": {
+    "name": "NLC 2026 Winter",
+    "stage": "Regular Season"
+  },
+  "teams": [
+    { "teamId": "ap" },
+    { "teamId": "bomb" }
+  ]
+}

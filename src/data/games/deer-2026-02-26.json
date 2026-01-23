@@ -1,0 +1,19 @@
+{
+  "id": "deer-2026-02-26",
+  "date": "2026-02-26",
+  "time": "22:20",
+  "slugs": [
+    "deer-gaming",
+    "feb-26-deer",
+    "2026-02-26-deer",
+    "winter-2026-deer"
+  ],
+  "tournament": {
+    "name": "NLC 2026 Winter",
+    "stage": "Regular Season"
+  },
+  "teams": [
+    { "teamId": "ap" },
+    { "teamId": "deer" }
+  ]
+}

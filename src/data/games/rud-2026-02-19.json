@@ -1,0 +1,19 @@
+{
+  "id": "rud-2026-02-19",
+  "date": "2026-02-19",
+  "time": "21:20",
+  "slugs": [
+    "ruddy-esports",
+    "feb-19-rud",
+    "2026-02-19-rud",
+    "winter-2026-rud"
+  ],
+  "tournament": {
+    "name": "NLC 2026 Winter",
+    "stage": "Regular Season"
+  },
+  "teams": [
+    { "teamId": "ap" },
+    { "teamId": "rud" }
+  ]
+}

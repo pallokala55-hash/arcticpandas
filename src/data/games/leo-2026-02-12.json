@@ -1,0 +1,19 @@
+{
+  "id": "leo-2026-02-12",
+  "date": "2026-02-12",
+  "time": "20:20",
+  "slugs": [
+    "leo",
+    "feb-12-leo",
+    "2026-02-12-leo",
+    "winter-2026-leo"
+  ],
+  "tournament": {
+    "name": "NLC 2026 Winter",
+    "stage": "Regular Season"
+  },
+  "teams": [
+    { "teamId": "ap" },
+    { "teamId": "leo" }
+  ]
+}

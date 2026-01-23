@@ -1,0 +1,19 @@
+{
+  "id": "dmg-2026-02-25",
+  "date": "2026-02-25",
+  "time": "22:20",
+  "slugs": [
+    "dmg-esports",
+    "feb-25-dmg",
+    "2026-02-25-dmg",
+    "winter-2026-dmg"
+  ],
+  "tournament": {
+    "name": "NLC 2026 Winter",
+    "stage": "Regular Season"
+  },
+  "teams": [
+    { "teamId": "ap" },
+    { "teamId": "dmg" }
+  ]
+}
