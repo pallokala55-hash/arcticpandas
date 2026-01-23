@@ -4,7 +4,8 @@
   "code": "AP",
   "region": "FI",
   "league": "NLC",
-  "logo": "/teams/ap.png",
+  "logo": "/logos/ap.webp",
+  "invertLogo": true,
   "colors": {
     "primary": "#4ED0FF",
     "secondary": "#1a1a2e"

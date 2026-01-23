@@ -2,5 +2,6 @@
   "id": "bomb",
   "name": "La BOMBAS",
   "code": "BOMB",
-  "league": "NLC"
+  "league": "NLC",
+  "logo": "/logos/bomb.webp"
 }

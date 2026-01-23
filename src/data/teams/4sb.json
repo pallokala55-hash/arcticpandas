@@ -1,6 +1,8 @@
 {
   "id": "4sb",
   "name": "4 SWINES & A BUM",
-  "code": "4S&B",
-  "league": "NLC"
+  "code": "FF15",
+  "altCodes": ["4S&B"],
+  "league": "NLC",
+  "logo": "/logos/4sb.webp"
 }

@@ -3,6 +3,7 @@
   "name": "Lundqvist Lightside",
   "code": "LLS",
   "league": "NLC",
+  "logo": "/logos/lls.webp",
   "esportsIds": {
     "lolesports": "107565473980214294"
   }

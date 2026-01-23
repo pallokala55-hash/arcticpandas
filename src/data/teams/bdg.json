@@ -2,5 +2,6 @@
   "id": "bdg",
   "name": "Bulldog Esports",
   "code": "BDG",
-  "league": "NLC"
+  "league": "NLC",
+  "logo": "/logos/bdg.webp"
 }
