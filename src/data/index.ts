@@ -24,18 +24,28 @@ import llsTeamData from "./teams/lls.json";
 import foursbTeamData from "./teams/4sb.json";
 import bombTeamData from "./teams/bomb.json";
 import bdgTeamData from "./teams/bdg.json";
+import dmgTeamData from "./teams/dmg.json";
+import leoTeamData from "./teams/leo.json";
+import deerTeamData from "./teams/deer.json";
+import rudTeamData from "./teams/rud.json";
 
 import game1Data from "./games/115762378910707629.json";
 import game2Data from "./games/115762378910707655.json";
 import game3Data from "./games/4sb-2026-01-22.json";
+import game4Data from "./games/bomb-2026-01-29.json";
+import game5Data from "./games/bdg-2026-02-05.json";
+import game6Data from "./games/leo-2026-02-12.json";
+import game7Data from "./games/rud-2026-02-19.json";
+import game8Data from "./games/dmg-2026-02-25.json";
+import game9Data from "./games/deer-2026-02-26.json";
 
 import championsData from "./lol/champions.json";
 import dragonsData from "./lol/dragons.json";
 
 // Parse and validate all data
 const playerDataArray = [nilleData, dibuData, simpliData, kehvoData, boltoxData];
-const teamDataArray = [apTeamData, verTeamData, llsTeamData, foursbTeamData, bombTeamData, bdgTeamData];
-const gameDataArray = [game1Data, game2Data, game3Data];
+const teamDataArray = [apTeamData, verTeamData, llsTeamData, foursbTeamData, bombTeamData, bdgTeamData, dmgTeamData, leoTeamData, deerTeamData, rudTeamData];
+const gameDataArray = [game1Data, game2Data, game3Data, game4Data, game5Data, game6Data, game7Data, game8Data, game9Data];
 
 // Load players into Map
 export const players = new Map<string, Player>(
@@ -135,7 +145,7 @@ export function getGame(id: string): Game | undefined {
 export function getPlayerGames(playerId: string): Game[] {
   return games.filter((game) =>
     game.teams.some((team) =>
-      team.players.some((p) => p.playerId === playerId)
+      team.players?.some((p) => p.playerId === playerId)
     )
   );
 }
@@ -258,12 +268,13 @@ export const matches: Match[] = games
     const apTeam = game.teams.find((t) => t.teamId === "ap")!;
     const opponent = game.teams.find((t) => t.teamId !== "ap")!;
     const opponentData = getTeam(opponent.teamId);
+    const time = game.time ?? "18:00";
 
     return {
-      datetime: `${game.date}T18:00:00Z`,
+      datetime: `${game.date}T${time}:00Z`,
       opponent: opponentData?.name ?? opponent.teamId,
       opponentShort: opponentData?.code ?? opponent.teamId.toUpperCase(),
-      result: apTeam.result as MatchResult,
+      result: apTeam.result ?? null,
       vodUrl: game.vods?.[0]?.url ?? null,
       thumbnail: null,
     };
@@ -352,7 +363,7 @@ export function getSeasonTotals() {
     dragons += apTeam.dragons?.length ?? 0;
 
     // Sum assists from players
-    for (const player of apTeam.players) {
+    for (const player of apTeam.players ?? []) {
       assists += player.assists ?? 0;
     }
   }
@@ -378,4 +389,27 @@ export function getPlayerSlug(esportsId: string | undefined): string | null {
 export function getPlayerSlugFromId(playerId: string | null): string | null {
   if (!playerId) return null;
   return players.has(playerId) ? playerId : null;
+}
+
+// Data Dragon version for champion icons
+const DDRAGON_VERSION = "14.24.1";
+
+// Get champion icon URL from Riot's Data Dragon CDN
+export function getChampionIconUrl(championName: string | undefined): string | null {
+  if (!championName || championName === "Unknown") return null;
+
+  // Look up the champion ID (handles case differences)
+  const champion = champions[championName];
+  if (!champion) {
+    // Try to find by matching name case-insensitively
+    const entry = Object.entries(champions).find(
+      ([, c]) => c.name.toLowerCase() === championName.toLowerCase()
+    );
+    if (entry) {
+      return `https://ddragon.leagueoflegends.com/cdn/${DDRAGON_VERSION}/img/champion/${entry[1].id}.png`;
+    }
+    return null;
+  }
+
+  return `https://ddragon.leagueoflegends.com/cdn/${DDRAGON_VERSION}/img/champion/${champion.id}.png`;
 }
