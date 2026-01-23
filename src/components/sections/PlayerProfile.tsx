@@ -52,7 +52,7 @@ export default function PlayerProfile({ player }: PlayerProfileProps): React.Rea
               />
               <div className={styles.peakInfo}>
                 <span className={styles.peakTier}>{player.peak.tier.toUpperCase()}</span>
-                <span className={styles.peakText}>{player.peak.text}</span>
+                <span className={styles.peakText}>{player.peak.text.split("·")[1]?.trim() || player.peak.text}</span>
               </div>
             </div>
             {opggUrl && (
