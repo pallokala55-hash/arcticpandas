@@ -4,7 +4,7 @@
   "realName": "Arlet Semre",
   "nationality": "EE",
   "photo": "/portraits/boltox.webp",
-  "bio": "Boltox started his competitive journey with VISU Gaming Snow in 2022, then moved through BlueWhites, Estonian Vipers, and Epic Avalanche. As one of the few Estonian players in the NLC, he brings a fresh perspective to Arctic Pandas. His solo queue peak of Challenger 1099 LP demonstrates the mechanical skill backing his climb through the regional scene.",
+  "bio": "Boltox won three titles with Epic Avalanche in 2025 — Finnish Pro League Spring, Summer, and the Finnhouse Cup — earning a Finnish circuit triple crown. The only Estonian player in the NLC, he brings international LAN experience from GG VASARA 2025 and four years of regional competition.",
   "socials": {
     "opgg": "https://op.gg/lol/summoners/euw/Boltox-EUW"
   },
@@ -14,11 +14,11 @@
   "role": "Support",
   "origin": "Estonia",
   "subtitle": "Rising Estonian talent climbing through the Nordic circuit.",
-  "tags": ["Estonian", "NLC rising", "Challenger peak"],
+  "tags": ["Finnish Triple Crown", "LAN Champion", "4-year veteran"],
   "highlights": [
-    "Challenger peak at 1099 LP on EUW",
-    "NLC 2nd Division experience with BlueWhites",
-    "Ultraliga 2nd Division with Estonian Vipers"
+    "Finnish Pro League 2025 triple crown with Epic Avalanche",
+    "GG VASARA 2025 LAN winner in Lithuania",
+    "Only Estonian player in the NLC"
   ],
   "playbook": "Nautilus · Rell · Karma · Bard",
   "peak": {
@@ -26,5 +26,5 @@
     "text": "CHALLENGER · 1099 LP",
     "opggUrl": "https://op.gg/lol/summoners/euw/Boltox-EUW"
   },
-  "rosterNote": "BlueWhites, Estonian Vipers\nChallenger 1099 LP"
+  "rosterNote": "BlueWhites, Estonian Vipers"
 }
