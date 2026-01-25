@@ -22,7 +22,6 @@ export default function Team(): React.ReactElement {
                 name={player.name}
                 role={player.role}
                 image={player.image}
-                note={player.note}
                 href={`/${player.slug}`}
               />
             ))}

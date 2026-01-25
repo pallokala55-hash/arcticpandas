@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { getRankEmblemUrl, type PlayerProfileData } from "../../data";
+import { type PlayerProfileData } from "../../data";
 import styles from "./PlayerProfile.module.css";
 
 type PlayerProfileProps = {
@@ -11,8 +11,6 @@ const enceReunionSlugs = ["nille", "simpli", "kehvo"];
 
 export default function PlayerProfile({ player }: PlayerProfileProps): React.ReactElement {
   const isEnceReunion = enceReunionSlugs.includes(player.slug);
-  const peakBadgeSrc = getRankEmblemUrl(player.peak.tier);
-  const opggUrl = player.peak.opggUrl;
 
   return (
     <section className={styles.profile}>
@@ -35,39 +33,6 @@ export default function PlayerProfile({ player }: PlayerProfileProps): React.Rea
             />
             <div className={styles.portraitOverlay} aria-hidden="true" />
             <div className={styles.roleBadge}>{player.role}</div>
-          </div>
-
-          {/* Peak rank card */}
-          <div className={styles.peakCard}>
-            <div className={styles.peakHeader}>
-              <span className={styles.peakLabel}>PEAK RANK</span>
-            </div>
-            <div className={styles.peakBody}>
-              <Image
-                src={peakBadgeSrc}
-                alt={player.peak.tier}
-                className={styles.peakBadge}
-                width={56}
-                height={56}
-              />
-              <div className={styles.peakInfo}>
-                <span className={styles.peakTier}>{player.peak.tier.toUpperCase()}</span>
-                <span className={styles.peakText}>{player.peak.text.split("·")[1]?.trim() || player.peak.text}</span>
-              </div>
-            </div>
-            {opggUrl && (
-              <a
-                href={opggUrl}
-                target="_blank"
-                rel="noreferrer"
-                className={styles.peakLink}
-              >
-                View on OP.GG
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                  <path d="M4 10L10 4M10 4H5M10 4V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </a>
-            )}
           </div>
 
           {/* Champion pool card */}
