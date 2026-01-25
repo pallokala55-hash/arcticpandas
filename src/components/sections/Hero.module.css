@@ -1,171 +1,157 @@
 .hero {
     position: relative;
-    overflow: hidden;
-    padding: 120px 24px 60px;
-    min-height: calc(100vh - 60px);
+    min-height: 100vh;
     display: flex;
-    align-items: center;
-    background: #0a0a0f;
-    color: #ffffff;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+    background: #050508;
 }
 
 .backdrop {
     position: absolute;
     inset: 0;
     background:
-        radial-gradient(ellipse 70% 50% at 75% 50%, rgba(78, 208, 255, 0.12), transparent 50%),
-        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(78, 208, 255, 0.06), transparent 60%),
-        radial-gradient(ellipse 50% 40% at 20% 70%, rgba(78, 208, 255, 0.05), transparent 50%),
-        linear-gradient(180deg, #080a14 0%, #0a0c18 50%, #0a0a0f 100%);
+        radial-gradient(
+            ellipse 100% 80% at 50% 100%,
+            rgba(78, 208, 255, 0.08),
+            transparent 50%
+        ),
+        linear-gradient(180deg, #08090d 0%, #050508 100%);
 }
 
-.container {
-    width: min(1200px, 92vw);
-    margin: 0 auto;
+.content {
     position: relative;
-    z-index: 1;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 3rem;
+    z-index: 2;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
-.left {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+.textBlock {
+    text-align: center;
+    margin-bottom: 8rem;
+    animation: fadeInUp 0.8s ease-out both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .eyebrow {
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.25em;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.35em;
     text-transform: uppercase;
-    color: #4ED0FF;
-    margin: 0;
+    color: #4ed0ff;
+    margin: 0 0 1rem;
 }
 
 .title {
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    font-weight: 700;
-    line-height: 1;
-    letter-spacing: 0.02em;
+    font-size: clamp(3rem, 10vw, 6rem);
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.titleAccent {
-    color: #4ED0FF;
+.titleTop {
+    color: #fff;
+}
+
+.titleBottom {
+    color: #4ed0ff;
+    text-shadow:
+        0 0 40px rgba(78, 208, 255, 0.5),
+        0 0 80px rgba(78, 208, 255, 0.3);
 }
 
 .tagline {
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    color: rgba(255, 255, 255, 0.6);
-    margin: 0;
-    max-width: 400px;
-    line-height: 1.5;
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    color: rgba(255, 255, 255, 0.5);
+    margin: 1.25rem 0 0;
 }
 
 .actions {
+    margin-top: 1.5rem;
     display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-top: 0.5rem;
+    justify-content: center;
 }
 
-.frameWrap {
+/* ============================================
+   ROSTER - scales with width
+   ============================================ */
+
+.roster {
     position: relative;
-    justify-self: flex-end;
-    width: min(720px, 55vw);
-    aspect-ratio: 16 / 8;
+    width: 100%;
+    max-width: 1400px;
+    aspect-ratio: 2.5 / 1;
+    margin: 0 auto;
 }
 
-@media (min-width: 1400px) {
-    .frameWrap {
-        width: min(800px, 50vw);
+.player {
+    position: absolute;
+    height: 100%;
+    animation: playerReveal 0.5s ease-out both;
+}
+
+@keyframes playerReveal {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-/* The visual frame border - full rectangle */
-.frameWrap::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 16px;
-    border: 1px solid rgba(78, 208, 255, 0.35);
-    background: linear-gradient(180deg, #0a1018 0%, #0d1520 100%);
-    box-shadow:
-        0 25px 80px rgba(0, 0, 0, 0.6),
-        0 0 50px rgba(78, 208, 255, 0.12);
-    z-index: 1;
-    pointer-events: none;
+.playerImage {
+    display: block;
+    width: auto;
+    max-width: none;
 }
 
-/* Container clips the image, taller than frame, bottom corners */
-.imageContainer {
-    position: absolute;
-    bottom: 1px;
-    left: 1px;
-    right: 1px;
-    height: calc(130% - 1px);
-    overflow: hidden;
-    border-radius: 0 0 15px 15px;
-    z-index: 2;
-}
+/* ============================================
+   BOTTOM FADE
+   ============================================ */
 
-.frameImage {
+.bottomFade {
     position: absolute;
     bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-    width: 120%;
-    max-width: none;
-    height: auto;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(to top, #050508, transparent);
+    pointer-events: none;
+    z-index: 10;
 }
 
-/* Responsive */
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
 @media (max-width: 900px) {
     .hero {
-        padding: 80px 20px 100px;
         min-height: auto;
-    }
-
-    .container {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-        text-align: center;
-    }
-
-    .left {
-        align-items: center;
-    }
-
-    .tagline {
-        max-width: 100%;
-    }
-
-    .actions {
-        justify-content: center;
-    }
-
-    .frameWrap {
-        justify-self: center;
-        width: 100%;
-        max-width: 480px;
+        padding-top: 100px;
     }
 }
 
-@media (max-width: 480px) {
-    .hero {
-        padding: 100px 16px 60px;
-    }
-
+@media (max-width: 600px) {
     .title {
-        font-size: clamp(2.5rem, 12vw, 3.5rem);
-    }
-
-    .frameWrap {
-        max-width: 100%;
-        border-radius: 16px;
+        font-size: clamp(2.5rem, 14vw, 4rem);
     }
 }
