@@ -11,6 +11,7 @@ import {
   formatDuration,
   type Game,
 } from "../../../data";
+import { socialConfig } from "../../../lib/config";
 import styles from "./page.module.css";
 
 type MatchCardProps = {
@@ -64,9 +65,14 @@ export default function MatchCard({ game, variant }: MatchCardProps): React.Reac
     const apLogoClass = [styles.featuredLogo, apData?.invertLogo && styles.invertLogo].filter(Boolean).join(" ");
     const oppLogoClass = [styles.featuredLogo, oppData?.invertLogo && styles.invertLogo].filter(Boolean).join(" ");
 
+    const CardWrapper = isUpcoming ? "a" : Link;
+    const cardProps = isUpcoming
+      ? { href: socialConfig.twitch.url, target: "_blank", rel: "noopener noreferrer" }
+      : { href: `/matches/${slug}` };
+
     return (
-      <Link
-        href={`/matches/${slug}`}
+      <CardWrapper
+        {...cardProps}
         className={styles.featuredCard}
         data-type={isUpcoming ? "upcoming" : "win"}
         data-stomp={!isUpcoming && stomp}
@@ -107,14 +113,19 @@ export default function MatchCard({ game, variant }: MatchCardProps): React.Reac
         </div>
 
         <div className={styles.featuredMeta}>
-          <span className={styles.featuredDate}>{weekday}, {month} {day}</span>
+          <span className={styles.featuredDate}>{weekday}, {month} {day} · {timeStr}</span>
           {isUpcoming ? (
-            <span className={styles.featuredTime}>{timeStr}</span>
+            <span className={styles.watchCta}>
+              <svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12" aria-hidden="true">
+                <path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z"/>
+              </svg>
+              Watch on Twitch
+            </span>
           ) : game.duration ? (
             <span className={styles.featuredTime}>{Math.floor(game.duration / 60)}m {game.duration % 60}s</span>
           ) : null}
         </div>
-      </Link>
+      </CardWrapper>
     );
   }
 
@@ -122,9 +133,14 @@ export default function MatchCard({ game, variant }: MatchCardProps): React.Reac
   const apSmallLogoClass = [styles.smallLogo, apData?.invertLogo && styles.invertLogo].filter(Boolean).join(" ");
   const oppSmallLogoClass = [styles.smallLogo, oppData?.invertLogo && styles.invertLogo].filter(Boolean).join(" ");
 
+  const SmallCardWrapper = isUpcoming ? "a" : Link;
+  const smallCardProps = isUpcoming
+    ? { href: socialConfig.twitch.url, target: "_blank", rel: "noopener noreferrer" }
+    : { href: `/matches/${slug}` };
+
   return (
-    <Link
-      href={`/matches/${slug}`}
+    <SmallCardWrapper
+      {...smallCardProps}
       className={styles.smallCard}
       data-type={isUpcoming ? "upcoming" : undefined}
       data-result={isUpcoming ? undefined : apTeam.result}
@@ -145,6 +161,6 @@ export default function MatchCard({ game, variant }: MatchCardProps): React.Reac
       <span className={styles.smallDate}>
         {isUpcoming ? `${month} ${day} · ${timeStr}` : dateStr}
       </span>
-    </Link>
+    </SmallCardWrapper>
   );
 }

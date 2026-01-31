@@ -241,7 +241,7 @@ export const roster: RosterPlayer[] = rosterOrder
   .map((player) => ({
     name: player.name,
     slug: player.id,
-    role: player.role?.replace(" Laner", "").replace("er", "") ?? "",
+    role: player.role ?? "",
     image: player.photo ?? "",
     note: player.rosterNote ?? "",
   }));

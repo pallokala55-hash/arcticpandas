@@ -9,7 +9,6 @@ export default function Team(): React.ReactElement {
       <div className={styles.container}>
         <div className={styles.header}>
           <h2 className={styles.title}>Team</h2>
-          <p className={styles.subtitle}>ERL veterans · 4 Finnish + 1 Estonian</p>
         </div>
 
         <div className={styles.rosterSection}>
@@ -22,7 +21,6 @@ export default function Team(): React.ReactElement {
                 name={player.name}
                 role={player.role}
                 image={player.image}
-                note={player.note}
                 href={`/${player.slug}`}
               />
             ))}

@@ -240,10 +240,23 @@
 }
 
 .featuredVsText {
-  font-size: 0.9rem;
+  font-size: 1.5rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
-  color: rgba(255, 255, 255, 0.25);
+  letter-spacing: 0.15em;
+  color: #4ED0FF;
+  text-shadow: 0 0 20px rgba(78, 208, 255, 0.5);
+  animation: vsPulse 2s ease-in-out infinite;
+}
+
+@keyframes vsPulse {
+  0%, 100% {
+    opacity: 0.7;
+    text-shadow: 0 0 20px rgba(78, 208, 255, 0.4);
+  }
+  50% {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(78, 208, 255, 0.7);
+  }
 }
 
 .featuredScore {
@@ -306,6 +319,22 @@
 .featuredCard[data-type="upcoming"] .featuredLabel {
   background: rgba(78, 208, 255, 0.15);
   color: #4ED0FF;
+}
+
+.watchCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #a970ff;
+  opacity: 0.85;
+  transition: all 0.2s;
+}
+
+.featuredCard:hover .watchCta {
+  opacity: 1;
+  color: #bf94ff;
 }
 
 /* --- Featured: Win --- */

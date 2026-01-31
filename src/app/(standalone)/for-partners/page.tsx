@@ -50,7 +50,7 @@ const content = {
     youtubeViews: "YouTube Views",
     creatorNote: "Built-in audience from day one.",
     rosterTitle: "The Roster",
-    rosterSubtitle: "ERL veterans · 4 Finnish + 1 Estonian",
+    rosterSubtitle: "ERL veterans · 4 Finns + 1 Estonian",
     rosterRecord: "Season started. Trajectory set.",
     // Hiiva credits
     credit1: "Assistant Coach 2022-2024",
