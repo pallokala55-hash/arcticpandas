@@ -32,7 +32,7 @@ import rudTeamData from "./teams/rud.json";
 import game1Data from "./games/115762378910707629.json";
 import game2Data from "./games/115762378910707655.json";
 import game3Data from "./games/115762378910707683.json";
-import game4Data from "./games/bomb-2026-01-29.json";
+import game4Data from "./games/115762378910707679.json";
 import game5Data from "./games/bdg-2026-02-05.json";
 import game6Data from "./games/leo-2026-02-12.json";
 import game7Data from "./games/rud-2026-02-19.json";

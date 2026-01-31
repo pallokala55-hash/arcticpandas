@@ -1,0 +1,600 @@
+{
+  "id": "115762378910707679",
+  "date": "2026-01-29",
+  "patch": "16.2.740.1491",
+  "duration": 1466,
+  "durationRealtime": 1466,
+  "tournament": {
+    "name": "NLC 2026 Winter",
+    "stage": "Regular Season"
+  },
+  "teams": [
+    {
+      "teamId": "ap",
+      "side": "red",
+      "result": "win",
+      "kills": 25,
+      "deaths": 8,
+      "gold": 58410,
+      "towers": 11,
+      "inhibitors": 3,
+      "dragons": [
+        "ocean",
+        "cloud"
+      ],
+      "barons": 1,
+      "players": [
+        {
+          "playerId": "nille",
+          "name": "AP Nille",
+          "role": "top",
+          "champion": "Rumble",
+          "kills": 13,
+          "deaths": 0,
+          "assists": 7,
+          "cs": 225,
+          "gold": 13282,
+          "level": 17,
+          "items": [
+            1056,
+            6653,
+            3020,
+            3363,
+            4645,
+            3041,
+            1058
+          ],
+          "kp": 0.8,
+          "dmgShare": 0.4,
+          "wardsPlaced": 13,
+          "wardsDestroyed": 2,
+          "perks": {
+            "styleId": 8200,
+            "subStyleId": 8400,
+            "perks": [
+              8229,
+              8275,
+              8233,
+              8237,
+              8473,
+              8242,
+              5007,
+              5008,
+              5011
+            ]
+          },
+          "abilities": [
+            "E",
+            "Q",
+            "W",
+            "Q",
+            "Q",
+            "R",
+            "Q",
+            "E",
+            "Q",
+            "E",
+            "R",
+            "E",
+            "E",
+            "W",
+            "W",
+            "R",
+            "W"
+          ]
+        },
+        {
+          "playerId": "dibu",
+          "name": "AP DIBU",
+          "role": "jungle",
+          "champion": "Ambessa",
+          "kills": 3,
+          "deaths": 2,
+          "assists": 11,
+          "cs": 170,
+          "gold": 10452,
+          "level": 14,
+          "items": [
+            6610,
+            3111,
+            3161,
+            2019,
+            1036
+          ],
+          "kp": 0.56,
+          "dmgShare": 0.14,
+          "wardsPlaced": 6,
+          "wardsDestroyed": 4,
+          "perks": {
+            "styleId": 8000,
+            "subStyleId": 8300,
+            "perks": [
+              8010,
+              9111,
+              9105,
+              8017,
+              8304,
+              8347,
+              5008,
+              5001
+            ]
+          },
+          "abilities": [
+            "Q",
+            "E",
+            "W",
+            "Q",
+            "Q",
+            "R",
+            "Q",
+            "E",
+            "Q",
+            "E",
+            "R",
+            "E",
+            "E",
+            "W"
+          ]
+        },
+        {
+          "playerId": "simpli",
+          "name": "AP Simpli",
+          "role": "mid",
+          "champion": "Yone",
+          "kills": 4,
+          "deaths": 1,
+          "assists": 5,
+          "cs": 304,
+          "gold": 13656,
+          "level": 17,
+          "items": [
+            1054,
+            3153,
+            3006,
+            6673,
+            3364,
+            3031,
+            2140
+          ],
+          "kp": 0.36,
+          "dmgShare": 0.18,
+          "wardsPlaced": 9,
+          "wardsDestroyed": 0,
+          "perks": {
+            "styleId": 8000,
+            "subStyleId": 8400,
+            "perks": [
+              8008,
+              9101,
+              9104,
+              8299,
+              8451,
+              8444,
+              5005,
+              5008,
+              5011
+            ]
+          },
+          "abilities": [
+            "Q",
+            "W",
+            "E",
+            "Q",
+            "Q",
+            "R",
+            "Q",
+            "E",
+            "Q",
+            "E",
+            "R",
+            "E",
+            "E",
+            "W",
+            "W",
+            "R",
+            "W"
+          ]
+        },
+        {
+          "playerId": "kehvo",
+          "name": "AP Kehvo",
+          "role": "bottom",
+          "champion": "Yunara",
+          "kills": 5,
+          "deaths": 2,
+          "assists": 7,
+          "cs": 229,
+          "gold": 13770,
+          "level": 14,
+          "items": [
+            1055,
+            6672,
+            3006,
+            3363,
+            2512,
+            3031
+          ],
+          "kp": 0.48,
+          "dmgShare": 0.22,
+          "wardsPlaced": 10,
+          "wardsDestroyed": 5,
+          "perks": {
+            "styleId": 8000,
+            "subStyleId": 8300,
+            "perks": [
+              8008,
+              9111,
+              9103,
+              8017,
+              8321,
+              8313,
+              5005,
+              5008,
+              5011
+            ]
+          },
+          "abilities": [
+            "Q",
+            "W",
+            "E",
+            "Q",
+            "Q",
+            "R",
+            "Q",
+            "W",
+            "Q",
+            "W",
+            "W",
+            "R",
+            "W",
+            "E",
+            "E"
+          ]
+        },
+        {
+          "playerId": "boltox",
+          "name": "AP Boltox",
+          "role": "support",
+          "champion": "Rell",
+          "kills": 0,
+          "deaths": 3,
+          "assists": 18,
+          "cs": 30,
+          "gold": 7250,
+          "level": 12,
+          "items": [
+            2031,
+            3364,
+            3050,
+            3047,
+            3067,
+            1033,
+            2055
+          ],
+          "kp": 0.72,
+          "dmgShare": 0.05,
+          "wardsPlaced": 31,
+          "wardsDestroyed": 10,
+          "perks": {
+            "styleId": 8400,
+            "subStyleId": 8300,
+            "perks": [
+              8439,
+              8401,
+              8473,
+              8242,
+              8306,
+              8347,
+              5007,
+              5010,
+              5011
+            ]
+          },
+          "abilities": [
+            "W",
+            "Q",
+            "E",
+            "W",
+            "W",
+            "R",
+            "W",
+            "E",
+            "W",
+            "E",
+            "R",
+            "E"
+          ]
+        }
+      ]
+    },
+    {
+      "teamId": "bomb",
+      "side": "blue",
+      "result": "loss",
+      "kills": 8,
+      "deaths": 25,
+      "gold": 38992,
+      "towers": 0,
+      "inhibitors": 0,
+      "dragons": [],
+      "barons": 0,
+      "players": [
+        {
+          "playerId": null,
+          "name": "BOMB Cyclops",
+          "role": "top",
+          "champion": "Renekton",
+          "kills": 1,
+          "deaths": 5,
+          "assists": 0,
+          "cs": 187,
+          "gold": 7750,
+          "level": 15,
+          "items": [
+            1054,
+            3340,
+            3156,
+            3047,
+            3044,
+            3067
+          ],
+          "kp": 0.13,
+          "dmgShare": 0.22,
+          "wardsPlaced": 10,
+          "wardsDestroyed": 4,
+          "perks": {
+            "styleId": 8000,
+            "subStyleId": 8400,
+            "perks": [
+              8010,
+              9111,
+              9105,
+              8299,
+              8444,
+              8242,
+              5008,
+              5011
+            ]
+          },
+          "abilities": [
+            "E",
+            "Q",
+            "W",
+            "Q",
+            "Q",
+            "R",
+            "Q",
+            "E",
+            "Q",
+            "E",
+            "R",
+            "E",
+            "E",
+            "W",
+            "W"
+          ]
+        },
+        {
+          "playerId": null,
+          "name": "BOMB Boatish",
+          "role": "jungle",
+          "champion": "Amumu",
+          "kills": 1,
+          "deaths": 3,
+          "assists": 3,
+          "cs": 130,
+          "gold": 7449,
+          "level": 12,
+          "items": [
+            3068,
+            3364,
+            3047,
+            1057,
+            3067,
+            1011
+          ],
+          "kp": 0.5,
+          "dmgShare": 0.15,
+          "wardsPlaced": 4,
+          "wardsDestroyed": 4,
+          "perks": {
+            "styleId": 8400,
+            "subStyleId": 8100,
+            "perks": [
+              8439,
+              8463,
+              8429,
+              8242,
+              8126,
+              8106,
+              5007,
+              5008,
+              5001
+            ]
+          },
+          "abilities": [
+            "W",
+            "E",
+            "Q",
+            "E",
+            "E",
+            "R",
+            "E",
+            "Q",
+            "E",
+            "Q",
+            "R",
+            "Q"
+          ]
+        },
+        {
+          "playerId": null,
+          "name": "BOMB Sloppy W",
+          "role": "mid",
+          "champion": "KogMaw",
+          "kills": 2,
+          "deaths": 9,
+          "assists": 3,
+          "cs": 172,
+          "gold": 7569,
+          "level": 13,
+          "items": [
+            1056,
+            1042,
+            3020,
+            3067,
+            3057,
+            3363
+          ],
+          "kp": 0.63,
+          "dmgShare": 0.31,
+          "wardsPlaced": 10,
+          "wardsDestroyed": 1,
+          "perks": {
+            "styleId": 8000,
+            "subStyleId": 8200,
+            "perks": [
+              8005,
+              8009,
+              9105,
+              8017,
+              8226,
+              8236,
+              5005,
+              5008,
+              5001
+            ]
+          },
+          "abilities": [
+            "E",
+            "W",
+            "Q",
+            "E",
+            "E",
+            "R",
+            "E",
+            "W",
+            "E",
+            "W",
+            "R",
+            "W",
+            "W"
+          ]
+        },
+        {
+          "playerId": null,
+          "name": "BOMB Miella",
+          "role": "bottom",
+          "champion": "Jinx",
+          "kills": 4,
+          "deaths": 4,
+          "assists": 1,
+          "cs": 243,
+          "gold": 10602,
+          "level": 12,
+          "items": [
+            1055,
+            3032,
+            3363,
+            3031,
+            1042,
+            6670,
+            1036
+          ],
+          "kp": 0.63,
+          "dmgShare": 0.23,
+          "wardsPlaced": 6,
+          "wardsDestroyed": 8,
+          "perks": {
+            "styleId": 8000,
+            "subStyleId": 8200,
+            "perks": [
+              8008,
+              8009,
+              9103,
+              8017,
+              8233,
+              8236,
+              5005,
+              5008,
+              5011
+            ]
+          },
+          "abilities": [
+            "Q",
+            "W",
+            "E",
+            "E",
+            "Q",
+            "R",
+            "Q",
+            "Q",
+            "Q",
+            "W",
+            "R",
+            "W"
+          ]
+        },
+        {
+          "playerId": null,
+          "name": "BOMB Luke1",
+          "role": "support",
+          "champion": "Alistar",
+          "kills": 0,
+          "deaths": 4,
+          "assists": 5,
+          "cs": 24,
+          "gold": 5622,
+          "level": 11,
+          "items": [
+            3364,
+            3158,
+            3050,
+            1028,
+            1033,
+            1029,
+            2055
+          ],
+          "kp": 0.63,
+          "dmgShare": 0.09,
+          "wardsPlaced": 25,
+          "wardsDestroyed": 6,
+          "perks": {
+            "styleId": 8300,
+            "subStyleId": 8200,
+            "perks": [
+              8360,
+              8306,
+              8345,
+              8347,
+              8275,
+              8234,
+              5007,
+              5008,
+              5011
+            ]
+          },
+          "abilities": [
+            "W",
+            "Q",
+            "E",
+            "Q",
+            "Q",
+            "R",
+            "Q",
+            "W",
+            "Q",
+            "W",
+            "R"
+          ]
+        }
+      ]
+    }
+  ],
+  "slugs": [
+    "la-bombas",
+    "jan-29-bomb",
+    "2026-01-29-bomb",
+    "winter-2026-bomb"
+  ]
+}
