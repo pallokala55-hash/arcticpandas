@@ -17,7 +17,7 @@ export const contactConfig = {
 
 export const socialConfig = {
   twitch: {
-    url: "https://www.twitch.tv/arcticpandass",
+    url: "https://www.twitch.tv/arcticpandasGG",
     handle: "arcticpandass",
   },
   twitter: {
