@@ -33,7 +33,7 @@ import game1Data from "./games/115762378910707629.json";
 import game2Data from "./games/115762378910707655.json";
 import game3Data from "./games/115762378910707683.json";
 import game4Data from "./games/115762378910707679.json";
-import game5Data from "./games/bdg-2026-02-05.json";
+import game5Data from "./games/115762378910642077.json";
 import game6Data from "./games/leo-2026-02-12.json";
 import game7Data from "./games/rud-2026-02-19.json";
 import game8Data from "./games/dmg-2026-02-25.json";
@@ -43,16 +43,43 @@ import championsData from "./lol/champions.json";
 import dragonsData from "./lol/dragons.json";
 
 // Parse and validate all data
-const playerDataArray = [nilleData, dibuData, simpliData, kehvoData, boltoxData];
-const teamDataArray = [apTeamData, verTeamData, llsTeamData, ff15TeamData, bombTeamData, bdgTeamData, dmgTeamData, leoTeamData, deerTeamData, rudTeamData];
-const gameDataArray = [game1Data, game2Data, game3Data, game4Data, game5Data, game6Data, game7Data, game8Data, game9Data];
+const playerDataArray = [
+  nilleData,
+  dibuData,
+  simpliData,
+  kehvoData,
+  boltoxData,
+];
+const teamDataArray = [
+  apTeamData,
+  verTeamData,
+  llsTeamData,
+  ff15TeamData,
+  bombTeamData,
+  bdgTeamData,
+  dmgTeamData,
+  leoTeamData,
+  deerTeamData,
+  rudTeamData,
+];
+const gameDataArray = [
+  game1Data,
+  game2Data,
+  game3Data,
+  game4Data,
+  game5Data,
+  game6Data,
+  game7Data,
+  game8Data,
+  game9Data,
+];
 
 // Load players into Map
 export const players = new Map<string, Player>(
   playerDataArray.map((data) => {
     const player = PlayerSchema.parse(data);
     return [player.id, player];
-  })
+  }),
 );
 
 // Load teams into Map
@@ -60,7 +87,7 @@ export const teams = new Map<string, Team>(
   teamDataArray.map((data) => {
     const team = TeamSchema.parse(data);
     return [team.id, team];
-  })
+  }),
 );
 
 // Load and sort games
@@ -69,7 +96,10 @@ export const games: Game[] = gameDataArray
   .sort((a, b) => b.date.localeCompare(a.date));
 
 // Compute canonical slugs (simplest unique slug for each game)
-function computeCanonicalSlugs(games: Game[]): { slugToGame: Map<string, Game>; gameToSlug: Map<string, string> } {
+function computeCanonicalSlugs(games: Game[]): {
+  slugToGame: Map<string, Game>;
+  gameToSlug: Map<string, string>;
+} {
   const slugToGame = new Map<string, Game>();
   const gameToSlug = new Map<string, string>();
   const usedSlugs = new Set<string>();
@@ -79,7 +109,7 @@ function computeCanonicalSlugs(games: Game[]): { slugToGame: Map<string, Game>; 
     for (const slug of game.slugs) {
       // Check if this slug is unique (not in another game's slugs)
       const isUnique = !games.some(
-        (other) => other.id !== game.id && other.slugs.includes(slug)
+        (other) => other.id !== game.id && other.slugs.includes(slug),
       );
 
       if (isUnique && !usedSlugs.has(slug)) {
@@ -126,8 +156,14 @@ export function getAllGameSlugs(): string[] {
 }
 
 // Load LoL reference data
-export const champions = ChampionsFileSchema.parse(championsData) as Record<string, Champion>;
-export const dragons = DragonsFileSchema.parse(dragonsData) as Record<string, DragonRef>;
+export const champions = ChampionsFileSchema.parse(championsData) as Record<
+  string,
+  Champion
+>;
+export const dragons = DragonsFileSchema.parse(dragonsData) as Record<
+  string,
+  DragonRef
+>;
 
 // Helper functions
 export function getPlayer(id: string): Player | undefined {
@@ -145,18 +181,21 @@ export function getGame(id: string): Game | undefined {
 export function getPlayerGames(playerId: string): Game[] {
   return games.filter((game) =>
     game.teams.some((team) =>
-      team.players?.some((p) => p.playerId === playerId)
-    )
+      team.players?.some((p) => p.playerId === playerId),
+    ),
   );
 }
 
 export function getTeamGames(teamId: string): Game[] {
   return games.filter((game) =>
-    game.teams.some((team) => team.teamId === teamId)
+    game.teams.some((team) => team.teamId === teamId),
   );
 }
 
-export function getTeamRecord(teamId: string): { wins: number; losses: number } {
+export function getTeamRecord(teamId: string): {
+  wins: number;
+  losses: number;
+} {
   const teamGames = getTeamGames(teamId);
   let wins = 0;
   let losses = 0;
@@ -170,7 +209,12 @@ export function getTeamRecord(teamId: string): { wins: number; losses: number } 
 
 // Re-export types
 export type { Player, Team, Game, Champion, DragonRef } from "./schemas";
-export type { PlayerParticipation, TeamParticipation, Role, DragonType } from "./schemas";
+export type {
+  PlayerParticipation,
+  TeamParticipation,
+  Role,
+  DragonType,
+} from "./schemas";
 
 // ============================================================
 // Compatibility exports for existing components
@@ -215,12 +259,13 @@ function toPlayerProfileData(player: Player): PlayerProfileData {
 }
 
 // Players array for generateStaticParams and similar
-export const playersArray: PlayerProfileData[] = Array.from(players.values()).map(toPlayerProfileData);
+export const playersArray: PlayerProfileData[] = Array.from(
+  players.values(),
+).map(toPlayerProfileData);
 
 // Players by slug lookup for page rendering
-export const playersBySlug: Record<string, PlayerProfileData> = Object.fromEntries(
-  playersArray.map((p) => [p.slug, p])
-);
+export const playersBySlug: Record<string, PlayerProfileData> =
+  Object.fromEntries(playersArray.map((p) => [p.slug, p]));
 
 // RosterPlayer type compatible with old roster.ts
 export type RosterPlayer = {
@@ -358,7 +403,9 @@ export function getRankEmblemUrl(tier: string): string {
 }
 
 // Get champion icon URL from Riot's Data Dragon CDN
-export function getChampionIconUrl(championName: string | undefined): string | null {
+export function getChampionIconUrl(
+  championName: string | undefined,
+): string | null {
   if (!championName || championName === "Unknown") return null;
 
   // Look up the champion ID (handles case differences)
@@ -366,7 +413,7 @@ export function getChampionIconUrl(championName: string | undefined): string | n
   if (!champion) {
     // Try to find by matching name case-insensitively
     const entry = Object.entries(champions).find(
-      ([, c]) => c.name.toLowerCase() === championName.toLowerCase()
+      ([, c]) => c.name.toLowerCase() === championName.toLowerCase(),
     );
     if (entry) {
       return `https://ddragon.leagueoflegends.com/cdn/${DDRAGON_VERSION}/img/champion/${entry[1].id}.png`;
