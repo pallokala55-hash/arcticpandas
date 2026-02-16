@@ -3,7 +3,14 @@ import { z } from "zod";
 export const RoleSchema = z.enum(["top", "jungle", "mid", "bottom", "support"]);
 export const SideSchema = z.enum(["blue", "red"]);
 export const ResultSchema = z.enum(["win", "loss"]);
-export const DragonTypeSchema = z.enum(["infernal", "mountain", "ocean", "cloud", "hextech", "chemtech"]);
+export const DragonTypeSchema = z.enum([
+  "infernal",
+  "mountain",
+  "ocean",
+  "cloud",
+  "hextech",
+  "chemtech",
+]);
 
 export const PerkMetadataSchema = z.object({
   styleId: z.number().int(),
@@ -58,7 +65,11 @@ export const VodSchema = z.object({
 export const GameSchema = z.object({
   id: z.string().min(1),
   date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
-  time: z.string().regex(/^\d{2}:\d{2}$/).optional(), // HH:MM in UTC
+  time: z
+    .string()
+    .regex(/^\d{2}:\d{2}$/)
+    .optional(), // HH:MM in local time
+  timeZone: z.string().optional(), // IANA time zone, e.g. Europe/Helsinki
   patch: z.string().optional(),
   duration: z.number().int().positive().optional(),
   durationRealtime: z.number().int().positive().optional(),
