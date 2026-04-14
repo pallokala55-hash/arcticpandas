@@ -13,7 +13,7 @@
     "stage": "Regular Season"
   },
   "teams": [
-    { "teamId": "ap" },
-    { "teamId": "deer" }
+    { "teamId": "ap", "result": "win" },
+    { "teamId": "deer", "result": "loss" }
   ]
 }

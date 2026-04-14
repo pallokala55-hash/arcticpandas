@@ -6,7 +6,8 @@ import styles from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "Matches | Arctic Pandas",
-  description: "Match history and stats for Arctic Pandas in NLC 2026 Winter",
+  description:
+    "Match history and stats for Arctic Pandas in NLC 2026 Winter, including playoffs",
 };
 
 export default function MatchesPage() {
@@ -17,7 +18,7 @@ export default function MatchesPage() {
     <main className={styles.main}>
       {/* Hero */}
       <section className={styles.hero}>
-        <SectionEyebrow>NLC 2026 Winter</SectionEyebrow>
+        <SectionEyebrow>NLC 2026 Winter + Playoffs</SectionEyebrow>
         <h1 className={styles.title}>
           <div className={styles.titleRecordWrap}>
             <div className={styles.heroGlow} />
@@ -47,7 +48,9 @@ export default function MatchesPage() {
             <span className={styles.statLabel}>Assists</span>
           </div>
           <div className={styles.statCard} data-highlight="true">
-            <span className={styles.statValue}>{seasonStats.kda.toFixed(1)}</span>
+            <span className={styles.statValue}>
+              {seasonStats.kda.toFixed(1)}
+            </span>
             <span className={styles.statLabel}>KDA</span>
           </div>
           <div className={styles.statCard}>

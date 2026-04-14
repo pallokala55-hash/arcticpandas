@@ -8,7 +8,6 @@ import {
   getTeam,
   getGameSlug,
   isPerfectGame,
-  formatDuration,
   type Game,
 } from "../../../data";
 import { socialConfig } from "../../../lib/config";
@@ -63,10 +62,24 @@ export default function MatchCard({
 
   const slug = getGameSlug(game.id);
   const isUpcoming = !apTeam.result;
+  const apSeriesWins = (apTeam as typeof apTeam & { seriesWins?: number })
+    .seriesWins;
+  const oppSeriesWins = (oppTeam as typeof oppTeam & { seriesWins?: number })
+    .seriesWins;
+  const hasKillScoreline =
+    apTeam.kills !== undefined && oppTeam.kills !== undefined;
+  const hasSeriesScoreline =
+    apSeriesWins !== undefined && oppSeriesWins !== undefined;
+  const hasScoreline = hasKillScoreline || hasSeriesScoreline;
+  const apScore = hasKillScoreline ? apTeam.kills : apSeriesWins;
+  const oppScore = hasKillScoreline ? oppTeam.kills : oppSeriesWins;
   const isWin = apTeam.result === "win";
   const perfect = isPerfectGame(game);
   const stomp =
-    isWin && !perfect && (apTeam.kills ?? 0) - (oppTeam.kills ?? 0) >= 15;
+    hasKillScoreline &&
+    isWin &&
+    !perfect &&
+    (apTeam.kills ?? 0) - (oppTeam.kills ?? 0) >= 15;
 
   const oppCode = oppData?.code ?? oppTeam.teamId.toUpperCase();
   const oppName = oppData?.name ?? oppTeam.teamId;
@@ -143,15 +156,19 @@ export default function MatchCard({
             <div className={styles.featuredVs}>
               <span className={styles.featuredVsText}>VS</span>
             </div>
-          ) : (
+          ) : hasScoreline ? (
             <div className={styles.featuredScore}>
               <span className={styles.featuredScoreNum} data-winner={isWin}>
-                {apTeam.kills ?? 0}
+                {apScore}
               </span>
               <span className={styles.featuredScoreSep}>-</span>
               <span className={styles.featuredScoreNum} data-winner={!isWin}>
-                {oppTeam.kills ?? 0}
+                {oppScore}
               </span>
+            </div>
+          ) : (
+            <div className={styles.featuredVs}>
+              <span className={styles.featuredVsText}>FINAL</span>
             </div>
           )}
 
@@ -244,19 +261,23 @@ export default function MatchCard({
             />
           )}
           <span>AP</span>
-          {!isUpcoming && (
-            <span className={styles.smallScore}>{apTeam.kills}</span>
+          {!isUpcoming && hasScoreline && (
+            <span className={styles.smallScore}>{apScore}</span>
           )}
         </div>
-        <span className={isUpcoming ? styles.smallVs : styles.smallSep}>
-          {isUpcoming ? "vs" : "-"}
+        <span
+          className={
+            isUpcoming || !hasScoreline ? styles.smallVs : styles.smallSep
+          }
+        >
+          {isUpcoming ? "vs" : hasScoreline ? "-" : "final"}
         </span>
         <div
           className={styles.smallTeam}
           data-winner={isUpcoming ? undefined : !isWin}
         >
-          {!isUpcoming && (
-            <span className={styles.smallScore}>{oppTeam.kills}</span>
+          {!isUpcoming && hasScoreline && (
+            <span className={styles.smallScore}>{oppScore}</span>
           )}
           <span>{oppCode}</span>
           {oppData?.logo && (

@@ -1,0 +1,22 @@
+{
+  "id": "ver-2026-03-07",
+  "date": "2026-03-07",
+  "time": "19:00",
+  "timeZone": "Europe/Helsinki",
+  "patch": "26.04",
+  "slugs": [
+    "verdant-finals",
+    "finals-vs-verdant",
+    "mar-7-ver",
+    "2026-03-07-ver",
+    "winter-playoffs-finals-ver"
+  ],
+  "tournament": {
+    "name": "NLC 2026 Winter Playoffs",
+    "stage": "Playoffs - Finals"
+  },
+  "teams": [
+    { "teamId": "ap", "result": "loss", "seriesWins": 0 },
+    { "teamId": "ver", "result": "win", "seriesWins": 3 }
+  ]
+}

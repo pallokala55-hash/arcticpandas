@@ -38,6 +38,8 @@ import game6Data from "./games/leo-2026-02-12.json";
 import game7Data from "./games/rud-2026-02-19.json";
 import game8Data from "./games/dmg-2026-02-25.json";
 import game9Data from "./games/deer-2026-02-26.json";
+import game10Data from "./games/dmg-2026-03-04.json";
+import game11Data from "./games/ver-2026-03-07.json";
 
 import championsData from "./lol/champions.json";
 import dragonsData from "./lol/dragons.json";
@@ -72,6 +74,8 @@ const gameDataArray = [
   game7Data,
   game8Data,
   game9Data,
+  game10Data,
+  game11Data,
 ];
 
 // Load players into Map

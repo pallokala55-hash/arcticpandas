@@ -1,0 +1,29 @@
+{
+  "id": "dmg-2026-03-04",
+  "date": "2026-03-04",
+  "time": "19:00",
+  "timeZone": "Europe/Helsinki",
+  "patch": "26.04",
+  "slugs": [
+    "dmg-playoffs",
+    "mar-4-dmg",
+    "2026-03-04-dmg",
+    "winter-playoffs-dmg"
+  ],
+  "tournament": {
+    "name": "NLC 2026 Winter Playoffs",
+    "stage": "Playoffs - Semifinal"
+  },
+  "teams": [
+    {
+      "teamId": "ap",
+      "result": "win",
+      "seriesWins": 3
+    },
+    {
+      "teamId": "dmg",
+      "result": "loss",
+      "seriesWins": 0
+    }
+  ]
+}

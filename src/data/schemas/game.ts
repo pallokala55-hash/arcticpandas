@@ -42,6 +42,7 @@ export const TeamParticipationSchema = z.object({
   teamId: z.string().min(1),
   side: SideSchema.optional(),
   result: ResultSchema.optional(),
+  seriesWins: z.number().int().nonnegative().optional(),
   kills: z.number().int().nonnegative().optional(),
   deaths: z.number().int().nonnegative().optional(),
   gold: z.number().int().nonnegative().optional(),

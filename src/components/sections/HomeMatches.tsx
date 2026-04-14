@@ -16,7 +16,7 @@ export default function HomeMatches(): React.ReactElement | null {
   return (
     <section className={styles.section}>
       <div className={styles.container}>
-        <SectionEyebrow>NLC 2026 Winter</SectionEyebrow>
+        <SectionEyebrow>NLC 2026 Winter + Playoffs</SectionEyebrow>
 
         <div className={styles.featured}>
           {latestWin && <MatchCard game={latestWin} variant="featured" />}
