@@ -1,7 +1,6 @@
 import MemberCard from "../MemberCard";
 import styles from "./Team.module.css";
 import { roster } from "../../data";
-import { management } from "../../data/management";
 
 export default function Team(): React.ReactElement {
   return (
@@ -22,22 +21,6 @@ export default function Team(): React.ReactElement {
                 role={player.role}
                 image={player.image}
                 href={`/${player.slug}`}
-              />
-            ))}
-          </div>
-        </div>
-
-        <div className={styles.managementSection}>
-          <h3 className={styles.sectionLabel}>Management</h3>
-          <div className={styles.managementGrid}>
-            {management.map((member) => (
-              <MemberCard
-                key={member.id}
-                variant="compact"
-                name={member.name}
-                image={member.image}
-                role={member.role}
-                note={member.note}
               />
             ))}
           </div>

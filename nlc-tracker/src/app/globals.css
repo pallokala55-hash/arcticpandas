@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+ * Design tokens — DPM.LOL-inspired dark theme
+ * ------------------------------------------------------------------------- */
+@theme {
+  /* Base surfaces */
+  --color-ink: #07060c; /* page background */
+  --color-panel: #0e0d17; /* card background */
+  --color-panel-2: #14121f; /* raised surface (inputs, toggles) */
+
+  /* Brand */
+  --color-accent: #6c6cf5;
+  --color-accent-soft: #8f8ffa;
+
+  /* Semantic */
+  --color-win: #34d399;
+  --color-loss: #f87171;
+  --color-gold: #f5c96c;
+  --color-muted: #8e8ba6;
+
+  --font-sans:
+    "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+body {
+  background:
+    radial-gradient(ellipse 55% 38% at 50% -8%, rgba(108, 108, 245, 0.16), transparent 65%),
+    radial-gradient(ellipse 35% 28% at 88% 18%, rgba(78, 208, 255, 0.07), transparent 60%),
+    radial-gradient(ellipse 45% 32% at 8% 75%, rgba(139, 92, 246, 0.09), transparent 60%),
+    var(--color-ink);
+  background-attachment: fixed;
+  color: #f4f3f8;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Glassy card surface used everywhere */
+.card {
+  border-radius: var(--radius-2xl);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: color-mix(in srgb, var(--color-panel) 82%, transparent);
+  backdrop-filter: blur(8px);
+}
+
+/* Card with an accent glow along the bottom edge (DPM stat cards) */
+.card-glow {
+  position: relative;
+  overflow: hidden;
+}
+.card-glow::after {
+  content: "";
+  position: absolute;
+  inset-inline: 15%;
+  bottom: -1px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+  opacity: 0.9;
+}
+
+/* Thin horizontal scrollbars for carousels */
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(108, 108, 245, 0.4) transparent;
+}
+.scroll-thin::-webkit-scrollbar {
+  height: 6px;
+}
+.scroll-thin::-webkit-scrollbar-thumb {
+  background: rgba(108, 108, 245, 0.4);
+  border-radius: 999px;
+}
+
+/* Bracket connector color, shared by stubs and elbows */
+:root {
+  --bracket-line: rgba(255, 255, 255, 0.14);
+}
